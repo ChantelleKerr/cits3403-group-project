@@ -1,0 +1,12 @@
+
+.food-row {
+  height: 70vh;
+  width: 100vw;
+  /* border: 1px solid black; */
+}
+.game-img {
+  /* position: relative;
+  overflow: hidden; */
+  background-size: cover;
+  background-position: 50%;
+}
