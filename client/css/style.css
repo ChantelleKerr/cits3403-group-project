@@ -1,0 +1,52 @@
+* {
+  font-family: georgia;
+}
+.logo {
+  height: 50px;
+  margin-right: 6px;
+}
+.food-row {
+  height: 73vh;
+  width: 100vw;
+}
+.game-img {
+  display: flex;
+  background-size: cover;
+  background-position: 50%;
+
+}
+.image-info {
+  height: 100%;
+  width: 100%;
+  /* background-color: blue; */
+}
+.image-info > h1 {
+  text-align: center;
+  color: white;
+  /* background-color: black; */
+  padding: 5px;
+}
+.image-info > h4 {
+  text-align: center;
+  color: white;
+  padding: 5px;
+}
+.footer {
+  align-content: center;
+}
+.score {
+  text-align: end;
+}
+#round-icons > img {
+  height: 30px;
+}
+
+/* Media query for small devices */
+@media(max-width: 510px) {
+  .footer {
+    font-size: small;
+  }
+  #round-icons > img {
+    height: 15px;
+  }
+}
