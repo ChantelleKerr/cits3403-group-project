@@ -72,18 +72,3 @@
 #round-icons > img {
   height: 30px;
 }
-
-/* Fancy animations */
-@keyframes or-transition {
-  50% {
-    font-size: 0px
-  }
-}
-
-.option-right:hover~.circle {
-  animation: or-transition 0.2s;
-}
-
-.option-left:hover~.circle {
-  animation: or-transition 0.2s;
-}
