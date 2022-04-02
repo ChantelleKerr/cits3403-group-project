@@ -2,10 +2,7 @@
   height: 50px;
   margin-right: 6px;
 }
-.center {
-  display: flex;
-  justify-content: center;
-}
+
 .food-row {
   height: 73vh;
   width: 100vw;
@@ -72,17 +69,6 @@
 .score {
   text-align: end;
 }
-
 #round-icons > img {
   height: 30px;
-}
-
-/* Media query for small devices */
-@media(max-width: 510px) {
-  .footer {
-    font-size: small;
-  }
-  #round-icons > img {
-    height: 30px;
-  }
 }
