@@ -2,8 +2,7 @@ const rounds = 10;
 const nutrients = ["Energy","Fat","Fibre","Iron","Protein","Sodium","Sugar"];
 // This function is used to generate a new batch of icons each day, and also to change the nutrient text
 
-function generateRoundIcons() {
-  //TODO: Consider renaming this function as it does more than generate round icons
+function generateNutrientData() {
   let div = document.getElementById('round-icons');
   let dt = new Date();
   for (let i = 0; i < rounds; i++) {
@@ -12,5 +11,5 @@ function generateRoundIcons() {
     img.setAttribute('alt', 'roundIcon')
     div.appendChild(img);
   }
-  document.getElementById("nutrient-name-text").innerHTML = nutrients[dt.getDay()];
+  document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
 }
