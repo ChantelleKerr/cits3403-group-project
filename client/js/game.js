@@ -5,6 +5,11 @@ const units = ["calories", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
 
+function onLoad() {
+  generateNutrientData();
+  addEventListeners();
+}
+
 // This function is used to generate a new batch of icons each day, and also to change the nutrient text
 function generateNutrientData() {
   let div = document.getElementById('round-icons');
@@ -19,17 +24,28 @@ function generateNutrientData() {
     //TODO: update this to use actual data, rather than some random number
   }
   document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
-  handleEventListeners();
 }
 
 // Add event listeners after the data has been generated
-function handleEventListeners() {
+function addEventListeners() {
   let foodChoices = document.getElementsByClassName("game-img");
   foodChoices.length===2 || console.log("ERROR: Found more than 2 choices!"); // Assertion 
 
+  // Add event listeners
+  document.getElementById("food-selection-area").addEventListener("mouseleave", updateCircle, false);
   for (var i = 0; i < foodChoices.length; i++) {
     foodChoices[i].addEventListener("click", checkHigher, false);
+    foodChoices[i].addEventListener("mouseenter", updateCircle, false);
+    
   }
+}
+
+/**
+ * Updates the symbol between food choices based on where cursor is located
+ * @param {event} The event triggering the function
+ */
+function updateCircle(event) {
+
 }
 
 // This function fills in the round icons if the higher value was clicked 

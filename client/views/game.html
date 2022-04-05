@@ -15,7 +15,7 @@
 
 </head>
 
-<body onload="generateNutrientData()">
+<body onload="onLoad()">
   <div class="container-fluid g-0">
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,7 +47,7 @@
       <h1><strong id="nutrient-name-text">Energy</strong></h1>
     </div>
    <!-- Main Game -->
-    <section class="row food-row g-0">
+    <section class="row food-row g-0" id="food-selection-area">
       <div class="col-sm-12 col-md-6 game-img" style="background-image: url(../images/pork-chop-test-img.png)"
       onmouseover="document.getElementById('comparison').innerHTML='>'"
       onmouseout ="document.getElementById('comparison').innerHTML='OR'">
