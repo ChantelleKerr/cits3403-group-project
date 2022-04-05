@@ -30,7 +30,7 @@ function generateNutrientData() {
 function addEventListeners() {
   let foodChoices = document.getElementsByClassName("game-img");
 
-  if (foodChoices.length != 2) { 
+  if (foodChoices.length != 2) {
     throw ("Found more than 2 food choices!");
   }
 
@@ -96,7 +96,7 @@ function getMostNutritious() {
   let foodChoices = document.getElementsByClassName("game-img");
   if (getNutrientDataOfImage(foodChoices[0]) > getNutrientDataOfImage(foodChoices[1])) {
     return foodChoices[0];
-  } 
+  }
   else if (getNutrientDataOfImage(foodChoices[0]) < getNutrientDataOfImage(foodChoices[1])) {
     return foodChoices[1];
   }
