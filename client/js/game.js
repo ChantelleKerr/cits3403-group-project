@@ -5,6 +5,11 @@ const units = ["calories", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
 
+function onLoad() {
+  generateNutrientData();
+  addEventListeners();
+}
+
 // This function is used to generate a new batch of icons each day, and also to change the nutrient text
 function generateNutrientData() {
   let div = document.getElementById('round-icons');
@@ -19,14 +24,43 @@ function generateNutrientData() {
     //TODO: update this to use actual data, rather than some random number
   }
   document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
-  handleEventListeners();
 }
 
 // Add event listeners after the data has been generated
-function handleEventListeners() {
-  let foodRow = document.getElementsByClassName("food-row");
-  for (var i = 0; i < foodRow.length; i++) {
-    foodRow[i].addEventListener("click", checkHigher, false);
+function addEventListeners() {
+  let foodChoices = document.getElementsByClassName("game-img");
+
+  if (foodChoices.length != 2) {
+    throw ("Found more than 2 food choices!");
+  }
+
+  // Add event listeners
+  document.getElementById("food-selection-area").addEventListener("mouseleave", updateCircle, false);
+  for (var i = 0; i < foodChoices.length; i++) {
+    foodChoices[i].addEventListener("click", checkHigher, false);
+    foodChoices[i].addEventListener("mouseenter", updateCircle, false);
+  }
+}
+
+/**
+ * Updates the symbol between food choices based on where cursor is located
+ * @param {event} The event triggering the function
+ */
+function updateCircle(event) {
+  let foodChoices = document.getElementsByClassName("game-img");
+  let circleComparison = document.getElementById("circle-comparison");
+
+  if (event.type == "mouseleave") {
+    circleComparison.textContent = "OR";
+  }
+  else if (event.type == "mouseenter" && event.target == foodChoices[0]) {
+    circleComparison.textContent = ">";
+  }
+  else if (event.type == "mouseenter" && event.target == foodChoices[1]) {
+    circleComparison.textContent = "<";
+  }
+  else {
+    throw ("updateCircle was called with an incorrect event!");
   }
 }
 
@@ -34,12 +68,22 @@ function handleEventListeners() {
 // The variable "clickedDiv" refers to the parent div containing the image and the
 // We need the parent div because we eventually want to change the image as well as the text
 function checkHigher(event) {
-  let clickedDiv = event.target;
-  if (event.target.tagName != "DIV"){ //Check if we're clicking text, rather than a div 
-    clickedDiv = clickedDiv.parentNode.parentNode;
+  let foodChoices = document.getElementsByClassName("game-img");
+
+  // Determine which food was selected
+  let foodSelected = event.target in foodChoices ? event.target : false;
+  if (foodChoices[0].contains(event.target) && !foodChoices[1].contains(event.target)) {
+    foodSelected = foodChoices[0];
   }
-  console.log(Boolean(clickedDiv));
-  if (clickedDiv == getMostNutritious() || (!getMostNutritious() && clickedDiv.className != "circle")) {
+  else if (foodChoices[1].contains(event.target) && !foodChoices[0].contains(event.target)) {
+    foodSelected = foodChoices[1];
+  }
+
+  if (!foodSelected) {
+    throw ("Food selected covered both or neither of the image divs!");
+  }
+
+  if (foodSelected == getMostNutritious() || !getMostNutritious()) {
     let roundDiv = document.getElementById('round-icons');
     roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";;
     currentRound++;
@@ -48,18 +92,19 @@ function checkHigher(event) {
 
 //This function returns the div containing the most nutritious food
 //If the foods are equally nutritious, then the function just returns false
-function getMostNutritious(){
-  let divs = document.getElementsByClassName("game-img");
-  if (getNutrientDataOfImage(divs[0]) > getNutrientDataOfImage(divs[1])){ 
-    return divs[0]; 
-  }else if (getNutrientDataOfImage(divs[0]) < getNutrientDataOfImage(divs[1])){ 
-    return divs[1];
+function getMostNutritious() {
+  let foodChoices = document.getElementsByClassName("game-img");
+  if (getNutrientDataOfImage(foodChoices[0]) > getNutrientDataOfImage(foodChoices[1])) {
+    return foodChoices[0];
+  }
+  else if (getNutrientDataOfImage(foodChoices[0]) < getNutrientDataOfImage(foodChoices[1])) {
+    return foodChoices[1];
   }
   return false;
 }
 
 //This function extracts the nutrient number from its container div
 //It may need to be updated once we stop displaying the nutrient data (depending on how we implement that)
-function getNutrientDataOfImage(div){
+function getNutrientDataOfImage(div) {
   return parseInt(div.firstElementChild.lastElementChild.innerHTML.split(" ")[1]);
 }
