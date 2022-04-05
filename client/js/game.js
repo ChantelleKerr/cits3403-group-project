@@ -29,14 +29,16 @@ function generateNutrientData() {
 // Add event listeners after the data has been generated
 function addEventListeners() {
   let foodChoices = document.getElementsByClassName("game-img");
-  foodChoices.length===2 || console.log("ERROR: Found more than 2 choices!"); // Assertion 
+
+  if (foodChoices.length != 2) { 
+    throw ("Found more than 2 food choices!");
+  }
 
   // Add event listeners
   document.getElementById("food-selection-area").addEventListener("mouseleave", updateCircle, false);
   for (var i = 0; i < foodChoices.length; i++) {
     foodChoices[i].addEventListener("click", checkHigher, false);
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
-    
   }
 }
 
@@ -45,7 +47,21 @@ function addEventListeners() {
  * @param {event} The event triggering the function
  */
 function updateCircle(event) {
+  let foodChoices = document.getElementsByClassName("game-img");
+  let circleComparison = document.getElementById("circle-comparison");
 
+  if (event.type == "mouseleave") {
+    circleComparison.textContent = "OR";
+  }
+  else if (event.type == "mouseenter" && event.target == foodChoices[0]) {
+    circleComparison.textContent = ">";
+  }
+  else if (event.type == "mouseenter" && event.target == foodChoices[1]) {
+    circleComparison.textContent = "<";
+  }
+  else {
+    throw ("updateCircle was called with an incorrect event!");
+  }
 }
 
 // This function fills in the round icons if the higher value was clicked 
@@ -62,7 +78,10 @@ function checkHigher(event) {
   else if (foodChoices[1].contains(event.target) && !foodChoices[0].contains(event.target)) {
     foodSelected = foodChoices[1];
   }
-  foodSelected || console.log("ERROR: Food selected covered both or neither of the image divs!"); // Assertion
+
+  if (!foodSelected) {
+    throw ("Food selected covered both or neither of the image divs!");
+  }
 
   if (foodSelected == getMostNutritious() || !getMostNutritious()) {
     let roundDiv = document.getElementById('round-icons');
