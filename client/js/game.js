@@ -24,23 +24,52 @@ function generateNutrientData() {
 
 // Add event listeners after the data has been generated
 function handleEventListeners() {
-  let foodRow = document.getElementsByClassName("food-row");
-  console.log(foodRow);
-  for (var i = 0; i < foodRow.length; i++) {
-    foodRow[i].addEventListener("click", checkHigher, false);
+  let foodChoices = document.getElementsByClassName("game-img");
+  foodChoices.length===2 || console.log("ERROR: Found more than 2 choices!"); // Assertion 
+
+  for (var i = 0; i < foodChoices.length; i++) {
+    foodChoices[i].addEventListener("click", checkHigher, false);
   }
 }
 
 // This function fills in the round icons if the higher value was clicked 
-// Future Problem: When you click on the text, the event.target 
-// returns the text tag instead of the parent div - might need a check to 
-// make sure its not a text tag and can goes back up the path (view data in event.path)
+// The variable "clickedDiv" refers to the parent div containing the image and the
 // We need the parent div because we eventually want to change the image as well as the text
 function checkHigher(event) {
-  //TODO: Check if the higher value was clicked & detect which img was clicked
-  if (event.target.className != "circle") {
+  let foodChoices = document.getElementsByClassName("game-img");
+
+  // Determine which food was selected
+  let foodSelected = event.target in foodChoices ? event.target : false;
+  if (foodChoices[0].contains(event.target) && !foodChoices[1].contains(event.target)) {
+    foodSelected = foodChoices[0];
+  }
+  else if (foodChoices[1].contains(event.target) && !foodChoices[0].contains(event.target)) {
+    foodSelected = foodChoices[1];
+  }
+  foodSelected || console.log("ERROR: Food selected covered both or neither of the image divs!"); // Assertion
+
+  if (foodSelected == getMostNutritious() || !getMostNutritious()) {
     let roundDiv = document.getElementById('round-icons');
     roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";;
     currentRound++;
   }
+}
+
+//This function returns the div containing the most nutritious food
+//If the foods are equally nutritious, then the function just returns false
+function getMostNutritious() {
+  let foodChoices = document.getElementsByClassName("game-img");
+  if (getNutrientDataOfImage(foodChoices[0]) > getNutrientDataOfImage(foodChoices[1])) {
+    return foodChoices[0];
+  } 
+  else if (getNutrientDataOfImage(foodChoices[0]) < getNutrientDataOfImage(foodChoices[1])) {
+    return foodChoices[1];
+  }
+  return false;
+}
+
+//This function extracts the nutrient number from its container div
+//It may need to be updated once we stop displaying the nutrient data (depending on how we implement that)
+function getNutrientDataOfImage(div) {
+  return parseInt(div.firstElementChild.lastElementChild.innerHTML.split(" ")[1]);
 }
