@@ -18,11 +18,11 @@ function onLoad() {
  * Generates a new set of food choices
  */
 function generateFoodChoices() {
-  // TODO: Pick two random foods (cannot be done until we get actual data)
   for (var i = 0; i < 2; i++) {
-    document.getElementsByClassName("nutrient-data-text")[i].innerHTML = nutrients[dt.getDay()] + ": " + Math.floor(1000 * Math.random()) + " " + units[dt.getDay()];
-    //TODO: update this to use actual data, rather than some random number
+    document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].image + ")";
+    document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound-1+i]
   }
+  document.getElementById("nutrient-data-text").innerHTML = nutrients[dt.getDay()] + ": " + Object.values(data)[currentRound-1].nutrient + " " + units[dt.getDay()];
 }
 
 /**
@@ -100,15 +100,19 @@ function makeSelection(event) {
     throw ("Food selected covered both or neither of the image divs!");
   }
 
-
-  // TODO: Go to end screen if selection was wrong / move to next round by changing the images and updating the data / calling a function nextRound() or something
+  let roundDiv = document.getElementById('round-icons');
   if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-    let roundDiv = document.getElementById('round-icons');
     roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";;
+  }else{
+    roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
+  }
+  if (currentRound < rounds){
     currentRound++;
     generateFoodChoices();
+  }else{
+    //TODO: The game has ended, so do something here
+    alert("game over"); 
   }
-  
 }
 
 /**
@@ -117,21 +121,12 @@ function makeSelection(event) {
  */
 function getMostNutritious() {
   let foodChoices = document.getElementsByClassName("game-img");
-  if (getNutrientDataOfImage(foodChoices[0]) > getNutrientDataOfImage(foodChoices[1])) {
+  let vals = Object.values(data)
+  if (vals[currentRound-1].nutrient > vals[currentRound].nutrient) {
     return foodChoices[0];
   }
-  else if (getNutrientDataOfImage(foodChoices[0]) < getNutrientDataOfImage(foodChoices[1])) {
+  else if (vals[currentRound-1].nutrient < vals[currentRound].nutrient) {
     return foodChoices[1];
   }
   return false;
-}
-
-/**
- * Extracts the nutrient number from its container div.
- * @param div - One of the two game-img div elements.
- * @returns The numerical amount of nutrition.
- */
-function getNutrientDataOfImage(div) {
-  // TODO: may need to be updated once we stop displaying the nutrient data (depending on how we implement that)
-  return parseInt(div.firstElementChild.lastElementChild.innerHTML.split(" ")[1]);
 }
