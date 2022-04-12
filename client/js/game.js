@@ -1,7 +1,8 @@
 const rounds = 10;
 let currentRound = 1;
 const nutrients = ["Energy", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["calories", "g", "g", "mg", "g", "mg", "g"]
+const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
+// TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
 
 let dt = new Date();
 
