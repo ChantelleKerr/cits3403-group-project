@@ -3,6 +3,28 @@
   margin-right: 6px;
 }
 
+/* TODO: Properly implement the blurring */
+.blur1 {
+  background-image: url(https://nix-tag-images.s3.amazonaws.com/1060_thumb.jpg);
+  display: flex;
+  position: absolute;
+  background-size: cover;
+  background-position: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.blur2 {
+  background-image: url(https://nix-tag-images.s3.amazonaws.com/1060_thumb.jpg);
+  display: flex;
+  position: absolute;
+  background-size: cover;
+  background-position: 50%;
+  height: 100%;
+  width: 100%;
+  filter: blur(8px);
+}
+
 .food-row {
   height: 73vh;
   width: 100vw;
