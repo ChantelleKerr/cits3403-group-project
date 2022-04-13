@@ -1,9 +1,10 @@
 const rounds = 10;
 let currentRound = 1;
-const nutrients = ["Energy", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["calories", "g", "g", "mg", "g", "mg", "g"]
+const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
+let todaysNutrient = nutrients[dt.getDay()];
 
 /**
  * Called when the page loads, sets up the game 
@@ -19,10 +20,10 @@ function onLoad() {
  */
 function generateFoodChoices() {
   for (var i = 0; i < 2; i++) {
-    document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].image + ")";
+    document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].url + ")";
     document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound-1+i]
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrients[dt.getDay()] + ": " + Object.values(data)[currentRound-1].nutrient + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound-1][todaysNutrient] + " " + units[dt.getDay()];
 }
 
 /**
@@ -102,7 +103,7 @@ function makeSelection(event) {
 
   let roundDiv = document.getElementById('round-icons');
   if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-    roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";;
+    roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
   }else{
     roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
   }
@@ -122,10 +123,10 @@ function makeSelection(event) {
 function getMostNutritious() {
   let foodChoices = document.getElementsByClassName("game-img");
   let vals = Object.values(data)
-  if (vals[currentRound-1].nutrient > vals[currentRound].nutrient) {
+  if (vals[currentRound-1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
     return foodChoices[0];
   }
-  else if (vals[currentRound-1].nutrient < vals[currentRound].nutrient) {
+  else if (vals[currentRound-1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
     return foodChoices[1];
   }
   return false;
