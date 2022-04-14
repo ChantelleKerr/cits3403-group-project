@@ -5,7 +5,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid px-3">
-        <img src="static/images/logo.png" class="logo" alt="logo">
+        <img src="../images/logo.png" class="logo" alt="logo">
         <a class="navbar-brand" href="#">[GameName]</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -29,20 +29,19 @@
     <!-- Page Title -->
     <div class="jumbotron text-center mt-2"> 
       <span> NUTRIENT OF THE DAY </span>
-      <h1><strong id="nutrient-name-text">Energy</strong></h1>
+      <h1><strong id="nutrient-name-text"></strong></h1>
     </div>
    <!-- Main Game -->
     <section class="row food-row g-0" id="food-selection-area">
-      <div class="col-sm-12 col-md-6 game-img" style="background-image: url(static/images/pork-chop-test-img.png)">
+      <div class="col-sm-12 col-md-6 game-img">
           <div class="img-info center">
-            <h3>Pork Steak</h3>
-            <h4 class="nutrient-data-text"> Calories: 564</h4>
+            <h3 class="food-name-text"></h3>
+            <h4 id="nutrient-data-text"></h4>
           </div>
       </div>
-      <div class="col-sm-12 col-md-6 game-img" style="background-image: url(static/images/cheesecake-test-img.png)">
+      <div class="col-sm-12 col-md-6 game-img">
         <div class="img-info center">
-          <h3>Cheesecake</h3>
-          <h4 class="nutrient-data-text"> Calories: 745</h4>
+          <h3 class="food-name-text"></h3>
         </div>
       </div>
       <div class="circle" id="circle-comparison"><span>OR</span></div>
