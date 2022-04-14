@@ -29,13 +29,15 @@
             <a class="nav-link" href="#">Analysis</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <form class="form-inline">
           <span class="navbar-brand">[FIRST NAME]</span>
-          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+          <button type="button" class="btn btn-primary mr-2" data-bs-toggle="" data-bs-target="#">Login</button>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
         </form>
       </div>
     </div>
   </nav>
+  <!-- Registration Modal -->
   <div class="modal fade" id="registerModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -45,19 +47,28 @@
         </div>
         <div class="modal-body mx-3">
           <div class="row justify-content-center my-3">
-            <div class="col">
-              <input class="inputField" type="text" placeholder="Username">
+            <div class="col-1 center">
+              <img src="static/images/user.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="text" placeholder="Username">
             </div>
           </div>
           <div class="row justify-content-center my-3">
-            <div class="col">
-              <input class="inputField" type="text" placeholder="Email">
+            <div class="col-1 center">
+              <img src="static/images/email.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="text" placeholder="Email">
             </div>
           </div>
           <div class="row justify-content-center my-3">
-            <div class="col">
-            <input class="inputField" type="password" placeholder="Password">
-          </div>
+            <div class="col-1 center">
+              <img src="static/images/lock.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="text" placeholder="Password">
+            </div>
           </div>
           <div class="row my-4"> 
             <button type="button" class="btn btn-primary">Create Account</button>
