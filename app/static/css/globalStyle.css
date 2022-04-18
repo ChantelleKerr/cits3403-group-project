@@ -1,5 +1,6 @@
 * {
   font-family: georgia;
+  color: #393D3F;
 }
 .center {
   display: flex;
@@ -15,4 +16,33 @@ input[type=text], input[type=password] {
 }
 a {
   text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #4da663 !important;
+  border-color: #4da663 !important;
+}
+.btn-primary:hover, .btn-outline-secondary:hover {
+  box-shadow: 1px 2px 5px #232423;
+  border-color: #232423;
+}
+.btn-outline-secondary {
+  color: #ee5b63 !important;
+  border-color: #ee5b63 !important;
+  margin-right: 5px;
+}
+.btn-outline-secondary:hover {
+  background-color: #ee5b63 !important;
+  color: white !important;
+}
+.text-primary {
+  color: #ee5b63 !important;
+}
+.bg-light {
+  background-color: #dde3e1 !important;
+}
+.btn-check:focus+.btn-primary, .btn-primary:focus,
+.btn-check:focus+.btn-outline-secondary, .btn-outline-secondary:focus {
+  box-shadow: none;
+  border-color: none;
 }
