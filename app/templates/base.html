@@ -7,9 +7,10 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    
+    <!-- Javascript -->
     <script src="static/js/game.js"></script>
     <script src="static/js/data.js"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="static/css/globalStyle.css">
     <link rel="stylesheet" href="static/css/style.css">
   </head>
@@ -24,19 +25,69 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Analysis</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <form class="form-inline">
           <span class="navbar-brand">[FIRST NAME]</span>
-          <button class="btn btn-outline-success" type="submit">Logout</button>
+          <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="" data-bs-target="#">Login</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
         </form>
       </div>
     </div>
   </nav>
+  <!-- Registration Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100 text-primary">Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-3">
+          <form id="registrationForm">
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img src="static/images/user.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="text" placeholder="Username">
+            </div>
+          </div>
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img src="static/images/email.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="text" placeholder="Email">
+            </div>
+          </div>
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img src="static/images/lock.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input type="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="row my-4"> 
+            <button type="submit" class="btn btn-primary">Create Account</button>
+          </div>
+        </form>
+          <div class="row text-center"> 
+            <span>Already have an account? <a class="text-primary" href="">Login here</a></span>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/js/auth.js"></script>
     {% block content %}
 
     {% endblock %}
