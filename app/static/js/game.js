@@ -30,12 +30,12 @@ function onLoad() {
  */
 function generateFoodChoices() {
   for (var i = 0; i < 2; i++) {
-      if (currentRound+i-1 <= rounds){
-        document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].url + ")";
-        document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound-1+i];
-      }
+    if (currentRound + i - 1 <= rounds) {
+      document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
+      document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
+    }
   }
-  document.getElementById("nutrient-data-text").innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound-1][todaysNutrient] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound - 1][todaysNutrient] + " " + units[dt.getDay()];
 }
 
 /**
@@ -68,7 +68,7 @@ function addEventListeners() {
   for (var i = 0; i < foodChoices.length; i++) {
     foodChoices[i].addEventListener("click", makeSelection, false);
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
-    window.addEventListener("resize",fixArrowOrientation,false)
+    window.addEventListener("resize", fixArrowOrientation, false)
   }
 }
 
@@ -76,8 +76,8 @@ function addEventListeners() {
  * Checks if the window is considered small by bootstrap
  * @returns true if the window is small, otherwise false
  */
-function isSmall(){
-  if (window.innerWidth <= 768){
+function isSmall() {
+  if (window.innerWidth <= 768) {
     return true;
   }
   return false;
@@ -87,11 +87,11 @@ function isSmall(){
  * Rotate the central circle 90 degrees if the screen size is small and it is currently showing an arrow
  */
 
-function fixArrowOrientation(){
+function fixArrowOrientation() {
   let circleComparison = document.getElementById("circle-comparison");
-  if (isSmall() && (circleComparison.textContent == ">" || circleComparison.textContent == "<")){
+  if (isSmall() && (circleComparison.textContent == ">" || circleComparison.textContent == "<")) {
     setCircleRotation(90);
-  }else{
+  } else {
     setCircleRotation(0);
   }
 }
@@ -101,13 +101,13 @@ function fixArrowOrientation(){
  * @param event - The event triggering the function
  */
 function updateCircle(event) {
-  if (start === -1){
+  if (start === -1) {
     let foodChoices = document.getElementsByClassName("game-img");
     let circleComparison = document.getElementById("circle-comparison");
 
-    if (isSmall()){
+    if (isSmall()) {
       setCircleRotation(90);
-    }else{
+    } else {
       setCircleRotation(0);
     }
 
@@ -127,12 +127,12 @@ function updateCircle(event) {
   }
 }
 
-function setCircleRotation(rot){
+function setCircleRotation(rot) {
   let circleComparison = document.getElementById("circle-comparison");
-  if (rot == 0){
+  if (rot == 0) {
     circleComparison.style.rotate = "rotate(0deg)";
     circleComparison.style.translate = "translateX(-50%,-50%)";
-  }else if (rot == 90){
+  } else if (rot == 90) {
     circleComparison.style.rotate = "rotate(90deg)";
     circleComparison.style.translate = "translateX(-50%,50%)";
   }
@@ -144,7 +144,7 @@ function setCircleRotation(rot){
  * @param event - The event triggering the function
  */
 function makeSelection(event) {
-  if (start === -1){
+  if (start === -1) {
     let foodChoices = document.getElementsByClassName("game-img");
     // Determine which food was selected
     let foodSelected = event.target in foodChoices ? event.target : false;
@@ -167,14 +167,14 @@ function makeSelection(event) {
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       setCircleRotation(0);
-    }else{
+    } else {
       roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
       setCircleRotation(0);
     }
 
-    if (currentRound <= rounds){
+    if (currentRound <= rounds) {
       currentRound++;
       animateFoods();
     }
@@ -184,14 +184,14 @@ function makeSelection(event) {
  * Makes a new div containing the next food for the purposes of animation
  * Begins the sliding animation
  */
-function animateFoods(){
+function animateFoods() {
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.createElement("div");
   newFood.id = "nf";
   newFood.className = "game-img";
   //copy the second food item
   newFood.innerHTML = foodDivs[1].innerHTML;
-  if (currentRound <= rounds){
+  if (currentRound <= rounds) {
     //but change the text and the image to be of the next food
     newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
     newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
@@ -199,7 +199,7 @@ function animateFoods(){
     /*let nutr = document.createElement("h4");
     foodDivs[1].firstElementChild.appendChild(nutr);
     nutr.innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound+1][todaysNutrient] + " " + units[dt.getDay()]*/
-  }else{ //Show the score
+  } else { //Show the score
     makeGameOverScreen(newFood);
   }
   newFood.style.display = "none";
@@ -208,18 +208,18 @@ function animateFoods(){
   window.requestAnimationFrame(showAnswer);
 }
 
-function showAnswer(timestamp){
+function showAnswer(timestamp) {
   if (start === -1) {
     start = timestamp;
   }
   let elapsed = timestamp - start;
   let circleComparison = document.getElementById("circle-comparison");
-  let opacity = Math.min(1,fadeProportion-(fadeProportion*elapsed/pauseTime));
+  let opacity = Math.min(1, fadeProportion - (fadeProportion * elapsed / pauseTime));
   circleComparison.style.opacity = opacity;
   if (elapsed < pauseTime) {
     previousTimeStamp = timestamp
     window.requestAnimationFrame(showAnswer);
-  }else{
+  } else {
     document.getElementById("nf").style.display = "block";
     document.getElementById("nf").style.zIndex = -1; //or else this element briefly flashes
     start = timestamp;
@@ -237,38 +237,38 @@ function slide(timestamp) {
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
-  if (isSmall()){
+  if (isSmall()) {
     var slideSize = parseFloat(foodDivs[0].offsetHeight);
     var slideDirection = "Y";
-  }else{
+  } else {
     var slideSize = parseFloat(foodDivs[0].offsetWidth);
     var slideDirection = "X";
   }
   if (previousTimeStamp !== timestamp) {
     // Math.min() is used here to make sure the div stops at exactly the amount we want
-    let shift = Math.min(slideSize * Math.pow(elapsed,slidePower)/Math.pow(slideTime,slidePower), slideSize);
-    for (var i = 0; i < 2; i++){
+    let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
+    for (var i = 0; i < 2; i++) {
       foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
     }
     //Need to keep calculating these in case the window size is changed
-    if (slideDirection == "X"){
-      newFood.style.left =  2*slideSize-shift + "px";
+    if (slideDirection == "X") {
+      newFood.style.left = 2 * slideSize - shift + "px";
       newFood.style.top = "0px";
       newFood.style.width = slideSize + "px";
       newFood.style.height = foodDivs[0].offsetHeight + "px";
-    }else{
-      newFood.style.left =  "0px";
-      newFood.style.top =  2*slideSize-shift + "px";
+    } else {
+      newFood.style.left = "0px";
+      newFood.style.top = 2 * slideSize - shift + "px";
       newFood.style.width = foodDivs[0].offsetWidth + "px";
       newFood.style.height = slideSize + "px";
     }
   }
-  
+
 
   if (elapsed < slideTime) {
     previousTimeStamp = timestamp
     window.requestAnimationFrame(slide);
-  }else{
+  } else {
     resetAfterAnimation();
   }
 }
@@ -280,21 +280,21 @@ function slide(timestamp) {
  * Reset the circle back from showing a tick/cross
  * Allow user interaction with the game once more by setting start to -1
  */
-function resetAfterAnimation(){
+function resetAfterAnimation() {
   document.getElementById("food-selection-area").removeChild(document.getElementById("nf"));
   let foodDivs = document.getElementsByClassName("game-img");
   let circleComparison = document.getElementById("circle-comparison")
   generateFoodChoices();
-  for (var i = 0; i < 2; i++){
+  for (var i = 0; i < 2; i++) {
     foodDivs[i].style.transform = "";
   }
-  if (currentRound <= rounds){
+  if (currentRound <= rounds) {
     circleComparison.innerHTML = "OR";
-    circleComparison.style.backgroundColor = "white";
+    circleComparison.style.backgroundColor = "#191919";
     circleComparison.style.opacity = 1;
     start = -1;
   }
-  else{
+  else {
     makeGameOverScreen(foodDivs[1]);
     document.getElementById("food-selection-area").removeChild(document.getElementById("circle-comparison"));
     start = 0;
@@ -307,10 +307,10 @@ function resetAfterAnimation(){
  * Turns a div into a game over screen
  * @param d - the div which we want to turn into a game over screen 
  */
-function makeGameOverScreen(d){
+function makeGameOverScreen(d) {
   let div = d.firstElementChild;
   div.innerHTML = "";
-  d.style = "background-color: white";
+  d.style = "background-color: #222222";
   let t1 = document.createElement("h2");
   let t2 = document.createElement("h2");
   t1.innerHTML = "Game over!";
@@ -327,10 +327,10 @@ function makeGameOverScreen(d){
 function getMostNutritious() {
   let foodChoices = document.getElementsByClassName("game-img");
   let vals = Object.values(data)
-  if (vals[currentRound-1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
+  if (vals[currentRound - 1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
     return foodChoices[0];
   }
-  else if (vals[currentRound-1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
+  else if (vals[currentRound - 1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
     return foodChoices[1];
   }
   return false;
