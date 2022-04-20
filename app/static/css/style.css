@@ -13,6 +13,7 @@
   position: relative;
   background-size: cover;
   background-position: 50%;
+  filter: saturate(0.5);
 }
 .game-img::after{
   content: '';
@@ -59,7 +60,7 @@
   left: 50%;
   height: 10vmax;
   width: 10vmax;
-  background-color: white;
+  background-color: #222222;
   border-radius: 50%;
   transform: translateX(-50%) translateY(-50%);
   font-size: 5vmax;
