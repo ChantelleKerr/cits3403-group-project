@@ -29,7 +29,6 @@
   opacity: 0.2;
 }
 .img-info {
-  
   position: absolute;
   flex-direction: column;
   align-items: center;
@@ -38,7 +37,6 @@
   height: 100%;
 }
 .img-info > h3 {
-  
   text-align: center;
   font-size: 8vmin;
   font-weight: bold;
@@ -70,6 +68,20 @@
 }
 .footer {
   align-content: center;
+}
+.header {
+  height: 10vh;
+}
+.header > span:nth-child(1) {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 2vh;
+}
+.header > span:nth-child(2) {
+  position: absolute;
+  margin-top: 1.5vh;
+  transform: translateX(-50%);
+  font-size: 6vh;
 }
 .score {
   text-align: end;
