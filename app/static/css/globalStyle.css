@@ -1,6 +1,6 @@
 * {
   font-family: georgia;
-  color: white;
+  color: #a1a1a1;
 }
 body {
   background-color: #191919;
@@ -15,7 +15,8 @@ input[type=text], input[type=password] {
   height: 40px;
   outline: 0;
   border-width: 0 0 2px;
-  border-color:  #bbbbbb;
+  border-color:  #191919;
+  background-color: #222222;
 }
 a {
   text-decoration: none;
@@ -25,11 +26,23 @@ a {
 .bg-dark {
   background-color: #222222 !important;
 }
-
+.navbar-brand {
+  color: #a1a1a1 !important;
+}
+.navbar-user {
+  margin-right: 5px;
+}
+.nav-link {
+  color: #616161 !important;
+}
+.active {
+  color: #ccc9c9 !important;
+}
 /* Text and Button Colours */
 .btn-primary {
   background-color: #ee5b63 !important;
   border-color: #ee5b63 !important;
+  color: #222222;
 }
 .btn-primary:hover {
   background-color: inherit !important;
@@ -42,13 +55,27 @@ a {
 }
 .btn-outline-secondary:hover {
   background-color: #F9D132 !important;
-  color: black !important;
+  color: #222222 !important;
 }
 .text-primary {
   color: #ee5b63 !important;
+}
+.text-secondary {
+  color: #F9D132 !important;
 }
 .btn-check:focus+.btn-primary, .btn-primary:focus,
 .btn-check:focus+.btn-outline-secondary, .btn-outline-secondary:focus {
   box-shadow: none;
   border-color: none;
+}
+
+/* Modal Styles */
+.modal-content {
+  background-color: #222222;
+}
+.modal-header {
+  border-bottom: 1px solid #191919;
+}
+.rego-icons {
+  filter: brightness(50%);
 }
