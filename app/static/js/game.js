@@ -1,5 +1,6 @@
 const rounds = 10;
 let currentRound = 1;
+let scoreString = "";
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
 const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
 // TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
@@ -27,8 +28,10 @@ function onLoad() {
  */
 function generateFoodChoices() {
   for (var i = 0; i < 2; i++) {
-      document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].url + ")";
-      document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound-1+i]
+      if (currentRound+i-1 <= rounds){
+        document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound-1+i].url + ")";
+        document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound-1+i];
+      }
   }
   document.getElementById("nutrient-data-text").innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound-1][todaysNutrient] + " " + units[dt.getDay()];
 }
@@ -156,22 +159,21 @@ function makeSelection(event) {
     let circleComparison = document.getElementById("circle-comparison");
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
       roundDiv.childNodes[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
+      scoreString += "✅";
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       setCircleRotation(0);
     }else{
       roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
+      scoreString += "❌";
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
       setCircleRotation(0);
     }
 
-    if (currentRound < rounds){
+    if (currentRound <= rounds){
       currentRound++;
       animateFoods();
-    }else{
-      //TODO: The game has ended, so do something here
-      start = -1;
     }
   }
 }
@@ -183,13 +185,17 @@ function animateFoods(){
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.createElement("div");
   newFood.id = "nf";
+  newFood.className = "game-img";
   //copy the second food item
   newFood.innerHTML = foodDivs[1].innerHTML;
-  //but change the text and the image to be of the next food
-  newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
-  newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
-  newFood.className = "game-img";
-
+  if (currentRound <= rounds){
+    //but change the text and the image to be of the next food
+    newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
+    newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
+  }else{ //Show the score
+    makeGameOverScreen(newFood);
+  }
+  
   document.getElementById("food-selection-area").appendChild(newFood);
   newFood.style.position = "absolute";
   window.requestAnimationFrame(slide);
@@ -253,15 +259,43 @@ function slide(timestamp) {
  */
 function resetAfterAnimation(){
   document.getElementById("food-selection-area").removeChild(document.getElementById("nf"));
-  generateFoodChoices();
   let foodDivs = document.getElementsByClassName("game-img");
+  generateFoodChoices();
   for (var i = 0; i < 2; i++){
     foodDivs[i].style.transform = "";
   }
-  document.getElementById("circle-comparison").innerHTML = "OR";
-  document.getElementById("circle-comparison").style.backgroundColor = "white";
-  //TODO: get rid of the flash of "OR" that sometimes briefly occurs
-  start = -1;
+  if (currentRound <= rounds){
+    document.getElementById("circle-comparison").innerHTML = "OR";
+    document.getElementById("circle-comparison").style.backgroundColor = "white";
+    //TODO: get rid of the flash of "OR" that sometimes briefly occurs
+    start = -1;
+  }
+  else{
+    makeGameOverScreen(foodDivs[1]);
+    document.getElementById("food-selection-area").removeChild(document.getElementById("circle-comparison"));
+    start = 0;
+    //TODO: this is the end of the game, so do some more stuff here
+  }
+}
+
+
+/**
+ * Turns a div into a game over screen
+ * @param d - the div which we want to turn into a game over screen 
+ */
+function makeGameOverScreen(d){
+  let div = d.firstElementChild;
+  div.innerHTML = "";
+  d.style = "background-color: white";
+  let t1 = document.createElement("h2");
+  let t2 = document.createElement("h4");
+  let t3 = document.createElement("h4");
+  t1.innerHTML = "Game over!";
+  t2.innerHTML = "Your score:";
+  t3.innerHTML = scoreString;
+  div.appendChild(t1);
+  div.appendChild(t2);
+  div.appendChild(t3);
 }
 
 
