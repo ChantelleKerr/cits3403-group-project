@@ -29,38 +29,43 @@
   opacity: 0;
 }
 .img-info {
+  
   position: absolute;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  margin: 0% 10% 0% 10%;
+  width: 80%;
   height: 100%;
 }
 .img-info > h3 {
+  
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 10vmin;
+  font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
 .img-info > h4 {
+  font-size: 5vmin;
   text-align: center;
   color: white;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
 .circle {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 80px;
-  width: 80px;
+  height: 10vmax;
+  width: 10vmax;
   background-color: white;
   border-radius: 50%;
   transform: translateX(-50%) translateY(-50%);
-  font-size: 32px;
+  font-size: 5vmax;
   display: grid;
   place-items: center;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
   z-index: 3;
 }
 .footer {
