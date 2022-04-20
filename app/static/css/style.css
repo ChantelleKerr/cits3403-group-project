@@ -40,14 +40,14 @@
 .img-info > h3 {
   
   text-align: center;
-  font-size: 10vmin;
+  font-size: 8vmin;
   font-weight: bold;
   color: white;
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
 .img-info > h4 {
-  font-size: 5vmin;
+  font-size: 4vmin;
   text-align: center;
   color: white;
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
@@ -62,7 +62,7 @@
   background-color: #222222;
   border-radius: 50%;
   transform: translateX(-50%) translateY(-50%);
-  font-size: 5vmax;
+  font-size: 4vmax;
   display: grid;
   place-items: center;
   box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
