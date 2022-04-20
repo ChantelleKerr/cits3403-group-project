@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<body onload="onLoad()">
+  <div class="container-fluid g-0">
+    <!-- Page Title -->
+    <div class="jumbotron text-center mt-2"> 
+      <span> NUTRIENT OF THE DAY </span>
+      <h1><strong id="nutrient-name-text" class="text-primary"></strong></h1>
+    </div>
+   <!-- Main Game -->
+    <section class="row food-row g-0" id="food-selection-area">
+      <div class="col-sm-12 col-md-6 game-img">
+          <div class="img-info center">
+            <h3 class="food-name-text"></h3>
+            <h4 id="nutrient-data-text"></h4>
+          </div>
+      </div>
+      <div class="col-sm-12 col-md-6 game-img">
+        <div class="img-info center">
+          <h3 class="food-name-text"></h3>
+        </div>
+      </div>
+      <div class="circle" id="circle-comparison"><span>OR</span></div>
+    </section>
+    <!-- Game Information -->
+    <div class="row m-1 footer">
+      <div class="col-12 center">
+        <row id="round-icons"></row>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

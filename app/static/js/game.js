@@ -1,8 +1,7 @@
 const rounds = 10;
 let currentRound = 1;
-const nutrients = ["Energy", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
-// TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
+const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
 let todaysNutrient = nutrients[dt.getDay()];
@@ -34,7 +33,7 @@ function generateNutrientOfTheDay() {
   let div = document.getElementById('round-icons');
   for (let i = 0; i < rounds; i++) {
     let img = document.createElement('img');
-    img.src = "../images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
+    img.src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
     img.setAttribute('alt', 'roundIcon')
     div.appendChild(img);
   }
@@ -104,7 +103,7 @@ function makeSelection(event) {
 
   let roundDiv = document.getElementById('round-icons');
   if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-    roundDiv.childNodes[currentRound - 1].src = "../images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
+    roundDiv.childNodes[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
   }else{
     roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
   }
