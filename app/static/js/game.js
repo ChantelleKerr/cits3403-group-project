@@ -1,6 +1,6 @@
 const rounds = 10;
 let currentRound = 1;
-let scoreString = "";
+let score = 0;
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
 const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
 // TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
@@ -159,13 +159,12 @@ function makeSelection(event) {
     let circleComparison = document.getElementById("circle-comparison");
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
       roundDiv.childNodes[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
-      scoreString += "✅";
+      score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       setCircleRotation(0);
     }else{
       roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
-      scoreString += "❌";
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
       setCircleRotation(0);
@@ -288,14 +287,11 @@ function makeGameOverScreen(d){
   div.innerHTML = "";
   d.style = "background-color: white";
   let t1 = document.createElement("h2");
-  let t2 = document.createElement("h4");
-  let t3 = document.createElement("h4");
+  let t2 = document.createElement("h2");
   t1.innerHTML = "Game over!";
-  t2.innerHTML = "Your score:";
-  t3.innerHTML = scoreString;
+  t2.innerHTML = "Your score: " + score + "/" + rounds;
   div.appendChild(t1);
   div.appendChild(t2);
-  div.appendChild(t3);
 }
 
 
