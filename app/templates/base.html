@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="static/css/style.css">
   </head>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid px-3">
       <img src="static/images/logo.png" class="logo" alt="logo">
       <a class="navbar-brand" href="#">[GameName]</a>
@@ -32,7 +32,7 @@
           </li>
         </ul>
         <form class="form-inline">
-          <span class="navbar-brand">[FIRST NAME]</span>
+          <span class="navbar-user">[FIRST NAME]</span>
           <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="" data-bs-target="#">Login</button>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
         </form>
@@ -45,13 +45,13 @@
       <div class="modal-content">
         <div class="modal-header text-center">
           <h5 class="modal-title w-100 text-primary">Register</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body mx-3">
           <form id="registrationForm">
           <div class="row justify-content-center my-3">
             <div class="col-1 center">
-              <img src="static/images/user.png" height="25" width="25"/>
+              <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
             </div>
             <div class="col-11">
               <input type="text" placeholder="Username">
@@ -59,7 +59,7 @@
           </div>
           <div class="row justify-content-center my-3">
             <div class="col-1 center">
-              <img src="static/images/email.png" height="25" width="25"/>
+              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
             </div>
             <div class="col-11">
               <input type="text" placeholder="Email">
@@ -67,7 +67,7 @@
           </div>
           <div class="row justify-content-center my-3">
             <div class="col-1 center">
-              <img src="static/images/lock.png" height="25" width="25"/>
+              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
             </div>
             <div class="col-11">
               <input type="password" placeholder="Password">
@@ -78,7 +78,7 @@
           </div>
         </form>
           <div class="row text-center"> 
-            <span>Already have an account? <a class="text-primary" href="">Login here</a></span>
+            <span>Already have an account? <a class="text-secondary" href="">Login here</a></span>
 
           </div>
           
