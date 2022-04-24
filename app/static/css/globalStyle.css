@@ -20,6 +20,7 @@ input[type=text], input[type=password] {
 }
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* Navbar style */

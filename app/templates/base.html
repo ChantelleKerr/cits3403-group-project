@@ -10,6 +10,7 @@
     <!-- Javascript -->
     <script src="static/js/game.js"></script>
     <script src="static/js/data.js"></script>
+    <script src="static/js/auth.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="static/css/globalStyle.css">
     <link rel="stylesheet" href="static/css/style.css">
@@ -32,9 +33,14 @@
           </li>
         </ul>
         <form class="form-inline">
-          <span class="navbar-user">[FIRST NAME]</span>
-          <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="" data-bs-target="#">Login</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+          <span class="navbar-user"></span>
+            {% if current_user.is_authenticated %}
+              <span class="navbar-user"> {{current_user.username}} </span>
+              <button type="button" id="logoutButton" class="btn btn-primary" onclick="logout()">Logout</button>
+            {% else %} 
+            <button type="button" id="loginButton" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            <button type="button" id="regoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+            {% endif %}
         </form>
       </div>
     </div>
@@ -54,7 +60,7 @@
               <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
             </div>
             <div class="col-11">
-              <input type="text" placeholder="Username">
+              <input name="username" type="text" placeholder="Username">
             </div>
           </div>
           <div class="row justify-content-center my-3">
@@ -62,7 +68,7 @@
               <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
             </div>
             <div class="col-11">
-              <input type="text" placeholder="Email">
+              <input name="email" type="text" placeholder="Email">
             </div>
           </div>
           <div class="row justify-content-center my-3">
@@ -70,7 +76,7 @@
               <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
             </div>
             <div class="col-11">
-              <input type="password" placeholder="Password">
+              <input name="password" type="password" placeholder="Password">
             </div>
           </div>
           <div class="row my-4"> 
@@ -78,16 +84,52 @@
           </div>
         </form>
           <div class="row text-center"> 
-            <span>Already have an account? <a class="text-secondary" href="">Login here</a></span>
-
+            <span>Already have an account?
+            <a class="text-secondary" data-bs-target="#loginModal" data-bs-toggle="modal" data-bs-dismiss="modal">Login here</a></span>
           </div>
-          
         </div>
       </div>
     </div>
   </div>
 
-  <script src="static/js/auth.js"></script>
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100 text-primary">Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body mx-3">
+          <form id="loginForm">
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="email" type="text" placeholder="Email">
+            </div>
+          </div>
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="password" type="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="row my-4"> 
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+          <div class="row text-center"> 
+            <span>Don't have an account?
+            <a class="text-secondary" data-bs-target="#registerModal" data-bs-toggle="modal" data-bs-dismiss="modal">Register here</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     {% block content %}
 
     {% endblock %}
