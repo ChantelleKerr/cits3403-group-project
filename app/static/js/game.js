@@ -31,7 +31,7 @@ function onLoad() {
 function generateFoodChoices() {
   for (var i = 0; i < 2; i++) {
     if (currentRound + i - 1 <= rounds) {
-      document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
+      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
       document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
     }
   }
@@ -64,7 +64,7 @@ function addEventListeners() {
   }
 
   // Add event listeners
-  document.getElementById("food-selection-area").addEventListener("mouseleave", updateCircle, false);
+  document.getElementById("food-row").addEventListener("mouseleave", updateCircle, false);
   for (var i = 0; i < foodChoices.length; i++) {
     foodChoices[i].addEventListener("click", makeSelection, false);
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
@@ -211,7 +211,7 @@ function animateFoods() {
     makeGameOverScreen(newFood);
   }
   newFood.style.display = "none";
-  document.getElementById("food-selection-area").appendChild(newFood);
+  document.getElementById("food-row").appendChild(newFood);
   newFood.style.position = "absolute";
   window.requestAnimationFrame(showAnswer);
 }
@@ -289,7 +289,7 @@ function slide(timestamp) {
  * Allow user interaction with the game once more by setting start to -1
  */
 function resetAfterAnimation() {
-  document.getElementById("food-selection-area").removeChild(document.getElementById("nf"));
+  document.getElementById("food-row").removeChild(document.getElementById("nf"));
   let foodDivs = document.getElementsByClassName("game-img");
   let circleComparison = document.getElementById("circle-comparison")
   generateFoodChoices();
@@ -304,7 +304,7 @@ function resetAfterAnimation() {
   }
   else {
     makeGameOverScreen(foodDivs[1]);
-    document.getElementById("food-selection-area").removeChild(document.getElementById("circle-comparison"));
+    document.getElementById("food-row").removeChild(document.getElementById("circle-comparison"));
     start = 0;
     //TODO: this is the end of the game, so do some more stuff here
   }

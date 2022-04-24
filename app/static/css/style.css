@@ -3,7 +3,7 @@
   margin-right: 6px;
 }
 
-.food-row {
+#food-row {
   height: calc(0.8 * (100vh - var(--navbar-height)));
   width: 100vw;
   top: calc(var(--navbar-height) + 0.1 * (100vh - var(--navbar-height)));
