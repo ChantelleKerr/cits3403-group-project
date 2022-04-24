@@ -2,7 +2,7 @@ const rounds = 10;
 let currentRound = 1;
 let score = 0;
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 // TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
 
 let dt = new Date();
@@ -130,11 +130,9 @@ function updateCircle(event) {
 function setCircleRotation(rot) {
   let circleComparison = document.getElementById("circle-comparison");
   if (rot == 0) {
-    circleComparison.style.rotate = "rotate(0deg)";
-    circleComparison.style.translate = "translateX(-50%,-50%)";
+    circleComparison.style.transform = "translate(-50%,-50%) rotate(0deg)";
   } else if (rot == 90) {
-    circleComparison.style.rotate = "rotate(90deg)";
-    circleComparison.style.translate = "translateX(-50%,50%)";
+    circleComparison.style.transform = "translate(-50%,-50%) rotate(90deg)";
   }
 }
 
