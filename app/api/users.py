@@ -3,7 +3,6 @@ from app.models import User
 from flask import jsonify, request, make_response, session, redirect
 from app import db
 from flask import url_for
-from flask_login import login_user, current_user
 
 
 @bp.route('/users/<int:id>', methods=['GET'])
