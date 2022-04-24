@@ -22,6 +22,7 @@ function onLoad() {
   generateNutrientOfTheDay();
   generateFoodChoices();
   addEventListeners();
+  addCSSVariables();
 }
 
 /**
@@ -69,6 +70,14 @@ function addEventListeners() {
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
     window.addEventListener("resize", fixArrowOrientation, false)
   }
+
+  window.addEventListener('resize', () => {
+    document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+  })
+}
+
+function addCSSVariables() {
+  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**

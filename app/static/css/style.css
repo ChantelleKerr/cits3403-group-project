@@ -4,9 +4,10 @@
 }
 
 .food-row {
-  height: 73vh;
+  height: calc(0.8 * (100vh - var(--navbar-height)));
   width: 100vw;
-  position: relative;
+  top: calc(var(--navbar-height) + 0.1 * (100vh - var(--navbar-height)));
+  position: absolute;
   overflow: hidden;
 }
 .game-img {
@@ -40,7 +41,6 @@
 .img-info > h3 {
   text-align: center;
   font-size: 8vmin;
-  font-weight: bold;
   color: white;
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
@@ -67,26 +67,36 @@
   box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
   z-index: 3;
 }
-.footer {
+
+#header {
+  position: absolute;
+  height: calc(0.1 * (100vh - var(--navbar-height)));
+  left: 50vw;
+  top: var(--navbar-height);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+#header > span:nth-child(1) {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 2.5vh;
+}
+#header > span:nth-child(2) {
+  position: absolute;
+  margin-top: 2vh;
+  transform: translateX(-50%);
+  font-size: 4.5vh;
+}
+#footer {
   align-content: center;
-}
-.header {
-  height: 10vh;
-}
-.header > span:nth-child(1) {
+  overflow: hidden;
   position: absolute;
-  transform: translateX(-50%);
-  font-size: 2vh;
-}
-.header > span:nth-child(2) {
-  position: absolute;
-  margin-top: 1.5vh;
-  transform: translateX(-50%);
-  font-size: 6vh;
-}
-.score {
-  text-align: end;
+  height: calc(0.1 * (100vh - var(--navbar-height)));
+  width: 100vw;
+  bottom: 0;
+
 }
 #round-icons > img {
-  height: 7vh;
+  position: relative;
+  height: 5vh;
 }
