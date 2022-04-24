@@ -73,11 +73,13 @@ function addEventListeners() {
 
   window.addEventListener('resize', () => {
     document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+    document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
   })
 }
 
 function addCSSVariables() {
   document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight -  document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**

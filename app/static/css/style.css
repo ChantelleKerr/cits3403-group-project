@@ -4,9 +4,9 @@
 }
 
 #food-row {
-  height: calc(0.8 * (100vh - var(--navbar-height)));
+  height: calc(0.8 * var(--nonavbar-height));
   width: 100vw;
-  top: calc(var(--navbar-height) + 0.1 * (100vh - var(--navbar-height)));
+  top: calc(var(--navbar-height) + 0.1 * var(--nonavbar-height));
   position: absolute;
   overflow: hidden;
 }
@@ -70,33 +70,36 @@
 
 #header {
   position: absolute;
-  height: calc(0.1 * (100vh - var(--navbar-height)));
+  height: calc(0.1 * var(--nonavbar-height));
+  width: 100vw;
   left: 50vw;
   top: var(--navbar-height);
   transform: translateX(-50%);
   white-space: nowrap;
 }
 #header > span:nth-child(1) {
-  position: absolute;
-  transform: translateX(-50%);
-  font-size: 2.5vh;
+  position: relative;
+  display: block;
+  line-height: calc( 0.03 * var(--nonavbar-height));
+  font-size: calc(0.025 * var(--nonavbar-height));
 }
 #header > span:nth-child(2) {
-  position: absolute;
-  margin-top: 2vh;
-  transform: translateX(-50%);
-  font-size: 4.5vh;
+  position: relative;
+  display: block;
+  line-height: calc(0.045 * var(--nonavbar-height));
+  font-size: calc(0.045 * var(--nonavbar-height));
 }
 #footer {
   align-content: center;
   overflow: hidden;
+  white-space: nowrap;
   position: absolute;
-  height: calc(0.1 * (100vh - var(--navbar-height)));
+  height: calc(0.1 * var(--nonavbar-height));
   width: 100vw;
   bottom: 0;
 
 }
 #round-icons > img {
   position: relative;
-  height: 5vh;
+  height: calc(0.06 * var(--nonavbar-height));
 }
