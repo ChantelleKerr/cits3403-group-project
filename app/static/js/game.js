@@ -2,7 +2,7 @@ const rounds = 10;
 let currentRound = 1;
 let score = 0;
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["kJ", "g", "g", "mg", "g", "mg", "g"]
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 // TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
 
 let dt = new Date();
