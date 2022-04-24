@@ -22,7 +22,6 @@ function onLoad() {
   generateNutrientOfTheDay();
   generateFoodChoices();
   addEventListeners();
-  document.body.style.overflow = "hidden"; //Do this to avoid scrollbars appearing. Maybe put this in CSS instead
 }
 
 /**
