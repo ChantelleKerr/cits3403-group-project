@@ -76,6 +76,12 @@ window.onload = function () {
   })
 }
 
+// Logs the user out and updates UI
+function logout() {
+  localStorage.clear();
+  updateUI();
+}
+
 // Check if the user is logged in
 function isLoggedIn() {
   return localStorage.getItem('isLoggedIn');
@@ -92,7 +98,6 @@ function updateUI() {
   let logoutButton = document.getElementById('logoutButton');
   let regoButton = document.getElementById('regoButton');
 
-
   if (isLoggedIn()) {
     username.innerHTML = getUsername();
     logoutButton.style.display = '';
@@ -106,4 +111,6 @@ function updateUI() {
     regoButton.style.display = '';
   }
 }
+
+
 
