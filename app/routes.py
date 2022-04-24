@@ -1,6 +1,5 @@
-from flask import jsonify, render_template, request, make_response, session, redirect, url_for
+from flask import render_template
 from app import app
-from flask_login import login_user, current_user
 from app.models import User
 
 

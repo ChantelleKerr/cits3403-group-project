@@ -34,9 +34,13 @@
         </ul>
         <form class="form-inline">
           <span class="navbar-user"></span>
-          <button type="button" id="loginButton" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          <button type="button" id="logoutButton" class="btn btn-primary" style="display: none;" onclick="logout()">Logout</button>
-          <button type="button" id="regoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+            {% if current_user.is_authenticated %}
+              <span class="navbar-user"> {{current_user.username}} </span>
+              <button type="button" id="logoutButton" class="btn btn-primary" onclick="logout()">Logout</button>
+            {% else %} 
+            <button type="button" id="loginButton" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            <button type="button" id="regoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+            {% endif %}
         </form>
       </div>
     </div>
@@ -126,8 +130,6 @@
       </div>
     </div>
   </div>
-
-  
     {% block content %}
 
     {% endblock %}

@@ -1,8 +1,6 @@
 window.onload = function () {
   const regoForm = document.getElementById("registrationForm");
   const loginForm = document.getElementById("loginForm");
-  updateUI();
-
   /* An event listener that waits for the registration form to be submitted
  * which creates a HTTP POST Request with the form data
  * It calls an API endpoint and if successful will return status code: 200
@@ -49,27 +47,20 @@ window.onload = function () {
   loginForm.addEventListener('submit', (event) => {
 
     event.preventDefault();
-
-
     const form = new FormData(event.target);
     const e = form.get('email');
     const pass = form.get('password');
-
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://localhost:5000/auth/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({ email: e, password: pass }))
     xhttp.onload = () => {
       if (xhttp.status == 200) {
-        let data = xhttp.responseText;
-        username = JSON.parse(data).username;
-        localStorage.setItem('isLoggedIn', true);
-        localStorage.setItem('username', username);
         // Close the modal
         var modal = document.getElementById('loginModal');
         bootstrap.Modal.getInstance(modal).hide()
-
-        updateUI();
+        // Reload the current page
+        location.reload();
       }
     }
 
@@ -78,37 +69,13 @@ window.onload = function () {
 
 // Logs the user out and updates UI
 function logout() {
-  localStorage.clear();
-  updateUI();
-}
-
-// Check if the user is logged in
-function isLoggedIn() {
-  return localStorage.getItem('isLoggedIn');
-}
-
-// Get the username from local storage
-function getUsername() {
-  return localStorage.getItem('username');
-}
-
-function updateUI() {
-  let username = document.querySelector('.navbar-user');
-  let loginButton = document.getElementById('loginButton');
-  let logoutButton = document.getElementById('logoutButton');
-  let regoButton = document.getElementById('regoButton');
-
-  if (isLoggedIn()) {
-    username.innerHTML = getUsername();
-    logoutButton.style.display = '';
-    loginButton.style.display = 'none';
-    regoButton.style.display = 'none';
-  }
-  else {
-    username.innerHTML = "";
-    logoutButton.style.display = 'none';
-    loginButton.style.display = '';
-    regoButton.style.display = '';
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "http://localhost:5000/auth/logout", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      location.reload();
+    }
   }
 }
 
