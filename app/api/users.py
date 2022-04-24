@@ -1,13 +1,15 @@
-from flask import request
 from app.api import bp
 from app.models import User
-from flask import jsonify
+from flask import jsonify, request, make_response, session, redirect
 from app import db
 from flask import url_for
+from flask_login import login_user, current_user
+
 
 @bp.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
   return jsonify(User.query.get_or_404(id).to_dict())
+
 
 @bp.route('/users/create', methods=['POST'])
 def create_user():

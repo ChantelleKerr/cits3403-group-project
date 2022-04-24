@@ -2,6 +2,7 @@ from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(32), index=True, unique=False)
@@ -11,9 +12,11 @@ class User(UserMixin, db.Model):
   def __repr__(self):
       return f'<User {self.username}>'
 
+  # Generates a password hash
   def set_password(self, password):
     self.password = generate_password_hash(password)
   
+  # Checks if the password is the same as the hashed password
   def check_password(self, password):
     return check_password_hash(self.password, password)
 
@@ -35,6 +38,7 @@ class User(UserMixin, db.Model):
     # it can be stored as a hash instead of a string
     if new_user and 'password' in data:
       self.set_password(data['password'])
+
 
   
 

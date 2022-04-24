@@ -19,7 +19,7 @@ _mailinglist
 .idea/
 docs/_build/
 .vscode
-/migrations
+
 
 # Coverage reports
 htmlcov/

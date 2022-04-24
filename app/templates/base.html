@@ -10,6 +10,7 @@
     <!-- Javascript -->
     <script src="static/js/game.js"></script>
     <script src="static/js/data.js"></script>
+    <script src="static/js/auth.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="static/css/globalStyle.css">
     <link rel="stylesheet" href="static/css/style.css">
@@ -32,9 +33,10 @@
           </li>
         </ul>
         <form class="form-inline">
-          <span class="navbar-user">[FIRST NAME]</span>
-          <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+          <span class="navbar-user"></span>
+          <button type="button" id="loginButton" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+          <button type="button" id="logoutButton" class="btn btn-primary" style="display: none;">Logout</button>
+          <button type="button" id="regoButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
         </form>
       </div>
     </div>
@@ -101,7 +103,7 @@
               <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
             </div>
             <div class="col-11">
-              <input type="text" placeholder="Email">
+              <input name="email" type="text" placeholder="Email">
             </div>
           </div>
           <div class="row justify-content-center my-3">
@@ -109,7 +111,7 @@
               <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
             </div>
             <div class="col-11">
-              <input type="password" placeholder="Password">
+              <input name="password" type="password" placeholder="Password">
             </div>
           </div>
           <div class="row my-4"> 
@@ -125,7 +127,7 @@
     </div>
   </div>
 
-  <script src="static/js/auth.js"></script>
+  
     {% block content %}
 
     {% endblock %}
