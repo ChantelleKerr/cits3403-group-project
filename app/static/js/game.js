@@ -94,8 +94,10 @@ function generateFoodChoices() {
  * @param event - The event triggering the function
  */
 function updateCircleComparison(event) {
-  if (start === -1) {
+  let circleComparison = document.getElementById("circle-comparison");
+  if (start === -1 && event != null) {
     let foodDivs = document.getElementsByClassName("game-img");
+    
     if (event.type == "mouseleave") {
       circleComparison.textContent = "OR";
     }
@@ -105,13 +107,11 @@ function updateCircleComparison(event) {
     else if (event.type == "mouseenter" && event.target == foodDivs[1]) {
       circleComparison.textContent = "<";
     }
-
-    let circleComparison = document.getElementById("circle-comparison");
-    if (isWindowSmall() && circleComparison.textContent != "OR") {
-      setCircleRotation(90);
-    } else {
-      setCircleRotation(0);
-    }
+  }
+  if (isWindowSmall() && (circleComparison.textContent == ">" || circleComparison.textContent == "<")) {
+    setCircleRotation(90);
+  } else {
+    setCircleRotation(0);
   }
 }
 
@@ -152,10 +152,12 @@ function makeSelection(event) {
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
+      updateCircleComparison();
     } else {
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
+      updateCircleComparison();
     }
 
     if (currentRound <= rounds) {
