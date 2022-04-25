@@ -70,13 +70,17 @@ function addEventListeners() {
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
     window.addEventListener("resize", fixArrowOrientation, false)
   }
-
+  // Update the navbar-height and nonavbar-height (height minus navbar) whenever window resizes
   window.addEventListener('resize', () => {
     document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
     document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
   })
 }
 
+/**
+ * Calculates initial variables that are used in the css. This works in addition to the eventlistener which updates the variables
+ * whenever the screen resizes.
+ */
 function addCSSVariables() {
   document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
   document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight -  document.getElementById("navbar").clientHeight + 'px');
