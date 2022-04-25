@@ -51,24 +51,22 @@ function onLoad() {
     }
 
     // Add event listeners
-    document.getElementById("food-row").addEventListener("mouseleave", updateCircle, false);
+    document.getElementById("food-row").addEventListener("mouseleave", updateCircleComparison, false);
     for (var i = 0; i < foodDivs.length; i++) {
       foodDivs[i].addEventListener("click", makeSelection, false);
-      foodDivs[i].addEventListener("mouseenter", updateCircle, false);
+      foodDivs[i].addEventListener("mouseenter", updateCircleComparison, false);
     }
     // Actions to be taken whenever screen resizes
     window.addEventListener('resize', function (event) {
-      updateCircle(event);
-      document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-      document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
+      updateCircleComparison(event);
+      updateCSSVariables();
     }, false);
   }
 
   /**
-  * Does initial actions that depend upon the screen size. 
-  * These are recalculated whenever the screen resizes.
+  * Adds variables used in CSS, these are recalculated whenever the screen resizes.
   */
-  function initialisePage() {
+  function updateCSSVariables() {
     document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
     document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
   }
@@ -77,7 +75,7 @@ function onLoad() {
   generateNutrientOfTheDay();
   generateFoodChoices();
   addEventListeners();
-  initialisePage();
+  updateCSSVariables();
 }
 
 /**
@@ -99,7 +97,7 @@ function generateFoodChoices() {
  * the layout changes because of a small screen size. 
  * @param event - The event triggering the function
  */
-function updateCircle(event) {
+function updateCircleComparison(event) {
   if (start === -1) {
     let foodDivs = document.getElementsByClassName("game-img");
     if (event.type == "mouseleave") {
