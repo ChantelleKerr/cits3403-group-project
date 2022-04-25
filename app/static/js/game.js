@@ -25,13 +25,12 @@ function onLoad() {
   * Generates a new batch of icons and changes the nutrient text each day.
   */
   function generateNutrientOfTheDay() {
-    let div = document.getElementById('round-icons');
-    //let blockingDiv = document.createElement("div");
+    let roundDiv = document.getElementById('round-icons');
     for (let i = 0; i < rounds; i++) {
       let img = document.createElement('img');
       img.src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
       img.setAttribute('alt', 'roundIcon')
-      div.appendChild(img);
+      roundDiv.appendChild(img);
     }
     document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
   }
@@ -48,7 +47,7 @@ function onLoad() {
 
     // Add event listeners
     document.getElementById("food-row").addEventListener("mouseleave", updateCircleComparison, false);
-    for (var i = 0; i < foodDivs.length; i++) {
+    for (let i = 0; i < foodDivs.length; i++) {
       foodDivs[i].addEventListener("click", makeSelection, false);
       foodDivs[i].addEventListener("mouseenter", updateCircleComparison, false);
     }
@@ -79,7 +78,7 @@ function onLoad() {
  */
 function generateFoodChoices() {
   // TODO: Replace with calling api for food choices or referring to a variable containing the result of the api call
-  for (var i = 0; i < 2; i++) { // loop through the 2 food choices
+  for (let i = 0; i < document.getElementsByClassName("game-img").length; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
       document.getElementById("food-row").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
       document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
@@ -195,6 +194,8 @@ function animateFoods() {
 }
 
 function showAnswer(timestamp) {
+
+  // showAnswer functionality
   const pauseTime = 1000; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
 
@@ -228,33 +229,33 @@ function slide(timestamp) {
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
+
+  let slideSize = parseFloat(foodDivs[0].offsetWidth);
+  let slideDirection = "X";
   if (isWindowSmall()) {
-    var slideSize = parseFloat(foodDivs[0].offsetHeight);
-    var slideDirection = "Y";
-  } else {
-    var slideSize = parseFloat(foodDivs[0].offsetWidth);
-    var slideDirection = "X";
-  }
+    slideSize = parseFloat(foodDivs[0].offsetHeight);
+    slideDirection = "Y";
+  } 
   if (previousTimeStamp !== timestamp) {
     // Math.min() is used here to make sure the div stops at exactly the amount we want
     let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
-    for (var i = 0; i < 2; i++) {
+    for (let i = 0; i < foodDivs.length; i++) {
       foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
     }
     //Need to keep calculating these in case the window size is changed
+    
     if (slideDirection == "X") {
-      newFood.style.left = 2 * slideSize - shift + "px";
+      newFood.style.left = 2 * slideSize + "px";
       newFood.style.top = "0px";
       newFood.style.width = slideSize + "px";
       newFood.style.height = foodDivs[0].offsetHeight + "px";
     } else {
       newFood.style.left = "0px";
-      newFood.style.top = 2 * slideSize - shift + "px";
+      newFood.style.top = 2 * slideSize + "px";
       newFood.style.width = foodDivs[0].offsetWidth + "px";
       newFood.style.height = slideSize + "px";
     }
   }
-
 
   if (elapsed < slideTime) {
     previousTimeStamp = timestamp
@@ -276,7 +277,7 @@ function resetAfterAnimation() {
   let foodDivs = document.getElementsByClassName("game-img");
   let circleComparison = document.getElementById("circle-comparison")
   generateFoodChoices();
-  for (var i = 0; i < 2; i++) {
+  for (let i = 0; i < foodDivs.length; i++) {
     foodDivs[i].style.transform = "";
   }
   if (currentRound <= rounds) {
@@ -287,7 +288,7 @@ function resetAfterAnimation() {
   }
   else {
     makeGameOverScreen(foodDivs[1]);
-    document.getElementById("food-row").removeChild(document.getElementById("circle-comparison"));
+    circleComparison.style.display = "none";
     start = 0;
     //TODO: this is the end of the game, so do some more stuff here
   }
