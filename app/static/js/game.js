@@ -172,13 +172,13 @@ function makeSelection(event) {
     let roundDiv = document.getElementById('round-icons');
     let circleComparison = document.getElementById("circle-comparison");
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-      roundDiv.childNodes[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
+      roundDiv.children[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       setCircleRotation(0);
     } else {
-      roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
+      roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
       setCircleRotation(0);
