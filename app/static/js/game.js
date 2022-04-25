@@ -15,10 +15,6 @@ isWindowSmall = () => window.innerWidth <= 768;
 
 let start = -1; //If start is not -1, then an animation is ongoing, so clicking on the foods is disabled
 let previousTimeStamp;
-const pauseTime = 1000; //number of milliseconds to pause after showing the answer
-const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
-const slideTime = 600; //number of milliseconds for animation to take
-const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
 
 /**
  * Called when the page loads, sets up the game 
@@ -197,6 +193,9 @@ function animateFoods() {
 }
 
 function showAnswer(timestamp) {
+  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
+  const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
+
   if (start === -1) {
     start = timestamp;
   }
@@ -205,7 +204,7 @@ function showAnswer(timestamp) {
   let opacity = Math.min(1, fadeProportion - (fadeProportion * elapsed / pauseTime));
   circleComparison.style.opacity = opacity;
   if (elapsed < pauseTime) {
-    previousTimeStamp = timestamp
+    previousTimeStamp = timestamp;
     window.requestAnimationFrame(showAnswer);
   } else {
     document.getElementById("nf").style.display = "block";
@@ -222,6 +221,8 @@ function showAnswer(timestamp) {
  * @param timestamp - the time at which this function's execution begins
  */
 function slide(timestamp) {
+  const slideTime = 600; //number of milliseconds for animation to take
+  const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
