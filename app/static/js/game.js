@@ -3,10 +3,15 @@ let currentRound = 1;
 let score = 0;
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
 const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
-// TODO: Use the units from the nutrition database rather than hardcoded (the only part of each key that is in brackets)
 
 let dt = new Date();
 let todaysNutrient = nutrients[dt.getDay()];
+
+/**
+ * Checks if the window is considered small by bootstrap
+ * @returns true if the window is small, otherwise false
+ */
+isWindowSmall = () => window.innerWidth <= 768;
 
 let start = -1; //If start is not -1, then an animation is ongoing, so clicking on the foods is disabled
 let previousTimeStamp;
@@ -19,17 +24,68 @@ const slidePower = 0.4; //The sliding follows the function t^slidePower. Set thi
  * Called when the page loads, sets up the game 
  */
 function onLoad() {
+
+  /**
+  * Generates a new batch of icons and changes the nutrient text each day.
+  */
+  function generateNutrientOfTheDay() {
+    let div = document.getElementById('round-icons');
+    //let blockingDiv = document.createElement("div");
+    for (let i = 0; i < rounds; i++) {
+      let img = document.createElement('img');
+      img.src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
+      img.setAttribute('alt', 'roundIcon')
+      div.appendChild(img);
+    }
+    document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
+  }
+
+  /**
+   * Adds all necessary event listeners after the two game-img food choices and relating data have been generated.
+   */
+  function addEventListeners() {
+    let foodDivs = document.getElementsByClassName("game-img");
+
+    if (foodDivs.length != 2) {
+      throw ("Found more than 2 food choices!");
+    }
+
+    // Add event listeners
+    document.getElementById("food-row").addEventListener("mouseleave", updateCircle, false);
+    for (var i = 0; i < foodDivs.length; i++) {
+      foodDivs[i].addEventListener("click", makeSelection, false);
+      foodDivs[i].addEventListener("mouseenter", updateCircle, false);
+    }
+    // Actions to be taken whenever screen resizes
+    window.addEventListener('resize', function (event) {
+      updateCircle(event);
+      document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+      document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
+    }, false);
+  }
+
+  /**
+  * Does initial actions that depend upon the screen size. 
+  * These are recalculated whenever the screen resizes.
+  */
+  function initialisePage() {
+    document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+    document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
+  }
+
+  // onLoad() functionality
   generateNutrientOfTheDay();
   generateFoodChoices();
   addEventListeners();
-  addCSSVariables();
+  initialisePage();
 }
 
 /**
  * Generates a new set of food choices
  */
 function generateFoodChoices() {
-  for (var i = 0; i < 2; i++) {
+  // TODO: Replace with calling api for food choices or referring to a variable containing the result of the api call
+  for (var i = 0; i < 2; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
       document.getElementById("food-row").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
       document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
@@ -39,104 +95,28 @@ function generateFoodChoices() {
 }
 
 /**
- * Generates a new batch of icons and changes the nutrient text each day.
- */
-function generateNutrientOfTheDay() {
-  let div = document.getElementById('round-icons');
-  //let blockingDiv = document.createElement("div");
-  for (let i = 0; i < rounds; i++) {
-    let img = document.createElement('img');
-    img.src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
-    img.setAttribute('alt', 'roundIcon')
-    div.appendChild(img);
-  }
-  document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
-}
-
-/**
- * Adds all necessary event listeners after the two game-img food choices and relating data have been generated.
- */
-function addEventListeners() {
-  let foodChoices = document.getElementsByClassName("game-img");
-
-  if (foodChoices.length != 2) {
-    throw ("Found more than 2 food choices!");
-  }
-
-  // Add event listeners
-  document.getElementById("food-row").addEventListener("mouseleave", updateCircle, false);
-  for (var i = 0; i < foodChoices.length; i++) {
-    foodChoices[i].addEventListener("click", makeSelection, false);
-    foodChoices[i].addEventListener("mouseenter", updateCircle, false);
-    window.addEventListener("resize", fixArrowOrientation, false)
-  }
-  // Update the navbar-height and nonavbar-height (height minus navbar) whenever window resizes
-  window.addEventListener('resize', () => {
-    document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-    document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
-  })
-}
-
-/**
- * Calculates initial variables that are used in the css. This works in addition to the eventlistener which updates the variables
- * whenever the screen resizes.
- */
-function addCSSVariables() {
-  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight -  document.getElementById("navbar").clientHeight + 'px');
-}
-
-/**
- * Checks if the window is considered small by bootstrap
- * @returns true if the window is small, otherwise false
- */
-function isSmall() {
-  if (window.innerWidth <= 768) {
-    return true;
-  }
-  return false;
-}
-
-/**
- * Rotate the central circle 90 degrees if the screen size is small and it is currently showing an arrow
- */
-
-function fixArrowOrientation() {
-  let circleComparison = document.getElementById("circle-comparison");
-  if (isSmall() && (circleComparison.textContent == ">" || circleComparison.textContent == "<")) {
-    setCircleRotation(90);
-  } else {
-    setCircleRotation(0);
-  }
-}
-
-/**
- * Updates the symbol between food choices based on where cursor is located
+ * Updates the symbol between food choices based on where cursor is located as well as rotating it when 
+ * the layout changes because of a small screen size. 
  * @param event - The event triggering the function
  */
 function updateCircle(event) {
   if (start === -1) {
-    let foodChoices = document.getElementsByClassName("game-img");
-    let circleComparison = document.getElementById("circle-comparison");
+    let foodDivs = document.getElementsByClassName("game-img");
+    if (event.type == "mouseleave") {
+      circleComparison.textContent = "OR";
+    }
+    else if (event.type == "mouseenter" && event.target == foodDivs[0]) {
+      circleComparison.textContent = ">";
+    }
+    else if (event.type == "mouseenter" && event.target == foodDivs[1]) {
+      circleComparison.textContent = "<";
+    }
 
-    if (isSmall()) {
+    let circleComparison = document.getElementById("circle-comparison");
+    if (isWindowSmall() && circleComparison.textContent != "OR") {
       setCircleRotation(90);
     } else {
       setCircleRotation(0);
-    }
-
-    if (event.type == "mouseleave") {
-      circleComparison.textContent = "OR";
-      setCircleRotation(0);
-    }
-    else if (event.type == "mouseenter" && event.target == foodChoices[0]) {
-      circleComparison.textContent = ">";
-    }
-    else if (event.type == "mouseenter" && event.target == foodChoices[1]) {
-      circleComparison.textContent = "<";
-    }
-    else {
-      throw ("updateCircle was called with an incorrect event!");
     }
   }
 }
@@ -157,14 +137,14 @@ function setCircleRotation(rot) {
  */
 function makeSelection(event) {
   if (start === -1) {
-    let foodChoices = document.getElementsByClassName("game-img");
+    let foodDivs = document.getElementsByClassName("game-img");
     // Determine which food was selected
-    let foodSelected = event.target in foodChoices ? event.target : false;
-    if (foodChoices[0].contains(event.target) && !foodChoices[1].contains(event.target)) {
-      foodSelected = foodChoices[0];
+    let foodSelected = event.target in foodDivs ? event.target : false;
+    if (foodDivs[0].contains(event.target) && !foodDivs[1].contains(event.target)) {
+      foodSelected = foodDivs[0];
     }
-    else if (foodChoices[1].contains(event.target) && !foodChoices[0].contains(event.target)) {
-      foodSelected = foodChoices[1];
+    else if (foodDivs[1].contains(event.target) && !foodDivs[0].contains(event.target)) {
+      foodSelected = foodDivs[1];
     }
 
     if (!foodSelected) {
@@ -178,12 +158,10 @@ function makeSelection(event) {
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
-      setCircleRotation(0);
     } else {
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
-      setCircleRotation(0);
     }
 
     if (currentRound <= rounds) {
@@ -201,13 +179,13 @@ function animateFoods() {
   let newFood = document.createElement("div");
   newFood.id = "nf";
   newFood.className = "game-img";
-  //copy the second food item
+  // copy the second food item
   newFood.innerHTML = foodDivs[1].innerHTML;
   if (currentRound <= rounds) {
-    //but change the text and the image to be of the next food
+    // but change the text and the image to be of the next food
     newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
     newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
-    //Show the nutrient of the second food
+    // Show the nutrient of the second food
     /*let nutr = document.createElement("h4");
     foodDivs[1].firstElementChild.appendChild(nutr);
     nutr.innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound+1][todaysNutrient] + " " + units[dt.getDay()]*/
@@ -249,7 +227,7 @@ function slide(timestamp) {
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
-  if (isSmall()) {
+  if (isWindowSmall()) {
     var slideSize = parseFloat(foodDivs[0].offsetHeight);
     var slideDirection = "Y";
   } else {
@@ -337,13 +315,13 @@ function makeGameOverScreen(d) {
  * @returns Element containing more nutritious food or false if they are equally nutritious
  */
 function getMostNutritious() {
-  let foodChoices = document.getElementsByClassName("game-img");
+  let foodDivs = document.getElementsByClassName("game-img");
   let vals = Object.values(data)
   if (vals[currentRound - 1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
-    return foodChoices[0];
+    return foodDivs[0];
   }
   else if (vals[currentRound - 1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
-    return foodChoices[1];
+    return foodDivs[1];
   }
   return false;
 }
