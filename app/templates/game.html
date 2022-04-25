@@ -3,12 +3,12 @@
 <body onload="onLoad()">
   <div class="container-fluid g-0">
     <!-- Page Title -->
-    <div class="jumbotron text-center mt-2"> 
+    <div id="header" class="jumbotron text-center mt-2"> 
       <span> NUTRIENT OF THE DAY </span>
-      <h1><strong id="nutrient-name-text" class="text-primary"></strong></h1>
+      <span><strong id="nutrient-name-text" class="text-primary"></strong></span>
     </div>
    <!-- Main Game -->
-    <section class="row food-row g-0" id="food-selection-area">
+    <section class="row g-0" id="food-row">
       <div class="col-sm-12 col-md-6 game-img">
           <div class="img-info center">
             <h3 class="food-name-text"></h3>
@@ -23,10 +23,7 @@
       <div class="circle" id="circle-comparison"><span>OR</span></div>
     </section>
     <!-- Game Information -->
-    <div class="row m-1 footer">
-      <div class="col-12 center">
-        <row id="round-icons"></row>
-      </div>
+    <div id="round-icons" class="center">
     </div>
   </div>
 </body>

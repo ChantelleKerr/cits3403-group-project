@@ -3,10 +3,11 @@
   margin-right: 6px;
 }
 
-.food-row {
-  height: 73vh;
+#food-row {
+  height: calc(0.85 * var(--nonavbar-height));
   width: 100vw;
-  position: relative;
+  top: calc(var(--navbar-height) + 0.1 * var(--nonavbar-height));
+  position: absolute;
   overflow: hidden;
 }
 .game-img {
@@ -33,43 +34,75 @@
   position: absolute;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  margin: 0% 10% 0% 10%;
+  width: 80%;
   height: 100%;
 }
 .img-info > h3 {
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 8vmin;
   color: white;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
 .img-info > h4 {
+  font-size: 4vmin;
   text-align: center;
   color: white;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
 .circle {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 80px;
-  width: 80px;
+  height: 8vmax;
+  width: 8vmax;
   background-color: #222222;
   border-radius: 50%;
   transform: translateX(-50%) translateY(-50%);
-  font-size: 32px;
+  font-size: 4vmax;
   display: grid;
   place-items: center;
-  box-shadow: 1px 1px 5px black;
+  box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
   z-index: 3;
 }
-.footer {
-  align-content: center;
+
+#header {
+  position: absolute;
+  height: calc(0.1 * var(--nonavbar-height));
+  width: 100vw;
+  left: 50vw;
+  top: var(--navbar-height);
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
-.score {
-  text-align: end;
+#header > span:nth-child(1) {
+  position: relative;
+  display: block;
+  line-height: calc( 0.03 * var(--nonavbar-height));
+  font-size: calc(0.025 * var(--nonavbar-height));
+}
+#header > span:nth-child(2) {
+  position: relative;
+  display: block;
+  line-height: calc(0.05 * var(--nonavbar-height));
+  font-size: calc(0.06 * var(--nonavbar-height));
+}
+#round-icons {
+  align-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  height: calc(0.05 * var(--nonavbar-height));
+  width: 100vw;
+  bottom: 0;
+
 }
 #round-icons > img {
-  height: 30px;
+  position: relative;
+  object-fit: cover;
+  max-height: 100%;
+  padding: 0.5vh 0.25vw 0.5vh 0.25vw;
+  max-width: 10%;
 }

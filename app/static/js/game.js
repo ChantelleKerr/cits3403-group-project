@@ -22,7 +22,7 @@ function onLoad() {
   generateNutrientOfTheDay();
   generateFoodChoices();
   addEventListeners();
-  document.body.style.overflow = "hidden"; //Do this to avoid scrollbars appearing. Maybe put this in CSS instead
+  addCSSVariables();
 }
 
 /**
@@ -31,7 +31,7 @@ function onLoad() {
 function generateFoodChoices() {
   for (var i = 0; i < 2; i++) {
     if (currentRound + i - 1 <= rounds) {
-      document.getElementById("food-selection-area").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
+      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
       document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
     }
   }
@@ -64,12 +64,26 @@ function addEventListeners() {
   }
 
   // Add event listeners
-  document.getElementById("food-selection-area").addEventListener("mouseleave", updateCircle, false);
+  document.getElementById("food-row").addEventListener("mouseleave", updateCircle, false);
   for (var i = 0; i < foodChoices.length; i++) {
     foodChoices[i].addEventListener("click", makeSelection, false);
     foodChoices[i].addEventListener("mouseenter", updateCircle, false);
     window.addEventListener("resize", fixArrowOrientation, false)
   }
+  // Update the navbar-height and nonavbar-height (height minus navbar) whenever window resizes
+  window.addEventListener('resize', () => {
+    document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+    document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
+  })
+}
+
+/**
+ * Calculates initial variables that are used in the css. This works in addition to the eventlistener which updates the variables
+ * whenever the screen resizes.
+ */
+function addCSSVariables() {
+  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight -  document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**
@@ -160,13 +174,13 @@ function makeSelection(event) {
     let roundDiv = document.getElementById('round-icons');
     let circleComparison = document.getElementById("circle-comparison");
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-      roundDiv.childNodes[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
+      roundDiv.children[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       setCircleRotation(0);
     } else {
-      roundDiv.childNodes[currentRound - 1].style.opacity = 0.5;
+      roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
       setCircleRotation(0);
@@ -201,7 +215,7 @@ function animateFoods() {
     makeGameOverScreen(newFood);
   }
   newFood.style.display = "none";
-  document.getElementById("food-selection-area").appendChild(newFood);
+  document.getElementById("food-row").appendChild(newFood);
   newFood.style.position = "absolute";
   window.requestAnimationFrame(showAnswer);
 }
@@ -279,7 +293,7 @@ function slide(timestamp) {
  * Allow user interaction with the game once more by setting start to -1
  */
 function resetAfterAnimation() {
-  document.getElementById("food-selection-area").removeChild(document.getElementById("nf"));
+  document.getElementById("food-row").removeChild(document.getElementById("nf"));
   let foodDivs = document.getElementsByClassName("game-img");
   let circleComparison = document.getElementById("circle-comparison")
   generateFoodChoices();
@@ -294,7 +308,7 @@ function resetAfterAnimation() {
   }
   else {
     makeGameOverScreen(foodDivs[1]);
-    document.getElementById("food-selection-area").removeChild(document.getElementById("circle-comparison"));
+    document.getElementById("food-row").removeChild(document.getElementById("circle-comparison"));
     start = 0;
     //TODO: this is the end of the game, so do some more stuff here
   }
