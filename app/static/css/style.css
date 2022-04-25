@@ -4,7 +4,7 @@
 }
 
 #food-row {
-  height: calc(0.8 * var(--nonavbar-height));
+  height: calc(0.85 * var(--nonavbar-height));
   width: 100vw;
   top: calc(var(--navbar-height) + 0.1 * var(--nonavbar-height));
   position: absolute;
@@ -86,15 +86,15 @@
 #header > span:nth-child(2) {
   position: relative;
   display: block;
-  line-height: calc(0.045 * var(--nonavbar-height));
-  font-size: calc(0.045 * var(--nonavbar-height));
+  line-height: calc(0.05 * var(--nonavbar-height));
+  font-size: calc(0.05 * var(--nonavbar-height));
 }
 #round-icons {
   align-content: center;
   overflow: hidden;
   white-space: nowrap;
   position: absolute;
-  height: calc(0.1 * var(--nonavbar-height));
+  height: calc(0.05 * var(--nonavbar-height));
   width: 100vw;
   bottom: 0;
 
@@ -103,6 +103,6 @@
   position: relative;
   object-fit: cover;
   max-height: 100%;
-  padding: .3%;
-  max-width: 9.8%;
+  padding: 0.5vh 0.25vw 0.5vh 0.25vw;
+  max-width: 10%;
 }
