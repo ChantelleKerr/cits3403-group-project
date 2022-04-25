@@ -89,7 +89,7 @@
   line-height: calc(0.045 * var(--nonavbar-height));
   font-size: calc(0.045 * var(--nonavbar-height));
 }
-#footer {
+#round-icons {
   align-content: center;
   overflow: hidden;
   white-space: nowrap;
@@ -101,5 +101,7 @@
 }
 #round-icons > img {
   position: relative;
-  height: calc(0.06 * var(--nonavbar-height));
+  object-fit: cover;
+  max-height: 100%;
+  max-width: 10%;
 }
