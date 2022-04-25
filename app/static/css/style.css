@@ -87,7 +87,7 @@
   position: relative;
   display: block;
   line-height: calc(0.05 * var(--nonavbar-height));
-  font-size: calc(0.05 * var(--nonavbar-height));
+  font-size: calc(0.06 * var(--nonavbar-height));
 }
 #round-icons {
   align-content: center;
