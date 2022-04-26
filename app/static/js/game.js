@@ -133,170 +133,6 @@ function updateCircleComparison(event) {
  * @param event - The event triggering the function
  */
 function makeSelection(event) {
-  /**
-  * Determines which choice is more nutritious. 
-  * @returns Element containing more nutritious food or false if they are equally nutritious
-  */
-  function getMostNutritious() {
-    let foodDivs = document.getElementsByClassName("game-img");
-    let vals = Object.values(data)
-    if (vals[currentRound - 1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
-      return foodDivs[0];
-    }
-    else if (vals[currentRound - 1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
-      return foodDivs[1];
-    }
-    return false;
-  }
-
-  /**
-  * Makes a new div containing the next food for the purposes of animation
-  * Begins the sliding animation
-  */
-  function animateFoods() {
-    /**
-    * Turns a div into a game over screen
-    * @param d - the div which we want to turn into a game over screen 
-    */
-    function makeGameOverScreen(d) {
-      let div = d.firstElementChild;
-      div.innerHTML = "";
-      d.style = "background-color: #222222";
-      let t1 = document.createElement("h2");
-      let t2 = document.createElement("h2");
-      t1.innerHTML = "Game over!";
-      t2.innerHTML = "Your score: " + score + "/" + rounds;
-      div.appendChild(t1);
-      div.appendChild(t2);
-    }
-
-    // TODO: Add javadoc comments for showAnswer
-    function showAnswer(timestamp) {
-      /**
-      * Slides the food divs (direction depends on the screen size)
-      * Places the newFood div next to/below the second food div
-      * Keeps calling requestAnimationFrame() to create an animation, until the movement is complete
-      * @param timestamp - the time at which this function's execution begins
-      */
-      function slide(timestamp) {
-        /**
-        * Removes the temporary element used to create the effect of the next food sliding in
-        * Updates the displayed foods by calling generateFoodChoices()
-        * Resets the transform of the divs
-        * Reset the circle back from showing a tick/cross
-        * Allow user interaction with the game once more by setting start to -1
-        */
-        function resetAfterAnimation() {
-          document.getElementById("food-row").removeChild(document.getElementById("nf"));
-          let foodDivs = document.getElementsByClassName("game-img");
-          let circleComparison = document.getElementById("circle-comparison")
-          generateFoodChoices();
-          for (let i = 0; i < foodDivs.length; i++) {
-            foodDivs[i].style.transform = "";
-          }
-          if (currentRound <= rounds) {
-            circleComparison.innerHTML = "OR";
-            circleComparison.style.backgroundColor = "#191919";
-            circleComparison.style.opacity = 1;
-            start = -1;
-          }
-          else {
-            makeGameOverScreen(foodDivs[1]);
-            circleComparison.style.display = "none";
-            start = 0;
-            //TODO: this is the end of the game, so do some more stuff here
-          }
-        }
-
-        // slide functionality
-        const slideTime = 600; //number of milliseconds for animation to take
-        const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
-        let elapsed = timestamp - start;
-        let foodDivs = document.getElementsByClassName("game-img");
-        let newFood = document.getElementById("nf");
-
-        let slideSize = parseFloat(foodDivs[0].offsetWidth);
-        let slideDirection = "X";
-        if (isWindowSmall()) {
-          slideSize = parseFloat(foodDivs[0].offsetHeight);
-          slideDirection = "Y";
-        }
-        if (previousTimeStamp !== timestamp) {
-          // Math.min() is used here to make sure the div stops at exactly the amount we want
-          let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
-          for (let i = 0; i < foodDivs.length; i++) {
-            foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
-          }
-          //Need to keep calculating these in case the window size is changed
-
-          if (slideDirection == "X") {
-            newFood.style.left = 2 * slideSize + "px";
-            newFood.style.top = "0px";
-            newFood.style.width = slideSize + "px";
-            newFood.style.height = foodDivs[0].offsetHeight + "px";
-          } else {
-            newFood.style.left = "0px";
-            newFood.style.top = 2 * slideSize + "px";
-            newFood.style.width = foodDivs[0].offsetWidth + "px";
-            newFood.style.height = slideSize + "px";
-          }
-        }
-
-        if (elapsed < slideTime) {
-          previousTimeStamp = timestamp
-          window.requestAnimationFrame(slide);
-        } else {
-          resetAfterAnimation();
-        }
-      }
-
-      // showAnswer functionality
-      const pauseTime = 1000; //number of milliseconds to pause after showing the answer
-      const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
-
-      if (start === -1) {
-        start = timestamp;
-      }
-      let elapsed = timestamp - start;
-      let circleComparison = document.getElementById("circle-comparison");
-      let opacity = Math.min(1, fadeProportion - (fadeProportion * elapsed / pauseTime));
-      circleComparison.style.opacity = opacity;
-      if (elapsed < pauseTime) {
-        previousTimeStamp = timestamp;
-        window.requestAnimationFrame(showAnswer);
-      } else {
-        document.getElementById("nf").style.display = "block";
-        document.getElementById("nf").style.zIndex = -1; //or else this element briefly flashes
-        start = timestamp;
-        window.requestAnimationFrame(slide);
-      }
-    }
-
-    // animateFoods functionality
-    let foodDivs = document.getElementsByClassName("game-img");
-    let newFood = document.createElement("div");
-    newFood.id = "nf";
-    newFood.className = "game-img";
-    // copy the second food item
-    newFood.innerHTML = foodDivs[1].innerHTML;
-    if (currentRound <= rounds) {
-      // but change the text and the image to be of the next food
-      newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
-      newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
-      // Show the nutrient of the second food
-      /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
-      foodDivs[1].firstElementChild.appendChild(nutr);
-      nutr.innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound+1][todaysNutrient] + " " + units[dt.getDay()]*/
-    } else { //Show the score
-      makeGameOverScreen(newFood);
-    }
-    newFood.style.display = "none";
-    document.getElementById("food-row").appendChild(newFood);
-    newFood.style.position = "absolute";
-    window.requestAnimationFrame(showAnswer);
-  }
-
-  // makeSelection functionality
   if (start === -1) {
     let foodDivs = document.getElementsByClassName("game-img");
     // Determine which food was selected
@@ -331,5 +167,165 @@ function makeSelection(event) {
       currentRound++;
       animateFoods();
     }
+  }
+}
+
+/**
+* Determines which choice is more nutritious. 
+* @returns Element containing more nutritious food or false if they are equally nutritious
+*/
+function getMostNutritious() {
+  let foodDivs = document.getElementsByClassName("game-img");
+  let vals = Object.values(data)
+  if (vals[currentRound - 1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
+    return foodDivs[0];
+  }
+  else if (vals[currentRound - 1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
+    return foodDivs[1];
+  }
+  return false;
+}
+
+/**
+* Makes a new div containing the next food for the purposes of animation
+* Begins the sliding animation
+*/
+function animateFoods() {
+  let foodDivs = document.getElementsByClassName("game-img");
+  let newFood = document.createElement("div");
+  newFood.id = "nf";
+  newFood.className = "game-img";
+  // copy the second food item
+  newFood.innerHTML = foodDivs[1].innerHTML;
+  if (currentRound <= rounds) {
+    // but change the text and the image to be of the next food
+    newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
+    newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
+    // Show the nutrient of the second food
+    /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
+    foodDivs[1].firstElementChild.appendChild(nutr);
+    nutr.innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound+1][todaysNutrient] + " " + units[dt.getDay()]*/
+  } else { //Show the score
+    makeGameOverScreen(newFood);
+  }
+  newFood.style.display = "none";
+  document.getElementById("food-row").appendChild(newFood);
+  newFood.style.position = "absolute";
+  window.requestAnimationFrame(showAnswer);
+}
+
+/**
+* Turns a div into a game over screen
+* @param d - the div which we want to turn into a game over screen 
+*/
+function makeGameOverScreen(d) {
+  let div = d.firstElementChild;
+  div.innerHTML = "";
+  d.style = "background-color: #222222";
+  let t1 = document.createElement("h2");
+  let t2 = document.createElement("h2");
+  t1.innerHTML = "Game over!";
+  t2.innerHTML = "Your score: " + score + "/" + rounds;
+  div.appendChild(t1);
+  div.appendChild(t2);
+}
+
+// TODO: Add javadoc comments for showAnswer
+function showAnswer(timestamp) {
+  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
+  const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
+
+  if (start === -1) {
+    start = timestamp;
+  }
+  let elapsed = timestamp - start;
+  let circleComparison = document.getElementById("circle-comparison");
+  let opacity = Math.min(1, fadeProportion - (fadeProportion * elapsed / pauseTime));
+  circleComparison.style.opacity = opacity;
+  if (elapsed < pauseTime) {
+    previousTimeStamp = timestamp;
+    window.requestAnimationFrame(showAnswer);
+  } else {
+    document.getElementById("nf").style.display = "block";
+    document.getElementById("nf").style.zIndex = -1; //or else this element briefly flashes
+    start = timestamp;
+    window.requestAnimationFrame(slide);
+  }
+}
+
+/**
+* Slides the food divs (direction depends on the screen size)
+* Places the newFood div next to/below the second food div
+* Keeps calling requestAnimationFrame() to create an animation, until the movement is complete
+* @param timestamp - the time at which this function's execution begins
+*/
+function slide(timestamp) {
+  const slideTime = 600; //number of milliseconds for animation to take
+  const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
+  let elapsed = timestamp - start;
+  let foodDivs = document.getElementsByClassName("game-img");
+  let newFood = document.getElementById("nf");
+
+  let slideSize = parseFloat(foodDivs[0].offsetWidth);
+  let slideDirection = "X";
+  if (isWindowSmall()) {
+    slideSize = parseFloat(foodDivs[0].offsetHeight);
+    slideDirection = "Y";
+  }
+  if (previousTimeStamp !== timestamp) {
+    // Math.min() is used here to make sure the div stops at exactly the amount we want
+    let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
+    for (let i = 0; i < foodDivs.length; i++) {
+      foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
+    }
+    //Need to keep calculating these in case the window size is changed
+
+    if (slideDirection == "X") {
+      newFood.style.left = 2 * slideSize + "px";
+      newFood.style.top = "0px";
+      newFood.style.width = slideSize + "px";
+      newFood.style.height = foodDivs[0].offsetHeight + "px";
+    } else {
+      newFood.style.left = "0px";
+      newFood.style.top = 2 * slideSize + "px";
+      newFood.style.width = foodDivs[0].offsetWidth + "px";
+      newFood.style.height = slideSize + "px";
+    }
+  }
+
+  if (elapsed < slideTime) {
+    previousTimeStamp = timestamp
+    window.requestAnimationFrame(slide);
+  } else {
+    resetAfterAnimation();
+  }
+}
+
+/**
+* Removes the temporary element used to create the effect of the next food sliding in
+* Updates the displayed foods by calling generateFoodChoices()
+* Resets the transform of the divs
+* Reset the circle back from showing a tick/cross
+* Allow user interaction with the game once more by setting start to -1
+*/
+function resetAfterAnimation() {
+  document.getElementById("food-row").removeChild(document.getElementById("nf"));
+  let foodDivs = document.getElementsByClassName("game-img");
+  let circleComparison = document.getElementById("circle-comparison")
+  generateFoodChoices();
+  for (let i = 0; i < foodDivs.length; i++) {
+    foodDivs[i].style.transform = "";
+  }
+  if (currentRound <= rounds) {
+    circleComparison.innerHTML = "OR";
+    circleComparison.style.backgroundColor = "#191919";
+    circleComparison.style.opacity = 1;
+    start = -1;
+  }
+  else {
+    makeGameOverScreen(foodDivs[1]);
+    circleComparison.style.display = "none";
+    start = 0;
+    //TODO: this is the end of the game, so do some more stuff here
   }
 }
