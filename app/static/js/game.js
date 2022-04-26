@@ -3,7 +3,7 @@ const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Suga
 const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
-let todaysNutrient = nutrients[dt.getDay()];
+let nutrientOfTheDay = nutrients[dt.getDay()];
 
 /**
  * Checks if the window is considered small by bootstrap
@@ -28,11 +28,11 @@ function onLoad() {
     let roundDiv = document.getElementById('round-icons');
     for (let i = 0; i < rounds; i++) {
       let img = document.createElement('img');
-      img.src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + "-lose.png";
+      img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
       img.setAttribute('alt', 'roundIcon')
       roundDiv.appendChild(img);
     }
-    document.getElementById("nutrient-name-text").textContent = nutrients[dt.getDay()];
+    document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
   }
 
   /**
@@ -84,7 +84,7 @@ function generateFoodChoices() {
       document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound - 1][todaysNutrient] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
 }
 
 /**
@@ -151,7 +151,7 @@ function makeSelection(event) {
     let roundDiv = document.getElementById('round-icons');
     let circleComparison = document.getElementById("circle-comparison");
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
-      roundDiv.children[currentRound - 1].src = "static/images/" + nutrients[dt.getDay()].toLowerCase() + ".png";
+      roundDiv.children[currentRound - 1].src = "static/images/" + nutrientOfTheDay.toLowerCase() + ".png";
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
@@ -177,10 +177,10 @@ function makeSelection(event) {
 function getMostNutritious() {
   let foodDivs = document.getElementsByClassName("game-img");
   let vals = Object.values(data)
-  if (vals[currentRound - 1][todaysNutrient] > vals[currentRound][todaysNutrient]) {
+  if (vals[currentRound - 1][nutrientOfTheDay] > vals[currentRound][nutrientOfTheDay]) {
     return foodDivs[0];
   }
-  else if (vals[currentRound - 1][todaysNutrient] < vals[currentRound][todaysNutrient]) {
+  else if (vals[currentRound - 1][nutrientOfTheDay] < vals[currentRound][nutrientOfTheDay]) {
     return foodDivs[1];
   }
   return false;
@@ -204,7 +204,7 @@ function animateFoods() {
     // Show the nutrient of the second food
     /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
     foodDivs[1].firstElementChild.appendChild(nutr);
-    nutr.innerHTML = todaysNutrient + ": " + Object.values(data)[currentRound+1][todaysNutrient] + " " + units[dt.getDay()]*/
+    nutr.innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound+1][nutrientOfTheDay] + " " + units[dt.getDay()]*/
   } else { //Show the score
     makeGameOverScreen(newFood);
   }
