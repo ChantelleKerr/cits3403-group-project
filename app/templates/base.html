@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="static/css/globalStyle.css">
     <link rel="stylesheet" href="static/css/style.css">
   </head>
-  
+
   <body>
   <!-- Navigation Bar -->
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -46,93 +46,8 @@
       </div>
     </div>
   </nav>
-  <!-- Registration Modal -->
-  <div class="modal fade" id="registerModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-          <h5 class="modal-title w-100 text-primary">Register</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body mx-3">
-          <form id="registrationForm">
-          <div class="row justify-content-center my-3">
-            <div class="col-1 center">
-              <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
-            </div>
-            <div class="col-11">
-              <input name="username" type="text" placeholder="Username">
-            </div>
-          </div>
-          <div class="row justify-content-center my-3">
-            <div class="col-1 center">
-              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
-            </div>
-            <div class="col-11">
-              <input name="email" type="text" placeholder="Email">
-            </div>
-          </div>
-          <div class="row justify-content-center my-3">
-            <div class="col-1 center">
-              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
-            </div>
-            <div class="col-11">
-              <input name="password" type="password" placeholder="Password">
-            </div>
-          </div>
-          <div class="row my-4"> 
-            <button type="submit" class="btn btn-primary">Create Account</button>
-          </div>
-        </form>
-          <div class="row text-center"> 
-            <span>Already have an account?
-            <a class="text-secondary" data-bs-target="#loginModal" data-bs-toggle="modal" data-bs-dismiss="modal">Login here</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-          <h5 class="modal-title w-100 text-primary">Login</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body mx-3">
-          <form id="loginForm">
-          <div class="row justify-content-center my-3">
-            <div class="col-1 center">
-              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
-            </div>
-            <div class="col-11">
-              <input name="email" type="text" placeholder="Email">
-            </div>
-          </div>
-          <div class="row justify-content-center my-3">
-            <div class="col-1 center">
-              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
-            </div>
-            <div class="col-11">
-              <input name="password" type="password" placeholder="Password">
-            </div>
-          </div>
-          <div class="row my-4"> 
-            <button type="submit" class="btn btn-primary">Login</button>
-          </div>
-        </form>
-          <div class="row text-center"> 
-            <span>Don't have an account?
-            <a class="text-secondary" data-bs-target="#registerModal" data-bs-toggle="modal" data-bs-dismiss="modal">Register here</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    {% block content %}
-
-    {% endblock %}
+    {% include 'loginModal.html' %}
+    {% include 'registerModal.html' %}
+    {% block content %} {% endblock %}
   </body>
 </html>
