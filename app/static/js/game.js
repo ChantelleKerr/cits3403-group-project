@@ -18,12 +18,10 @@ const slidePower = 0.4; //The sliding follows the function t^slidePower. Set thi
 /**
  * Called when the page loads, sets up the game 
  */
-function onLoad() {
-  generateNutrientOfTheDay();
-  generateFoodChoices();
-  addEventListeners();
-  addCSSVariables();
-}
+generateNutrientOfTheDay();
+generateFoodChoices();
+addEventListeners();
+addCSSVariables();
 
 /**
  * Generates a new set of food choices
@@ -83,7 +81,7 @@ function addEventListeners() {
  */
 function addCSSVariables() {
   document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight -  document.getElementById("navbar").clientHeight + 'px');
+  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**

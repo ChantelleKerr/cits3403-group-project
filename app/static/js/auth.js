@@ -68,7 +68,6 @@ window.onload = function () {
     xhttp.send(JSON.stringify({ email: e, password: pass }))
     xhttp.onload = () => {
       if (xhttp.status == 200) {
-        console.log("YOOO")
         // Close the modal
         var modal = document.getElementById('loginModal');
         bootstrap.Modal.getInstance(modal).hide()

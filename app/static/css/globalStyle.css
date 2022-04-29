@@ -24,12 +24,16 @@ a {
   cursor: pointer;
 }
 
+#navbar {
+ z-index: 10;
+}
 /* Navbar style */
 .bg-dark {
   background-color: #222222 !important;
 }
 .navbar-brand {
   color: #a1a1a1 !important;
+  margin-left: 5px;
 }
 .navbar-user {
   margin-right: 5px;

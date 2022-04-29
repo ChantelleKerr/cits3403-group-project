@@ -7,9 +7,11 @@ from flask_login import current_user, login_user, logout_user
 
 auth = Blueprint('auth', __name__)
 
+#@auth.route('/game/login', methods=['GET','POST'] )
 @auth.route('/login', methods=['GET','POST'])
 def login():
   data = request.get_json() or {}
+  print(request.url)
   # Find the user by email
   user = User.query.filter_by(email=data.get('email')).first()
   # If the user was found by email and the password is correct
