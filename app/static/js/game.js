@@ -19,58 +19,23 @@ let previousTimeStamp;
 /**
  * Called when the page loads, sets up the game 
  */
-function onLoad() {
+generateNutrientOfTheDay();
+generateFoodChoices();
+addEventListeners();
+updateCSSVariables();
 
-  /**
-  * Generates a new batch of icons and changes the nutrient text each day.
-  */
-  function generateNutrientOfTheDay() {
-    let roundDiv = document.getElementById('round-icons');
-    for (let i = 0; i < rounds; i++) {
-      let img = document.createElement('img');
-      img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
-      img.setAttribute('alt', 'roundIcon')
-      roundDiv.appendChild(img);
-    }
-    document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
+/**
+* Generates a new batch of icons and changes the nutrient text each day.
+*/
+function generateNutrientOfTheDay() {
+  let roundDiv = document.getElementById('round-icons');
+  for (let i = 0; i < rounds; i++) {
+    let img = document.createElement('img');
+    img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
+    img.setAttribute('alt', 'roundIcon')
+    roundDiv.appendChild(img);
   }
-
-  /**
-   * Adds all necessary event listeners after the two game-img food choices and relating data have been generated.
-   */
-  function addEventListeners() {
-    let foodDivs = document.getElementsByClassName("game-img");
-
-    if (foodDivs.length != 2) {
-      throw ("Found more than 2 food choices!");
-    }
-
-    // Add event listeners
-    document.getElementById("food-row").addEventListener("mouseleave", updateCircleComparison, false);
-    for (let i = 0; i < foodDivs.length; i++) {
-      foodDivs[i].addEventListener("click", makeSelection, false);
-      foodDivs[i].addEventListener("mouseenter", updateCircleComparison, false);
-    }
-    // Actions to be taken whenever screen resizes
-    window.addEventListener('resize', function (event) {
-      updateCircleComparison(event);
-      updateCSSVariables();
-    }, false);
-  }
-
-  /**
-  * Adds variables used in CSS, these are recalculated whenever the screen resizes.
-  */
-  function updateCSSVariables() {
-    document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-    document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
-  }
-
-  // onLoad() functionality
-  generateNutrientOfTheDay();
-  generateFoodChoices();
-  addEventListeners();
-  updateCSSVariables();
+  document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
 }
 
 /**
@@ -85,6 +50,37 @@ function generateFoodChoices() {
     }
   }
   document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
+}
+
+/**
+ * Adds all necessary event listeners after the two game-img food choices and relating data have been generated.
+ */
+function addEventListeners() {
+  let foodDivs = document.getElementsByClassName("game-img");
+
+  if (foodDivs.length != 2) {
+    throw ("Found more than 2 food choices!");
+  }
+
+  // Add event listeners
+  document.getElementById("food-row").addEventListener("mouseleave", updateCircleComparison, false);
+  for (let i = 0; i < foodDivs.length; i++) {
+    foodDivs[i].addEventListener("click", makeSelection, false);
+    foodDivs[i].addEventListener("mouseenter", updateCircleComparison, false);
+  }
+  // Actions to be taken whenever screen resizes
+  window.addEventListener('resize', function (event) {
+    updateCircleComparison(event);
+    updateCSSVariables();
+  }, false);
+}
+
+/**
+* Adds variables used in CSS, these are recalculated whenever the screen resizes.
+*/
+function updateCSSVariables() {
+  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
+  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**
@@ -109,7 +105,7 @@ function updateCircleComparison(event) {
   let circleComparison = document.getElementById("circle-comparison");
   if (start === -1 && event != null) {
     let foodDivs = document.getElementsByClassName("game-img");
-    
+
     if (event.type == "mouseleave") {
       circleComparison.textContent = "OR";
     }

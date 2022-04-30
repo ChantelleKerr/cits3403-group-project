@@ -10,8 +10,6 @@ CORS(app)
 
 app.secret_key = 'test123'
 
-
-
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -30,6 +28,7 @@ app.register_blueprint(auth_bp, url_prefix='/auth')
 
 from .models import User
 
+# Callback used to reload the user object stored in session
 @login.user_loader
 def user_loader(id):
   return User.query.get(int(id))
