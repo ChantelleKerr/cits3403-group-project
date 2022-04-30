@@ -23,14 +23,14 @@ window.onload = function () {
     event.preventDefault();
 
     const form = new FormData(event.target);
-    const user = form.get('username');
-    const e = form.get('email');
-    const pass = form.get('password');
+    const username = form.get('username');
+    const email = form.get('email');
+    const password = form.get('password');
 
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "api/users/create", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ username: user, email: e, password: pass }))
+    xhttp.send(JSON.stringify({ username: username, email: email, password: password }))
 
     xhttp.onload = () => {
       if (xhttp.status == 201) {
@@ -46,7 +46,7 @@ window.onload = function () {
    * @param event - The submit button that triggers the event
    * @returns:
    *  If the request was successful will return status code: 200
-   *  Unsuccessful requests will return status code: 404
+   *  Unsuccessful requests will return status code: 401
    * 
    * TODO: 
    * Form Validation
@@ -60,12 +60,12 @@ window.onload = function () {
 
     event.preventDefault();
     const form = new FormData(event.target);
-    const e = form.get('email');
-    const pass = form.get('password');
+    const email = form.get('email');
+    const password = form.get('password');
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "auth/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ email: e, password: pass }))
+    xhttp.send(JSON.stringify({ email: email, password: password }))
     xhttp.onload = () => {
       if (xhttp.status == 200) {
         // Close the modal
