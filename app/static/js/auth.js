@@ -27,6 +27,28 @@ window.onload = function () {
     const email = form.get('email');
     const password = form.get('password');
 
+    let isValid = true;
+
+    if (email == "" || checkEmail(email) != ""){
+      if (email == ""){
+        emailValidationText.innerHTML = "This field is required."
+      }
+      isValid = false;
+    }
+    if (password == "" || checkPassword(password,email,username) != ""){
+      if (password == ""){
+        passwordValidationText.innerHTML = "This field is required."
+      }
+      isValid = false;
+    }
+    if (username == ""){
+      usernameValidationText.innerHTML = "This field is required."
+      isValid = false;
+    }
+    if (!isValid){
+      return;
+    }
+
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "api/users/create", true);
     xhttp.setRequestHeader("Content-type", "application/json");
@@ -99,7 +121,7 @@ window.onload = function () {
     //inspired by https://blog.codinghorror.com/password-rules-are-bullshit/
     if (passwordAttempt == ""){
       return "";
-    }else if (passwordAttempt.length < 8){
+    }else if (passwordAttempt.length < 8 && passwordAttempt != ""){
       return "Please use a password with 8 characters or more."
     }else if (passwordAttempt.toLowerCase() == e.toLowerCase()){
       return "Please use a password which is different to your email."
@@ -110,10 +132,14 @@ window.onload = function () {
   }
   
   const usernameInput = document.getElementById("register-username-input");
+  const usernameValidationText = document.getElementById("username-validation-text");
   const emailInput = document.getElementById("register-email-input");
   const emailValidationText = document.getElementById("email-validation-text");
   const passwordInput = document.getElementById("register-password-input");
   const passwordValidationText = document.getElementById("password-validation-text");
+  usernameInput.addEventListener('focus', () =>{
+    usernameValidationText.innerHTML = "";
+  })
   emailInput.addEventListener('focus', () => {
     emailValidationText.innerHTML = "";
   })
