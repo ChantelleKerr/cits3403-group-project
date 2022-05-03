@@ -1,4 +1,37 @@
 {
+  "Almonds": {
+    "Calcium": 265,
+    "Energy": 2385,
+    "Fat": 50.5,
+    "Fibre": 10.9,
+    "Iron": 3.75,
+    "Protein": 19.7,
+    "Sodium": 0,
+    "Sugar": 5.2,
+    "url": "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YWxtb25kc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+  },
+  "Apricot": {
+    "Calcium": 13,
+    "Energy": 167,
+    "Fat": 0.4,
+    "Fibre": 1.5,
+    "Iron": 0.28,
+    "Protein": 0.2,
+    "Sodium": 0,
+    "Sugar": 7.6,
+    "url": "https://media.istockphoto.com/photos/apricot-isolate-apricots-with-slice-on-white-fresh-apricots-with-picture-id1159003963?b=1&k=20&m=1159003963&s=170667a&w=0&h=Zg65d008AufiqIGbm1s13xhrQd2M6r3QbDxcf0V3lNY="
+  },
+  "Asparagus": {
+    "Calcium": 11,
+    "Energy": 88,
+    "Fat": 0.1,
+    "Fibre": 2.2,
+    "Iron": 1,
+    "Protein": 2.5,
+    "Sodium": 2,
+    "Sugar": 1.4,
+    "url": "https://media.istockphoto.com/photos/asparagus-bunch-picture-id183275207?b=1&k=20&m=183275207&s=170667a&w=0&h=kR-9SEi5X5RUvEhUxMT9g_GjTl1qxl2pf5JMri-GPcE="
+  },
   "Banana Bread": {
     "Calcium": 41,
     "Energy": 1224,
@@ -7,7 +40,74 @@
     "Iron": 1.6,
     "Protein": 5.7,
     "Sodium": 360,
+    "Sugar": 25.1,
     "url": "https://images.unsplash.com/photo-1569762404472-026308ba6b64?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+  },
+  "Beef Sausage": {
+    "Calcium": 9,
+    "Energy": 911,
+    "Fat": 14.9,
+    "Fibre": 0.2,
+    "Iron": 1.31,
+    "Protein": 17.2,
+    "Sodium": 795,
+    "Sugar": 0.4,
+    "url": "https://media.istockphoto.com/photos/barbecue-picture-id700183982?b=1&k=20&m=700183982&s=170667a&w=0&h=f-5S_5sJhgZen7BkZpYyZwDn7wnMMGmnshK6c6y5uiQ="
+  },
+  "Brownies": {
+    "Calcium": 30,
+    "Energy": 1922,
+    "Fat": 25.3,
+    "Fibre": 1.9,
+    "Iron": 1.71,
+    "Protein": 6.5,
+    "Sodium": 510,
+    "Sugar": 35.8,
+    "url": "https://media.istockphoto.com/photos/homemade-double-chocolate-brownies-isolated-on-a-white-background-picture-id1160637981?b=1&k=20&m=1160637981&s=170667a&w=0&h=H384IaZW014mXsGuEMr6LbTcymvrjQai_lZJNfC10nM="
+  },
+  "Buckwheat noodles": {
+    "Calcium": 9,
+    "Energy": 455,
+    "Fat": 0.4,
+    "Fibre": 1.6,
+    "Iron": 0.77,
+    "Protein": 3.6,
+    "Sodium": 170,
+    "Sugar": 0,
+    "url": "https://media.istockphoto.com/photos/buckwheat-noodles-picture-id1097882296?b=1&k=20&m=1097882296&s=170667a&w=0&h=hCZcNJu_Rmv1VdRXsK_-EF-FisG6eb6NBIrLMjO-OWc="
+  },
+  "Calamari": {
+    "Calcium": 14,
+    "Energy": 410,
+    "Fat": 1.5,
+    "Fibre": 0,
+    "Iron": 1.62,
+    "Protein": 20.9,
+    "Sodium": 355,
+    "Sugar": 0,
+    "url": "https://media.istockphoto.com/photos/fried-calimari-rings-on-wooden-tray-with-dipping-sauce-picture-id593297194?b=1&k=20&m=593297194&s=170667a&w=0&h=IkI25-bwa8G8v4RtUmhuUXJHw-HjVmTgV_ssqt1IJpE="
+  },
+  "Canned Spaghetti": {
+    "Calcium": 9,
+    "Energy": 227,
+    "Fat": 0,
+    "Fibre": 0.8,
+    "Iron": 0.3,
+    "Protein": 2.5,
+    "Sodium": 330,
+    "Sugar": 4,
+    "url": "https://media.istockphoto.com/photos/spaghetti-picture-id182491686?b=1&k=20&m=182491686&s=170667a&w=0&h=aO7ntCLqyVAwU-qMcYGXSUlJiHcwz3SY7ug-i4vIgwA="
+  },
+  "Carrot Cake": {
+    "Calcium": 41,
+    "Energy": 1620,
+    "Fat": 20.4,
+    "Fibre": 1.5,
+    "Iron": 1.6,
+    "Protein": 4.4,
+    "Sodium": 305,
+    "Sugar": 30.5,
+    "url": "https://media.istockphoto.com/photos/carrot-cake-picture-id1247845894?b=1&k=20&m=1247845894&s=170667a&w=0&h=QgBawENBZsE2vJ25lNBN0tKCkskHVli4tXa9dkrjOdE="
   },
   "Coco Pops": {
     "Calcium": 388,
@@ -17,7 +117,30 @@
     "Iron": 13.8,
     "Protein": 5.3,
     "Sodium": 496,
+    "Sugar": 30.4,
     "url": "https://images.unsplash.com/photo-1625568885687-60071a0f7ba2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+  },
+  "Fish Fingers": {
+    "Calcium": 15,
+    "Energy": 1050,
+    "Fat": 13.2,
+    "Fibre": 1.2,
+    "Iron": 0.51,
+    "Protein": 13.8,
+    "Sodium": 341,
+    "Sugar": 1.7,
+    "url": "https://media.istockphoto.com/photos/fried-fish-fingers-picture-id170115686?b=1&k=20&m=170115686&s=170667a&w=0&h=hxtY0w5n96hY6I6h2UxOAlqNC7G3I9VNLHU0AHr0FIo="
+  },
+  "Hamburger": {
+    "Calcium": 120,
+    "Energy": 1096,
+    "Fat": 12.1,
+    "Fibre": 1.7,
+    "Iron": 1.2,
+    "Protein": 15.1,
+    "Sodium": 590,
+    "Sugar": 2.9,
+    "url": "https://media.istockphoto.com/photos/snacks-hamburger-isolated-on-white-background-picture-id635875304?b=1&k=20&m=635875304&s=170667a&w=0&h=cRx1kKLLb81d0YMfDWKj3ZE6HY-9Ls56_F_DfKsbtpE="
   },
   "Honey": {
     "Calcium": 8,
@@ -27,6 +150,7 @@
     "Iron": 0.12,
     "Protein": 0.3,
     "Sodium": 8,
+    "Sugar": 72.3,
     "url": "https://images.unsplash.com/photo-1619321652902-a8c183e6cdf2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
   },
   "Iced Donut": {
@@ -37,6 +161,7 @@
     "Iron": 0.8,
     "Protein": 6.7,
     "Sodium": 414,
+    "Sugar": 22.9,
     "url": "https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
   },
   "Lasagne": {
@@ -47,7 +172,19 @@
     "Iron": 1,
     "Protein": 6.6,
     "Sodium": 290,
+    "Sugar": 1.6,
     "url": "https://images.unsplash.com/photo-1619895092538-128341789043?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+  },
+  "Macadamias": {
+    "Calcium": 48,
+    "Energy": 3018,
+    "Fat": 74,
+    "Fibre": 6.4,
+    "Iron": 1.8,
+    "Protein": 9.2,
+    "Sodium": 1,
+    "Sugar": 4.5,
+    "url": "https://media.istockphoto.com/photos/macadamia-nuts-picture-id186817454?b=1&k=20&m=186817454&s=170667a&w=0&h=atdWEh7csI89rv4o7ME1qnzZkevLmmxxRfMWc30hnAs="
   },
   "Mars Bar": {
     "Calcium": 29,
@@ -57,6 +194,227 @@
     "Iron": 1.85,
     "Protein": 9.4,
     "Sodium": 162,
+    "Sugar": 14,
     "url": "https://images.unsplash.com/photo-1609501577416-acd9a72affea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
+  },
+  "Orange": {
+    "Calcium": 23,
+    "Energy": 175,
+    "Fat": 0,
+    "Fibre": 2.4,
+    "Iron": 0,
+    "Protein": 1,
+    "Sodium": 0,
+    "Sugar": 8.2,
+    "url": "https://images.unsplash.com/photo-1544437353-90c5b0daf035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTB8fG9yYW5nZSUyMGZydWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+  },
+  "Pancakes": {
+    "Calcium": 83,
+    "Energy": 927,
+    "Fat": 7.6,
+    "Fibre": 0.8,
+    "Iron": 0.69,
+    "Protein": 7.4,
+    "Sodium": 79,
+    "Sugar": 4.2,
+    "url": "https://media.istockphoto.com/photos/macro-closeup-side-view-of-stack-of-buttermilk-pancakes-on-plate-as-picture-id1330604424?b=1&k=20&m=1330604424&s=170667a&w=0&h=jfFK_7dGim3yGHu1ml8mG_jsds2T6x4dqvdLm4J1Wko="
+  },
+  "Pistachios": {
+    "Calcium": 90,
+    "Energy": 2542,
+    "Fat": 50.6,
+    "Fibre": 9,
+    "Iron": 3.9,
+    "Protein": 19.7,
+    "Sodium": 7,
+    "Sugar": 5.9,
+    "url": "https://media.istockphoto.com/photos/flying-in-air-fresh-raw-whole-and-cracked-pistachios-picture-id1264353866?b=1&k=20&m=1264353866&s=170667a&w=0&h=MXyi-H-gklXiuWFVhsozd2ga8r70gAafwkMo-tDWDzo="
+  },
+  "Porridge": {
+    "Calcium": 107,
+    "Energy": 515,
+    "Fat": 4.9,
+    "Fibre": 1.6,
+    "Iron": 0.6,
+    "Protein": 5.3,
+    "Sodium": 34,
+    "Sugar": 5.3,
+    "url": "https://media.istockphoto.com/photos/bowl-of-porridge-picture-id182440215?b=1&k=20&m=182440215&s=170667a&w=0&h=DAO-VyqIDFVslpVGIezROWmVJTgDSF4uB779iI610RY="
+  },
+  "Quince": {
+    "Calcium": 8,
+    "Energy": 242,
+    "Fat": 0.2,
+    "Fibre": 5.2,
+    "Iron": 0.1,
+    "Protein": 0.5,
+    "Sodium": 16,
+    "Sugar": 11,
+    "url": "https://media.istockphoto.com/photos/isolated-cut-quince-fruits-picture-id1218274538?b=1&k=20&m=1218274538&s=170667a&w=0&h=16ajMt33BNrf3uoJrH_P8_0SulWutCmCcg2An7I6F4A="
+  },
+  "Quinoa": {
+    "Calcium": 14,
+    "Energy": 432,
+    "Fat": 1.8,
+    "Fibre": 3.4,
+    "Iron": 1.08,
+    "Protein": 3.6,
+    "Sodium": 4,
+    "Sugar": 1.3,
+    "url": "https://media.istockphoto.com/photos/cooked-quinoa-in-a-cast-iron-pan-on-rustic-wooden-table-picture-id1298922591?b=1&k=20&m=1298922591&s=170667a&w=0&h=ugH69TmYBHplgksnisGfDDeKfeEG8GhzB9vatqzH6r4="
+  },
+  "Radish": {
+    "Calcium": 25,
+    "Energy": 62,
+    "Fat": 0.2,
+    "Fibre": 1.1,
+    "Iron": 1.1,
+    "Protein": 0.8,
+    "Sodium": 20,
+    "Sugar": 1.9,
+    "url": "https://media.istockphoto.com/photos/bunch-fresh-radish-with-cut-picture-id97689679?b=1&k=20&m=97689679&s=170667a&w=0&h=xqZYlWOQ-73O3aUFdlKXNnTCjsSja_ukeYznVjJdqaE="
+  },
+  "Raisins": {
+    "Calcium": 53,
+    "Energy": 1226,
+    "Fat": 0.5,
+    "Fibre": 4.9,
+    "Iron": 1.16,
+    "Protein": 3.2,
+    "Sodium": 10,
+    "Sugar": 66.9,
+    "url": "https://media.istockphoto.com/photos/raisin-isolated-over-white-background-picture-id1333231585?b=1&k=20&m=1333231585&s=170667a&w=0&h=LlIn-zPFdSNsK9BHSM4_4HaM7GPvhRHZaB5tVdF3Fqg="
+  },
+  "Raspberry": {
+    "Calcium": 26,
+    "Energy": 204,
+    "Fat": 0.2,
+    "Fibre": 5.6,
+    "Iron": 0.54,
+    "Protein": 1.1,
+    "Sodium": 1,
+    "Sugar": 6.5,
+    "url": "https://media.istockphoto.com/photos/bunch-of-raspberries-on-white-background-picture-id184611142?b=1&k=20&m=184611142&s=170667a&w=0&h=8DXD7HJZ3nYBwHxQ8mzKIdy22zXenlVn1RnfCZzwFr0="
+  },
+  "Raw Onion": {
+    "Calcium": 23,
+    "Energy": 139,
+    "Fat": 0,
+    "Fibre": 2.7,
+    "Iron": 0.24,
+    "Protein": 1.3,
+    "Sodium": 8,
+    "Sugar": 5.8,
+    "url": "https://media.istockphoto.com/photos/onions-picture-id503324916?b=1&k=20&m=503324916&s=170667a&w=0&h=X_0Hn20cX7h-7awv-dskdG0_EBKGTR0wRehJO5Aji0s="
+  },
+  "Rhubarb": {
+    "Calcium": 26,
+    "Energy": 94,
+    "Fat": 0.2,
+    "Fibre": 2.2,
+    "Iron": 0.3,
+    "Protein": 1.5,
+    "Sodium": 12,
+    "Sugar": 1.7,
+    "url": "https://media.istockphoto.com/photos/rhubarb-stalks-on-a-white-background-picture-id1215887635?b=1&k=20&m=1215887635&s=170667a&w=0&h=C3k4EOaR4YN5sqqkJaWNe-lZrMNrlDLCdmM3cpEKkbQ="
+  },
+  "Rice": {
+    "Calcium": 2,
+    "Energy": 659,
+    "Fat": 0.2,
+    "Fibre": 0.8,
+    "Iron": 0,
+    "Protein": 3.1,
+    "Sodium": 0,
+    "Sugar": 0.1,
+    "url": "https://media.istockphoto.com/photos/rice-in-a-bowl-on-a-white-background-picture-id860931464?b=1&k=20&m=860931464&s=170667a&w=0&h=M8HkBajEg7GQDxWFLZJKfXz999hpd1htJMEzdPM27SY="
+  },
+  "Rocket": {
+    "Calcium": 214,
+    "Energy": 91,
+    "Fat": 0.3,
+    "Fibre": 2.4,
+    "Iron": 1.56,
+    "Protein": 3.3,
+    "Sodium": 47,
+    "Sugar": 0.3,
+    "url": "https://media.istockphoto.com/photos/rocket-picture-id171275156?b=1&k=20&m=171275156&s=170667a&w=0&h=PjFs_hEYwp8RyicpNnjF2xEQlOUKxjvs_9trSBysphk="
+  },
+  "Salted Cashews": {
+    "Calcium": 34,
+    "Energy": 2554,
+    "Fat": 48.5,
+    "Fibre": 3,
+    "Iron": 4.9,
+    "Protein": 17,
+    "Sodium": 270,
+    "Sugar": 6.4,
+    "url": "https://media.istockphoto.com/photos/cashew-nuts-picture-id153730788?b=1&k=20&m=153730788&s=170667a&w=0&h=_mvAGRbjjgKRgxza7dYufpW8TvaMVCCknnsQr9U1W-A="
+  },
+  "Salted Peanuts": {
+    "Calcium": 40,
+    "Energy": 2667,
+    "Fat": 52.8,
+    "Fibre": 6.2,
+    "Iron": 1.2,
+    "Protein": 25.1,
+    "Sodium": 335,
+    "Sugar": 4.4,
+    "url": "https://media.istockphoto.com/photos/nuts-peanuts-isolated-on-white-background-picture-id545788236?b=1&k=20&m=545788236&s=170667a&w=0&h=TkIhecBN3k_I4Rf9lFiBQDPSwuaWpZDSBIddZV1Hy_Q="
+  },
+  "Sausage Roll": {
+    "Calcium": 24,
+    "Energy": 1179,
+    "Fat": 14.3,
+    "Fibre": 3,
+    "Iron": 1.1,
+    "Protein": 9.7,
+    "Sodium": 667,
+    "Sugar": 2.8,
+    "url": "https://media.istockphoto.com/photos/freshly-baked-puff-pastry-sausage-rolls-closeup-picture-id1132040932?b=1&k=20&m=1132040932&s=170667a&w=0&h=J47S1QkHeYoSvmOzBcns-LqLPnYaNhISBzZB8xTy5e0="
+  },
+  "Tofu Sausages": {
+    "Calcium": 36,
+    "Energy": 849,
+    "Fat": 9.9,
+    "Fibre": 1.6,
+    "Iron": 3.37,
+    "Protein": 20,
+    "Sodium": 632,
+    "Sugar": 2,
+    "url": "https://media.istockphoto.com/photos/fried-tofu-sausage-isolated-on-white-background-picture-id1279028632?b=1&k=20&m=1279028632&s=170667a&w=0&h=wWeKjtJWlqEkV1nI0cLB32QjipONf6wJp8pOT5taeM4="
+  },
+  "Vanilla Yoghurt": {
+    "Calcium": 170,
+    "Energy": 408,
+    "Fat": 1.9,
+    "Fibre": 0.2,
+    "Iron": 0,
+    "Protein": 5,
+    "Sodium": 52,
+    "Sugar": 13.5,
+    "url": "https://media.istockphoto.com/photos/yogurt-in-bowl-on-rustic-black-table-photo-of-plain-natural-organic-picture-id1008860374?b=1&k=20&m=1008860374&s=170667a&w=0&h=ykZIqEpPlRNeGw7EztwFkCB1x1p--ONoJkPHcRAlYf0="
+  },
+  "Walnuts": {
+    "Calcium": 89,
+    "Energy": 2904,
+    "Fat": 69.2,
+    "Fibre": 6.4,
+    "Iron": 2.5,
+    "Protein": 14.4,
+    "Sodium": 3,
+    "Sugar": 2.7,
+    "url": "https://media.istockphoto.com/photos/walnut-kernel-in-a-glass-plate-on-a-white-background-isolated-picture-id1297267207?b=1&k=20&m=1297267207&s=170667a&w=0&h=LAtX3VIwoFKxJHpleLvcgIGR-O3L7fyxZAMg5Jd2E1I="
+  },
+  "Zucchini": {
+    "Calcium": 18,
+    "Energy": 65,
+    "Fat": 0.3,
+    "Fibre": 1.1,
+    "Iron": 0.5,
+    "Protein": 0.9,
+    "Sodium": 1,
+    "Sugar": 1.7,
+    "url": "https://media.istockphoto.com/photos/zucchini-with-slices-picture-id493630052?b=1&k=20&m=493630052&s=170667a&w=0&h=AN2OeYJb6lyLcsmXAAfx4NuMcpHx0IYbytN2dszh1o4="
   }
 }

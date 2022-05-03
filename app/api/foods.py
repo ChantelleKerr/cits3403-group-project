@@ -10,8 +10,9 @@ import json, random
 @bp.route('/foods', methods=['GET'])
 def get_daily_food():
   seed = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
-  with open("data.json") as file:
+  random.seed(seed)
+  with open("app/api/data.json") as file:
     data = json.load(file) # data is dictionary containing every food
-  daily_foods = [data[x] for x in random.sample(data.keys(), 11)] # 11 is number of foods
+  daily_foods = [{x: data[x]} for x in random.sample(data.keys(), 11)] # 11 is number of foods
   return jsonify(daily_foods)
 
