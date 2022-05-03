@@ -61,7 +61,7 @@ window.onload = function () {
         bootstrap.Modal.getOrCreateInstance(messageModal).show();
         document.getElementById("message").innerHTML = "Account successfully created";
       }else if (xhttp.status == 500){
-        document.getElementById("email-validation-text").innerHTML = "This email already has an account associated with it."
+        emailValidationText.innerHTML = "This email already has an account associated with it."
       }
     }
   })
@@ -94,16 +94,17 @@ window.onload = function () {
     xhttp.open("POST", "auth/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({ email: email, password: password }))
-    xhttp.onload = () => {
+    xhttp.onload = () => { 
       if (xhttp.status == 200) {
         // Close the modal
         var modal = document.getElementById('loginModal');
         bootstrap.Modal.getInstance(modal).hide()
         // Reload the current page
         location.reload();
+      }else if (xhttp.status == 401){
+        loginValidationText.innerHTML = "No account matching the given email and password was found."
       }
     }
-
   })
 
   function checkEmail(emailAttempt) {
@@ -137,6 +138,7 @@ window.onload = function () {
   const emailValidationText = document.getElementById("email-validation-text");
   const passwordInput = document.getElementById("register-password-input");
   const passwordValidationText = document.getElementById("password-validation-text");
+  const loginValidationText = document.getElementById("login-validation-text");
   usernameInput.addEventListener('focus', () =>{
     usernameValidationText.innerHTML = "";
   })
