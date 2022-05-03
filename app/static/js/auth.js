@@ -34,7 +34,12 @@ window.onload = function () {
 
     xhttp.onload = () => {
       if (xhttp.status == 201) {
-        // Change modal to log modal?
+        let messageModal = document.getElementById("messageModal");
+        bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
+        bootstrap.Modal.getOrCreateInstance(messageModal).show();
+        document.getElementById("message").innerHTML = "Account successfully created";
+      }else if (xhttp.status == 500){
+        document.getElementById("email-validation-text").innerHTML = "This email already has an account associated with it."
       }
     }
   })
@@ -61,6 +66,7 @@ window.onload = function () {
     event.preventDefault();
     const form = new FormData(event.target);
     const email = form.get('email');
+    console.log(email);
     const password = form.get('password');
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "auth/login", true);
@@ -76,6 +82,49 @@ window.onload = function () {
       }
     }
 
+  })
+
+  function checkEmail(emailAttempt) {
+    if (emailAttempt == ""){
+      return "";
+    }else if (!emailAttempt.includes("@")){
+      return 'An email must include an "@" sign.';
+    }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAttempt)){
+      //imperfect but pretty good simple regex for emails. The "fully accurate" regular expressions are all very long
+      return "Invalid email.";
+    }
+    return "";
+  }
+  function checkPassword(passwordAttempt,e,u){
+    //inspired by https://blog.codinghorror.com/password-rules-are-bullshit/
+    if (passwordAttempt == ""){
+      return "";
+    }else if (passwordAttempt.length < 8){
+      return "Please use a password with 8 characters or more."
+    }else if (passwordAttempt.toLowerCase() == e.toLowerCase()){
+      return "Please use a password which is different to your email."
+    }else if (passwordAttempt.toLowerCase() == u.toLowerCase()){
+      return "Please use a password which is different to your username."
+    }
+    return "";
+  }
+  
+  const usernameInput = document.getElementById("register-username-input");
+  const emailInput = document.getElementById("register-email-input");
+  const emailValidationText = document.getElementById("email-validation-text");
+  const passwordInput = document.getElementById("register-password-input");
+  const passwordValidationText = document.getElementById("password-validation-text");
+  emailInput.addEventListener('focus', () => {
+    emailValidationText.innerHTML = "";
+  })
+  emailInput.addEventListener('blur', () => {
+    emailValidationText.innerHTML = checkEmail(emailInput.value);
+  })
+  passwordInput.addEventListener('focus', () => {
+    passwordValidationText.innerHTML = "";
+  })
+  passwordInput.addEventListener('blur', () => {
+    passwordValidationText.innerHTML = checkPassword(passwordInput.value, emailInput.value, usernameInput.value);
   })
 }
 

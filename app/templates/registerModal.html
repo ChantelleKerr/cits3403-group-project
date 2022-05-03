@@ -13,7 +13,7 @@
             <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
           </div>
           <div class="col-11">
-            <input name="username" type="text" placeholder="Username">
+            <input name="username" type="text" placeholder="Username" id="register-username-input">
           </div>
         </div>
         <div class="row justify-content-center my-3">
@@ -21,17 +21,19 @@
             <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
           </div>
           <div class="col-11">
-            <input name="email" type="text" placeholder="Email">
+            <input name="email" type="text" placeholder="Email" id="register-email-input">
           </div>
         </div>
+        <p class="text-primary" id="email-validation-text"></p>
         <div class="row justify-content-center my-3">
           <div class="col-1 center">
             <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
           </div>
           <div class="col-11">
-            <input name="password" type="password" placeholder="Password">
+            <input name="password" type="password" placeholder="Password" id="register-password-input">
           </div>
         </div>
+        <p class="text-primary" id="password-validation-text"></p>
         <div class="row my-4"> 
           <button type="submit" class="btn btn-primary">Create Account</button>
         </div>
