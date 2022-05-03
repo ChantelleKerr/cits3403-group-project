@@ -50,6 +50,7 @@ def update_daily_food(seed):
       today = {"updated": 0, "foods": {}}
     data = json.load(fdata)  # data is dictionary containing every food
 
+    today["updated"] = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
     today["foods"] = {}  # empty today foods and add a new 11 foods
     for food in random.sample(data.keys(), 11):
       today["foods"][food] = data[food]
