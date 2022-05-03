@@ -1,6 +1,5 @@
 from flask import Blueprint
-from . import db
-from flask import jsonify, request, make_response, g, redirect
+from flask import jsonify, request, make_response
 from app.models import User
 from flask_login import current_user, login_user, logout_user
 
@@ -16,9 +15,7 @@ def login():
   if user and user.check_password(data.get('password')):
     login_user(user)
     return make_response(jsonify(user.to_dict()), 200)
-
-  return make_response(jsonify({"Failed": "Unsuccessful login"}), 404)
-
+  return make_response(jsonify({"Failed": "Unsuccessful login"}), 401)
 
 @auth.route('/logout')
 def logout():
