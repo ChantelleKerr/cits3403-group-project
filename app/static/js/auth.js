@@ -88,7 +88,6 @@ window.onload = function () {
     event.preventDefault();
     const form = new FormData(event.target);
     const email = form.get('email');
-    console.log(email);
     const password = form.get('password');
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "auth/login", true);
@@ -153,6 +152,11 @@ window.onload = function () {
   })
   passwordInput.addEventListener('blur', () => {
     passwordValidationText.innerHTML = checkPassword(passwordInput.value, emailInput.value, usernameInput.value);
+  })
+  document.querySelectorAll("#loginForm input").forEach((inp) => {
+    inp.addEventListener('focus', () => {
+      loginValidationText.innerHTML = "";
+    })
   })
 }
 
