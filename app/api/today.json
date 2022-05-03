@@ -1,0 +1,126 @@
+{
+  "foods": {
+    "Apricot": {
+      "Calcium": 13,
+      "Energy": 167,
+      "Fat": 0.4,
+      "Fibre": 1.5,
+      "Iron": 0.28,
+      "Protein": 0.2,
+      "Sodium": 0,
+      "Sugar": 7.6,
+      "url": "https://media.istockphoto.com/photos/apricot-isolate-apricots-with-slice-on-white-fresh-apricots-with-picture-id1159003963?b=1&k=20&m=1159003963&s=170667a&w=0&h=Zg65d008AufiqIGbm1s13xhrQd2M6r3QbDxcf0V3lNY="
+    },
+    "Asparagus": {
+      "Calcium": 11,
+      "Energy": 88,
+      "Fat": 0.1,
+      "Fibre": 2.2,
+      "Iron": 1,
+      "Protein": 2.5,
+      "Sodium": 2,
+      "Sugar": 1.4,
+      "url": "https://media.istockphoto.com/photos/asparagus-bunch-picture-id183275207?b=1&k=20&m=183275207&s=170667a&w=0&h=kR-9SEi5X5RUvEhUxMT9g_GjTl1qxl2pf5JMri-GPcE="
+    },
+    "Brownies": {
+      "Calcium": 30,
+      "Energy": 1922,
+      "Fat": 25.3,
+      "Fibre": 1.9,
+      "Iron": 1.71,
+      "Protein": 6.5,
+      "Sodium": 510,
+      "Sugar": 35.8,
+      "url": "https://media.istockphoto.com/photos/homemade-double-chocolate-brownies-isolated-on-a-white-background-picture-id1160637981?b=1&k=20&m=1160637981&s=170667a&w=0&h=H384IaZW014mXsGuEMr6LbTcymvrjQai_lZJNfC10nM="
+    },
+    "Canned Spaghetti": {
+      "Calcium": 9,
+      "Energy": 227,
+      "Fat": 0,
+      "Fibre": 0.8,
+      "Iron": 0.3,
+      "Protein": 2.5,
+      "Sodium": 330,
+      "Sugar": 4,
+      "url": "https://media.istockphoto.com/photos/spaghetti-picture-id182491686?b=1&k=20&m=182491686&s=170667a&w=0&h=aO7ntCLqyVAwU-qMcYGXSUlJiHcwz3SY7ug-i4vIgwA="
+    },
+    "Hamburger": {
+      "Calcium": 120,
+      "Energy": 1096,
+      "Fat": 12.1,
+      "Fibre": 1.7,
+      "Iron": 1.2,
+      "Protein": 15.1,
+      "Sodium": 590,
+      "Sugar": 2.9,
+      "url": "https://media.istockphoto.com/photos/snacks-hamburger-isolated-on-white-background-picture-id635875304?b=1&k=20&m=635875304&s=170667a&w=0&h=cRx1kKLLb81d0YMfDWKj3ZE6HY-9Ls56_F_DfKsbtpE="
+    },
+    "Quince": {
+      "Calcium": 8,
+      "Energy": 242,
+      "Fat": 0.2,
+      "Fibre": 5.2,
+      "Iron": 0.1,
+      "Protein": 0.5,
+      "Sodium": 16,
+      "Sugar": 11,
+      "url": "https://media.istockphoto.com/photos/isolated-cut-quince-fruits-picture-id1218274538?b=1&k=20&m=1218274538&s=170667a&w=0&h=16ajMt33BNrf3uoJrH_P8_0SulWutCmCcg2An7I6F4A="
+    },
+    "Raspberry": {
+      "Calcium": 26,
+      "Energy": 204,
+      "Fat": 0.2,
+      "Fibre": 5.6,
+      "Iron": 0.54,
+      "Protein": 1.1,
+      "Sodium": 1,
+      "Sugar": 6.5,
+      "url": "https://media.istockphoto.com/photos/bunch-of-raspberries-on-white-background-picture-id184611142?b=1&k=20&m=184611142&s=170667a&w=0&h=8DXD7HJZ3nYBwHxQ8mzKIdy22zXenlVn1RnfCZzwFr0="
+    },
+    "Rhubarb": {
+      "Calcium": 26,
+      "Energy": 94,
+      "Fat": 0.2,
+      "Fibre": 2.2,
+      "Iron": 0.3,
+      "Protein": 1.5,
+      "Sodium": 12,
+      "Sugar": 1.7,
+      "url": "https://media.istockphoto.com/photos/rhubarb-stalks-on-a-white-background-picture-id1215887635?b=1&k=20&m=1215887635&s=170667a&w=0&h=C3k4EOaR4YN5sqqkJaWNe-lZrMNrlDLCdmM3cpEKkbQ="
+    },
+    "Salted Cashews": {
+      "Calcium": 34,
+      "Energy": 2554,
+      "Fat": 48.5,
+      "Fibre": 3,
+      "Iron": 4.9,
+      "Protein": 17,
+      "Sodium": 270,
+      "Sugar": 6.4,
+      "url": "https://media.istockphoto.com/photos/cashew-nuts-picture-id153730788?b=1&k=20&m=153730788&s=170667a&w=0&h=_mvAGRbjjgKRgxza7dYufpW8TvaMVCCknnsQr9U1W-A="
+    },
+    "Salted Peanuts": {
+      "Calcium": 40,
+      "Energy": 2667,
+      "Fat": 52.8,
+      "Fibre": 6.2,
+      "Iron": 1.2,
+      "Protein": 25.1,
+      "Sodium": 335,
+      "Sugar": 4.4,
+      "url": "https://media.istockphoto.com/photos/nuts-peanuts-isolated-on-white-background-picture-id545788236?b=1&k=20&m=545788236&s=170667a&w=0&h=TkIhecBN3k_I4Rf9lFiBQDPSwuaWpZDSBIddZV1Hy_Q="
+    },
+    "Tofu Sausages": {
+      "Calcium": 36,
+      "Energy": 849,
+      "Fat": 9.9,
+      "Fibre": 1.6,
+      "Iron": 3.37,
+      "Protein": 20,
+      "Sodium": 632,
+      "Sugar": 2,
+      "url": "https://media.istockphoto.com/photos/fried-tofu-sausage-isolated-on-white-background-picture-id1279028632?b=1&k=20&m=1279028632&s=170667a&w=0&h=wWeKjtJWlqEkV1nI0cLB32QjipONf6wJp8pOT5taeM4="
+    }
+  },
+  "updated": 20220503
+}
