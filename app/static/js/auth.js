@@ -1,23 +1,28 @@
 window.onload = function () {
   const regoForm = document.getElementById("registrationForm");
   const loginForm = document.getElementById("loginForm");
+  const usernameInput = document.getElementById("register-username-input");
+  const usernameValidationText = document.getElementById("username-validation-text");
+  const emailInput = document.getElementById("register-email-input");
+  const emailValidationText = document.getElementById("email-validation-text");
+  const passwordInput = document.getElementById("register-password-input");
+  const passwordValidationText = document.getElementById("password-validation-text");
+  const loginValidationText = document.getElementById("login-validation-text");
   /**
    *  An event listener that waits for the registration form to be submitted
    * which creates a HTTP POST Request with the form data
    * It calls an API endpoint and creates a new user in the database.
+   * 
+   * The form is validated so that the fields are nonempty, and further conditions are also met (specified in other functions)
+   * If those conditions are not met, the POST request is not sent, and text is displayed to the user explaining the issue
+   * 
+   * If the POST request returns a 201 status, then the registration modal closes, and a notification appears that the account
+   * Has been successfully created
+   * If the POST request returns a 500 status, then the entered email is not unique, so text appears to notify the user of this
    * @param event - The submit button that triggers the event
    * @returns:
    *  If the request was successful it will return status code: 201
-   * 
-   * TODO: 
-   * Form Validation
-   * - Must be email and must be unique (Will return bad request if not unique )
-   * - Password must have certain length and numbers/characters?
-   * 
-   * Handle 201 status 
-   * - modal changes to login modal? 
-   * - and/or successful pop up message?
-   * Handle bad requests
+   *  If not, it will return status code: 500
    */
   regoForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -73,15 +78,10 @@ window.onload = function () {
    * @param event - The submit button that triggers the event
    * @returns:
    *  If the request was successful will return status code: 200
+   *    In this case, the login modal closes, and the page is reloaded
    *  Unsuccessful requests will return status code: 401
-   * 
-   * TODO: 
-   * Form Validation
-   * - Must be in email format
-   * 
-   * Handle 201 status 
-   * - successful pop up message?
-   * Handle bad requests
+   *    This means that there is no account matching the given details
+   *    which is communicated by some text which appears
    */
   loginForm.addEventListener('submit', (event) => {
 
@@ -105,7 +105,11 @@ window.onload = function () {
       }
     }
   })
-
+  /**
+   * Tests if a String is a valid email
+   * @param emailAttempt - a String to be tested
+   * @returns - a String which explains any errors with the email. If there are no errors, the string is empty.
+   */
   function checkEmail(emailAttempt) {
     if (emailAttempt == ""){
       return "";
@@ -117,6 +121,15 @@ window.onload = function () {
     }
     return "";
   }
+  /**
+   * Checks if a String is a valid password
+   * The password must be at least 8 characters, and be sufficiently
+   * distinct from the username and password.
+   * @param {*} passwordAttempt - A String to be tested
+   * @param {*} e - A string representing an email.
+   * @param {*} u - A string representing a username.
+   * @returns: a String which explains any issues with the password
+   */
   function checkPassword(passwordAttempt,e,u){
     //inspired by https://blog.codinghorror.com/password-rules-are-bullshit/
     if (passwordAttempt == ""){
@@ -130,14 +143,11 @@ window.onload = function () {
     }
     return "";
   }
-  
-  const usernameInput = document.getElementById("register-username-input");
-  const usernameValidationText = document.getElementById("username-validation-text");
-  const emailInput = document.getElementById("register-email-input");
-  const emailValidationText = document.getElementById("email-validation-text");
-  const passwordInput = document.getElementById("register-password-input");
-  const passwordValidationText = document.getElementById("password-validation-text");
-  const loginValidationText = document.getElementById("login-validation-text");
+  // The event listeners below are for the purpose of showing and hiding
+  // the error text related to to form fields.
+  // When the user clicks on one of the text inputs, the associated error text disappears.
+  // When the user clicks off one of the inputs and they have an error in what
+  // they've current inputted, the error text appears.
   usernameInput.addEventListener('focus', () =>{
     usernameValidationText.innerHTML = "";
   })
