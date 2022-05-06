@@ -14,7 +14,7 @@ def get_daily_food():
   random.seed(seed)
 
   doUpdate = False
-  with open("app/api/data.json") as fdata, open("app/api/today.json") as ftoday:
+  with open("app/api/data.json") as fdata, open("app/api/today.json", "w+") as ftoday:
     try:
       today = json.load(ftoday) 
     except:
@@ -43,7 +43,7 @@ def update_daily_food(seed):
     seed = time.time()
   random.seed(seed)
 
-  with open("app/api/data.json") as fdata, open("app/api/today.json") as ftoday:
+  with open("app/api/data.json") as fdata, open("app/api/today.json", "w+") as ftoday:
     try:
       today = json.load(ftoday)
     except:
