@@ -126,19 +126,19 @@ window.onload = function () {
    * The password must be at least 8 characters, and be sufficiently
    * distinct from the username and password.
    * @param {*} passwordAttempt - A String to be tested
-   * @param {*} e - A string representing an email.
-   * @param {*} u - A string representing a username.
+   * @param {*} emailAttempt - A string representing an email.
+   * @param {*} usernameAttempt - A string representing a username.
    * @returns: a String which explains any issues with the password
    */
-  function checkPassword(passwordAttempt,e,u){
+  function checkPassword(passwordAttempt,emailAttempt,usernameAttempt){
     //inspired by https://blog.codinghorror.com/password-rules-are-bullshit/
     if (passwordAttempt == ""){
       return "";
     }else if (passwordAttempt.length < 8 && passwordAttempt != ""){
       return "Please use a password with 8 characters or more."
-    }else if (passwordAttempt.toLowerCase() == e.toLowerCase()){
+    }else if (passwordAttempt.toLowerCase() == emailAttempt.toLowerCase()){
       return "Please use a password which is different to your email."
-    }else if (passwordAttempt.toLowerCase() == u.toLowerCase()){
+    }else if (passwordAttempt.toLowerCase() == usernameAttempt.toLowerCase()){
       return "Please use a password which is different to your username."
     }
     return "";
