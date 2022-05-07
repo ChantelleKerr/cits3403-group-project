@@ -80,14 +80,14 @@
 #header > span:nth-child(1) {
   position: relative;
   display: block;
-  line-height: calc( 0.03 * var(--nonavbar-height));
+  line-height: calc( 0.025 * var(--nonavbar-height));
   font-size: calc(0.025 * var(--nonavbar-height));
 }
 #header > span:nth-child(2) {
   position: relative;
   display: block;
-  line-height: calc(0.05 * var(--nonavbar-height));
-  font-size: calc(0.06 * var(--nonavbar-height));
+  line-height: calc(0.045 * var(--nonavbar-height));
+  font-size: calc(0.055 * var(--nonavbar-height));
 }
 #round-icons {
   align-content: center;
