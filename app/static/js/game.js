@@ -5,6 +5,7 @@ const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 let dt = new Date();
 let nutrientOfTheDay = nutrients[dt.getDay()];
 let foodChoices = 0;
+let roundsWon = [];
 
 
 /**
@@ -166,11 +167,13 @@ function makeSelection(event) {
       score++;
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
+      roundsWon.push(true);
       updateCircleComparison();
     } else {
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
+      roundsWon.push(false);
       updateCircleComparison();
     }
 
@@ -239,16 +242,20 @@ function makeGameOverScreen(d) {
 
   let shareBtn = document.createElement("button");
   Object.assign(shareBtn, {
-    className: "btn btn-primary",
-    onclick: function () {
-      // Replace with share functionality
-      alert('Clicked!');
-    }
+    className: "btn btn-outline-secondary",
+    onclick: openShareModal
   })
   shareBtn.innerHTML = "Share Score";
   div.appendChild(t1);
   div.appendChild(t2);
   div.appendChild(shareBtn);
+}
+
+function openShareModal() {
+  let shareModal = document.getElementById("shareModal");
+  bootstrap.Modal.getOrCreateInstance(shareModal).show();
+  // Calls function that is inside share.js
+  createCopyTextArea();
 }
 
 // TODO: Add javadoc comments for showAnswer
