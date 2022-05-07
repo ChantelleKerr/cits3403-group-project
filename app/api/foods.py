@@ -14,23 +14,17 @@ def get_daily_food():
   random.seed(seed)
 
   doUpdate = False
-  with open("app/api/data.json") as fdata, open("app/api/today.json", "w+") as ftoday:
-    try:
-      today = json.load(ftoday) 
-    except:
-      today = {"updated": 0, "foods": {}}
-    data = json.load(fdata) # data is dictionary containing every food
-    if today["updated"] != seed:  # check if it was last updated on a different day
-      doUpdate = True
-      today["updated"] = seed
-      today["foods"] = {} # empty today foods and add a new 11 foods
-      for food in random.sample(data.keys(), 11): 
-        today["foods"][food] = data[food]
+  today, data = read_files()
   
+  if today["updated"] != seed:  # check if it was last updated on a different day
+    doUpdate = True
+    today["updated"] = seed
+    today["foods"] = [] # empty today foods and add a new 11 foods
+    for food in random.sample(data.keys(), 11): 
+      today["foods"].append({food: data[food]})
+
   if doUpdate:
-    open("app/api/today.json","w").close() # erase file
-    with open("app/api/today.json","w") as ftoday:
-      ftoday.write(json.dumps(today, sort_keys=True, indent=2))
+    update_file(today)
 
   return jsonify(today["foods"])
 
@@ -43,21 +37,29 @@ def update_daily_food(seed):
     seed = time.time()
   random.seed(seed)
 
-  with open("app/api/data.json") as fdata, open("app/api/today.json", "w+") as ftoday:
-    try:
-      today = json.load(ftoday)
-    except:
-      today = {"updated": 0, "foods": {}}
-    data = json.load(fdata)  # data is dictionary containing every food
+  today, data = read_files()
 
-    today["updated"] = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
-    today["foods"] = {}  # empty today foods and add a new 11 foods
-    for food in random.sample(data.keys(), 11):
-      today["foods"][food] = data[food]
+  today["updated"] = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
+  today["foods"] = []  # empty today foods and add a new 11 foods
+  for food in random.sample(data.keys(), 11):
+    today["foods"].append({food: data[food]})
 
-  open("app/api/today.json", "w").close()  # erase file
-  with open("app/api/today.json", "w") as ftoday:
-    ftoday.write(json.dumps(today, sort_keys=True, indent=2))
+  update_file(today)
 
   return jsonify(today["foods"])
 
+# returns the today.json and nutrition data after reading them from file
+def read_files():
+  with open("app/api/data.json") as fdata, open("app/api/today.json") as ftoday:
+    try:
+      today = json.load(ftoday)
+    except:
+      today = {"updated": 0, "foods": []}
+    data = json.load(fdata)  # data is dictionary containing every food
+  return today, data
+
+# Updates the today.json food file
+def update_file(today):
+  open("app/api/today.json", "w").close()  # erase file
+  with open("app/api/today.json", "w") as ftoday:
+    ftoday.write(json.dumps(today, indent=2))
