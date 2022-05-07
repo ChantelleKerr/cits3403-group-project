@@ -39,8 +39,3 @@ class User(UserMixin, db.Model):
     if new_user and 'password' in data:
       self.set_password(data['password'])
 
-
-  
-
-
-

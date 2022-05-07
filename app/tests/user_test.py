@@ -7,7 +7,7 @@ from config import TestConfig
 
 # Run the tests using the command "python3 -m unittest app/tests/user_test.py"
 class UserModelTest(unittest.TestCase):
-  # Set up the dummy 
+  # Set up the dummy data 
   def setUp(self):
     app.config.from_object(TestConfig)
     self.app = app.test_client()
@@ -60,7 +60,7 @@ class UserModelTest(unittest.TestCase):
     self.assertEqual(404, response_fail.status_code)
 
   # Test the user auth login endpoint
-  def test_login(self):
+  def test__successful_login(self):
     payload = json.dumps({
       "email": "linx@msn.com",
       "password": "secret"
