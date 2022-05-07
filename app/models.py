@@ -1,6 +1,6 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 
 
 class User(UserMixin, db.Model):
@@ -39,8 +39,35 @@ class User(UserMixin, db.Model):
     if new_user and 'password' in data:
       self.set_password(data['password'])
 
+# TODO: add an attribute for the puzzle itself, to allow the user to view past puzzles?
+class Result(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.String(32), db.ForeignKey('user.id'))
+  date = db.Column(db.String(32), index=True)
+  score = db.Column(db.String(32))
 
-  
+  def __repr__(self):
+    return '<Result {}>'.format(self.id)
 
+  # Converts a result object into a JSON format
+  def to_dict(self):
+    data = {
+      'id': self.id,
+      'user_id': self.user_id,
+      'date': self.date,
+      'score': self.score
+    }
+    return data
+
+  # Convert JSON object into a result objects
+  def from_dict(self, data):
+    if current_user.is_authenticated:
+      setattr(self,'user_id',current_user.id)
+    else:
+      # set the user id to -1 to signify a user who is not logged in
+      setattr(self,'user_id',-1)
+    for field in ['date', 'score']:
+      if field in data:
+        setattr(self, field, data[field])
 
 

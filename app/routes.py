@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from app import app
 
 
@@ -9,3 +9,8 @@ def index():
 @app.route("/game")
 def game():
   return render_template('game.html', title='Game')
+
+@app.route("/analysis")
+#@login_required
+def analysis():
+  return render_template('analysis.html', title='Analysis')

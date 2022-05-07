@@ -15,6 +15,7 @@ let isWindowSmall = () => window.innerWidth <= 768;
 
 let currentRound = 1;
 let score = 0;
+let scoreString = "";
 let start = -1; //If start is not -1, then an animation is ongoing, so clicking on the foods is disabled
 let previousTimeStamp;
 
@@ -164,10 +165,12 @@ function makeSelection(event) {
     if (foodSelected == getMostNutritious() || !getMostNutritious()) {
       roundDiv.children[currentRound - 1].src = "static/images/" + nutrientOfTheDay.toLowerCase() + ".png";
       score++;
+      scoreString += "1";
       circleComparison.innerHTML = "✔";
       circleComparison.style.backgroundColor = "green";
       updateCircleComparison();
     } else {
+      scoreString += "0";
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
       circleComparison.style.backgroundColor = "red";
@@ -337,5 +340,23 @@ function resetAfterAnimation() {
     circleComparison.style.display = "none";
     start = 0;
     //TODO: this is the end of the game, so do some more stuff here
+    storeScore();
+  }
+}
+
+function storeScore(){
+  let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear();
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "api/results/write", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
+
+  xhttp.onload = () => {
+    if (xhttp.status == 201){
+      alert("score saved");
+    }else{
+      alert("Tried to save score, but something's gone wrong :(");
+    }
   }
 }
