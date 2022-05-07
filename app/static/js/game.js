@@ -4,6 +4,8 @@ const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 let dt = new Date();
 let nutrientOfTheDay = nutrients[dt.getDay()];
+let foodChoices = 0;
+
 
 /**
  * Checks if the window is considered small by bootstrap
@@ -19,8 +21,8 @@ let previousTimeStamp;
 /**
  * Called when the page loads, sets up the game 
  */
+requestFoodChoices();
 generateNutrientOfTheDay();
-generateFoodChoices();
 addEventListeners();
 updateCSSVariables();
 
@@ -38,18 +40,31 @@ function generateNutrientOfTheDay() {
   document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
 }
 
+function requestFoodChoices() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      foodChoices = JSON.parse(xhttp.response);
+      generateFoodChoices();
+    }
+  }
+}
+
 /**
  * Generates a new set of food choices
  */
 function generateFoodChoices() {
   // TODO: Replace with calling api for food choices or referring to a variable containing the result of the api call
+
   for (let i = 0; i < document.getElementsByClassName("game-img").length; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
-      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + Object.values(data)[currentRound - 1 + i].url + ")";
-      document.getElementsByClassName("food-name-text")[i].innerHTML = Object.keys(data)[currentRound - 1 + i];
+      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i]["url"] + ")";
+      document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i]["name"];
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
 }
 
 /**
@@ -172,11 +187,10 @@ function makeSelection(event) {
 */
 function getMostNutritious() {
   let foodDivs = document.getElementsByClassName("game-img");
-  let vals = Object.values(data)
-  if (vals[currentRound - 1][nutrientOfTheDay] > vals[currentRound][nutrientOfTheDay]) {
+  if (foodChoices[currentRound - 1][nutrientOfTheDay] > foodChoices[currentRound][nutrientOfTheDay]) {
     return foodDivs[0];
   }
-  else if (vals[currentRound - 1][nutrientOfTheDay] < vals[currentRound][nutrientOfTheDay]) {
+  else if (foodChoices[currentRound - 1][nutrientOfTheDay] < foodChoices[currentRound][nutrientOfTheDay]) {
     return foodDivs[1];
   }
   return false;
@@ -195,8 +209,8 @@ function animateFoods() {
   newFood.innerHTML = foodDivs[1].innerHTML;
   if (currentRound <= rounds) {
     // but change the text and the image to be of the next food
-    newFood.firstElementChild.firstElementChild.innerHTML = Object.keys(data)[currentRound];
-    newFood.style.backgroundImage = "url(" + Object.values(data)[currentRound].url + ")";
+    newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound]["name"];
+    newFood.style.backgroundImage = "url(" + foodChoices[currentRound]["url"] + ")";
     // Show the nutrient of the second food
     /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
     foodDivs[1].firstElementChild.appendChild(nutr);
