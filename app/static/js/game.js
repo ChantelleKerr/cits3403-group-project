@@ -236,8 +236,19 @@ function makeGameOverScreen(d) {
   let t2 = document.createElement("h2");
   t1.innerHTML = "Game over!";
   t2.innerHTML = "Your score: " + score + "/" + rounds;
+
+  let shareBtn = document.createElement("button");
+  Object.assign(shareBtn, {
+    className: "btn btn-primary",
+    onclick: function () {
+      // Replace with share functionality
+      alert('Clicked!');
+    }
+  })
+  shareBtn.innerHTML = "Share Score";
   div.appendChild(t1);
   div.appendChild(t2);
+  div.appendChild(shareBtn);
 }
 
 // TODO: Add javadoc comments for showAnswer

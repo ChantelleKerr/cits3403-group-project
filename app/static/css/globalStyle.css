@@ -49,6 +49,7 @@ a {
   background-color: #ee5b63 !important;
   border-color: #ee5b63 !important;
   color: #222222;
+  z-index: 9;
 }
 .btn-primary:hover {
   background-color: inherit !important;
