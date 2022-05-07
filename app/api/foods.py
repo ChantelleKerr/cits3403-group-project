@@ -50,12 +50,17 @@ def update_daily_food(seed):
 
 # returns the today.json and nutrition data after reading them from file
 def read_files():
-  with open("app/api/data.json") as fdata, open("app/api/today.json") as ftoday:
-    try:
+  # get the stored foods 
+  try :
+    with open("app/api/today.json") as ftoday:
       today = json.load(ftoday)
-    except:
-      today = {"updated": 0, "foods": []}
+  except:
+    today = {"updated": 0, "foods": []}
+  
+  # get the stored data
+  with open("app/api/data.json") as fdata:
     data = json.load(fdata)  # data is dictionary containing every food
+  
   return today, data
 
 # Updates the today.json food file
