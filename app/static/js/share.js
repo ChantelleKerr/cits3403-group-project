@@ -1,6 +1,7 @@
 let copyBtn = document.getElementById('copy-btn');
 let copyText = document.getElementById('copy-text');
 let copyEmoji = document.getElementById('copy-emoji');
+let twitterBtn = document.getElementById('twitter-btn');
 
 /**  
  * This function gets called from game.js 
@@ -24,4 +25,11 @@ copyBtn.addEventListener('click', () => {
   setTimeout(function () {
     copyBtn.innerHTML = "Copy To Clipboard";
   }, 1000);
-}); 
+});
+
+twitterBtn.addEventListener('click', () => {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "api/results/share", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(JSON.stringify(copyText.innerHTML + "\n" + copyEmoji.innerHTML));
+});

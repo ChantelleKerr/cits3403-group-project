@@ -3,6 +3,8 @@ from app.models import User
 from flask import jsonify, request, make_response, session, redirect
 from app import db
 from flask import url_for
+import webbrowser
+import urllib.parse
 
 
 @bp.route('/users/<int:id>', methods=['GET'])
@@ -23,3 +25,17 @@ def create_user():
   response.status_code = 201
   response.headers['Location'] = url_for('api.get_user', id=user.id)
   return response
+
+# IMPORTANT: To be moved into results.py api when completed
+# Opens twitter and creates a tweet with given text (does not submit automatically)
+@bp.route('/results/share', methods=['POST'])
+def share_achievement():
+  data = request.get_json() or {}
+  # Converts the text into this format -> %F0%9F%9F%A9
+  # Allows twitter to read the emojis correctly
+  url_encoded_data = (urllib.parse.quote_plus(data))
+  webbrowser.open_new_tab('http://twitter.com/intent/tweet?text=' + url_encoded_data)
+  return make_response(jsonify({"Success": "Share achievement Successful"}), 200)
+
+
+
