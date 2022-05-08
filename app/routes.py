@@ -1,6 +1,6 @@
 from flask import render_template, session, redirect
 from app import app
-from flask_login import login_required
+from flask_login import current_user, login_fresh, login_required
 
 @app.route("/")
 def index():

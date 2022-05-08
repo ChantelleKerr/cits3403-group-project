@@ -12,7 +12,6 @@ def get_user(id):
 
 @bp.route('/users/create', methods=['POST'])
 def create_user():
-  print("how")
   data = request.get_json() or {}
   # TO DO:
   # Error handling here

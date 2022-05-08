@@ -168,6 +168,7 @@ window.onload = function () {
       loginValidationText.innerHTML = "";
     })
   })
+
 }
 
 /** 
@@ -184,5 +185,17 @@ function logout() {
       // reload the current page
       location.reload();
     }
+  }
+}
+
+/**
+ * Open the analysis page if the user is logged in. Otherwise, open the login modal
+ */
+ function openAnalysisPage(){
+  if (document.getElementById("logout-button") != null){
+    location.href = "/analysis";
+  }else{
+    var modal = document.getElementById('loginModal');
+    bootstrap.Modal.getOrCreateInstance(modal).show();
   }
 }
