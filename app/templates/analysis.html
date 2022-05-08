@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Page Title -->
+    {% if current_user.is_authenticated %}
         <div id="header" class="jumbotron text-center mt-2"> 
             <h1>{{current_user.username}}'s Statistics</h1>
         </div>
@@ -8,17 +9,19 @@
         <br>
         <br>
         <br>
-        <div style="padding: 1%">
-            <table class="table table-info align-middle" id="results-table">
-                <tr>
-                    <th>Game number</th>
-                    <th>Date</th>
-                    <th>Nutrient</th>
-                    <th>Score</th>
-                    <th>Seed</th>
-                </tr>
-            </table>
-        </div>
+        <table class="table table-info align-middle" id="results-table">
+            <tr>
+                <th>Game number</th>
+                <th>Date</th>
+                <th>Nutrient</th>
+                <th>Score</th>
+                <th>Seed</th>
+            </tr>
+        </table>
+    {% else %} 
+        <h3 class="center">Please login to view the analysis page</h3>
+    {% endif %}
+        
         
     <script src="static/js/analysis.js"></script>
 
