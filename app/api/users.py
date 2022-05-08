@@ -1,6 +1,6 @@
 from app.api import bp
 from app.models import User
-from flask import jsonify, request, make_response, session, redirect
+from flask import jsonify, request
 from app import db
 from flask import url_for
 
@@ -13,12 +13,12 @@ def get_user(id):
 @bp.route('/users/create', methods=['POST'])
 def create_user():
   data = request.get_json() or {}
-  # TO DO:
-  # Error handling here
+
   user = User()
   user.from_dict(data, new_user=True)
   db.session.add(user)
   db.session.commit()
+  
   response = jsonify(user.to_dict())
   response.status_code = 201
   response.headers['Location'] = url_for('api.get_user', id=user.id)
