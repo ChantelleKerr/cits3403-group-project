@@ -1,4 +1,4 @@
-from flask import render_template, session
+from flask import render_template, session, redirect
 from app import app
 from flask_login import login_required
 
@@ -14,3 +14,7 @@ def game():
 @login_required
 def analysis():
   return render_template('analysis.html', title='Analysis')
+
+@app.login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/')
