@@ -1,6 +1,6 @@
 from flask import render_template, session
 from app import app
-
+from flask_login import login_required
 
 @app.route("/")
 def index():
@@ -11,6 +11,6 @@ def game():
   return render_template('game.html', title='Game')
 
 @app.route("/analysis")
-#@login_required
+@login_required
 def analysis():
   return render_template('analysis.html', title='Analysis')

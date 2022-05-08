@@ -345,7 +345,7 @@ function resetAfterAnimation() {
 }
 
 function storeScore(){
-  let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear();
+  let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
 
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "api/results/write", true);
@@ -353,10 +353,6 @@ function storeScore(){
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
 
   xhttp.onload = () => {
-    if (xhttp.status == 201){
-      alert("score saved");
-    }else{
-      alert("Tried to save score, but something's gone wrong :(");
-    }
+
   }
 }
