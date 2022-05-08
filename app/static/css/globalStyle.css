@@ -63,6 +63,16 @@ a {
   background-color: #F9D132 !important;
   color: #222222 !important;
 }
+.btn-secondary {
+  background-color: #F9D132 !important;
+  color: #222222 !important;
+  border-color: #F9D132 !important;
+  margin-right: 5px;
+}
+.btn-secondary:hover {
+  background-color: inherit !important;
+  color: #F9D132 !important;
+}
 .text-primary {
   color: #ee5b63 !important;
 }

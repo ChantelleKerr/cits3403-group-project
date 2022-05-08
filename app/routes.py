@@ -9,3 +9,8 @@ def index():
 @app.route("/game")
 def game():
   return render_template('game.html', title='Game')
+
+# TODO: Admin Access only. 
+@app.route("/admin")
+def admin():
+  return render_template('admin.html', title='Admin Dashboard')
