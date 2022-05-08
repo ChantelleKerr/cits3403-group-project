@@ -17,7 +17,11 @@ window.onload = function () {
         new_text.className = "center";
       }
       for (var i = 0; i < res.length; i++){
-        addTableRow([i+1,res[i].date.split(" ")[0],nutrients[parseInt(res[i].date.split(" ")[1])],5,res[i].score,res[i].seed]);
+        let score = (res[i].score.match(/1/g) || []).length;
+        let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
+        let date = res[i].date.split(" ")[0];
+        let nutrient = nutrients[parseInt(res[i].date.split(" ")[1])];
+        addTableRow([i+1,date,nutrient,score,rounds,res[i].seed]);
       }
     }
   }
@@ -25,7 +29,7 @@ window.onload = function () {
   function addTableRow(list_of_values){
     var newRow = document.createElement("tr");
     resultsTable.appendChild(newRow);
-    for (var j = 0; j < 5; j++){
+    for (var j = 0; j < 6; j++){
       let newCell = document.createElement("td");
       newRow.appendChild(newCell);
       newCell.innerHTML = list_of_values[j];
