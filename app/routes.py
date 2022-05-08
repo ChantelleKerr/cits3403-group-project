@@ -1,5 +1,6 @@
 from flask import render_template, session
 from app import app
+from flask_login import current_user
 
 @app.route("/")
 def index():
@@ -11,4 +12,7 @@ def game():
 
 @app.route("/analysis")
 def analysis():
-  return render_template('analysis.html', title='Analysis')
+  if current_user.is_authenticated:
+    return render_template('analysis.html', title='Analysis')
+  else:
+    return "Login please"
