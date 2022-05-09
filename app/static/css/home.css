@@ -36,7 +36,7 @@
   font-size: calc(0.03 * var(--nonavbar-height));
 }
 #info-div > span > strong {
-  color: #5bee96;
+  color: #F9D132;
 }
 #info-div > span:last-child {
   color: #F9D132;
@@ -54,18 +54,18 @@
   height: calc(0.1 * var(--nonavbar-height));
   width: calc(0.3 * var(--nonavbar-height));
   transition: outline .5s, outline-offset .5s, color .5s, background-color .5s;
-  outline: 3px solid #5bee9600;
+  outline: 3px solid #4dc37600;
   border-radius: 10px;
   outline-offset: 10px;
-  background-color: #5bee96 ;
-  border-color: #5bee96 ;
+  background-color: #4dc376 ;
+  border-color: #4dc376 ;
   color: #222222;
   font-weight: bold;
   font-size: calc(0.05 * var(--nonavbar-height));
 }
 #play:hover {
-  outline: 3px solid #5bee96;
+  outline: 3px solid #4dc376;
   outline-offset: 0;
   background-color: #222222 ;
-  color: #5bee96 ;
+  color: #4dc376 ;
 }
