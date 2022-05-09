@@ -110,3 +110,7 @@
   padding: 20px;
   text-align: center;
 }
+.share-modal-footer {
+  display: flex; 
+  justify-content: flex-end;
+}
