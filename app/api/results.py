@@ -28,8 +28,7 @@ def write_results():
   data = request.get_json() or {}
   result = Result()
   with open("app/api/today.json") as ftoday:
-    # TODO: This doesn't actually get the seed if an admin has changed the seed, it just gets the date
-    seed = json.load(ftoday)['updated']
+    seed = json.load(ftoday)['seed']
   result.from_dict(data, current_user.id, seed)
   db.session.add(result)
   db.session.commit()

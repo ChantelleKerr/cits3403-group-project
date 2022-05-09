@@ -17,6 +17,7 @@ def get_daily_food():
   if today["updated"] != seed:  # check if it was last updated on a different day
     doUpdate = True
     today["updated"] = seed
+    today["seed"] = seed
     today["foods"] = [] # empty today foods and add a new 11 foods
     for food in random.sample(data.keys(), 11): 
       today["foods"].append(data[food])
@@ -39,6 +40,7 @@ def update_daily_food(seed):
   today, data = read_files()
 
   today["updated"] = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
+  today["seed"] = seed
   today["foods"] = []  # empty today foods and add a new 11 foods
   for food in random.sample(data.keys(), 11):
     today["foods"].append(data[food])
