@@ -7,21 +7,50 @@
   transform: translateX(-50%);
   white-space: nowrap;
 }
-
-#header>span:nth-child(1) {
+#header > span:nth-child(1) {
   position: relative;
   display: block;
-  line-height: calc(0.025 * var(--nonavbar-height));
-  font-size: calc(0.025 * var(--nonavbar-height));
+  line-height: calc( 0.04 * var(--nonavbar-height));
+  font-size: calc(0.04 * var(--nonavbar-height));
 }
-
-#header>span:nth-child(2) {
+#header > span:nth-child(2) {
   position: relative;
   display: block;
-  line-height: calc(0.045 * var(--nonavbar-height));
-  font-size: calc(0.055 * var(--nonavbar-height));
+  line-height: calc(0.06 * var(--nonavbar-height));
+  font-size: calc(0.06 * var(--nonavbar-height));
+}
+#info-div {
+  position: absolute;
+  padding: 1vh 1vw 1vh 1vw;
+  width: 90vw;
+  max-height: calc(0.6 * var(--nonavbar-height));
+  left: 50vw;
+  transform: translateX(-50%);
+  top: calc(var(--navbar-height) + 0.2 * var(--nonavbar-height));
+}
+#info-div > span {
+  position: relative;
+  display: block;
+  text-align: center;
+  line-height: calc(0.04 * var(--nonavbar-height));
+  font-size: calc(0.03 * var(--nonavbar-height));
+}
+#info-div > span > strong {
+  color: #5bee96;
+}
+#info-div > span:last-child {
+  color: #F9D132;
+}
+#info-div> * img {
+  display: inline-block;
+  height: calc(0.03 * var(--nonavbar-height));
 }
 
-#round-icon {
-  src: "static/images/fat.png"
+#play {
+  position: absolute;
+  top: calc(var(--navbar-height) + 0.85 * var(--nonavbar-height));
+  left: 50vw;
+  transform: translateX(-50%);
+  height: calc(0.1 * var(--nonavbar-height));
+  width: calc(0.3 * var(--nonavbar-height));
 }
