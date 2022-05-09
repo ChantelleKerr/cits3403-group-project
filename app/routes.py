@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, redirect
 from app import app
+from flask_login import current_user, login_required
 
 
 @app.route("/")
@@ -10,7 +11,12 @@ def index():
 def game():
   return render_template('game.html', title='Game')
 
-# TODO: Admin Access only. 
 @app.route("/admin")
+@login_required
 def admin():
-  return render_template('admin.html', title='Admin Dashboard')
+  if current_user.is_superuser:
+    return render_template('admin.html', title='Admin Dashboard')
+
+@app.login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/')
