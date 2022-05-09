@@ -1,0 +1,27 @@
+#header {
+  position: absolute;
+  height: calc(0.1 * var(--nonavbar-height));
+  width: 100vw;
+  left: 50vw;
+  top: var(--navbar-height);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+#header>span:nth-child(1) {
+  position: relative;
+  display: block;
+  line-height: calc(0.025 * var(--nonavbar-height));
+  font-size: calc(0.025 * var(--nonavbar-height));
+}
+
+#header>span:nth-child(2) {
+  position: relative;
+  display: block;
+  line-height: calc(0.045 * var(--nonavbar-height));
+  font-size: calc(0.055 * var(--nonavbar-height));
+}
+
+#round-icon {
+  src: "static/images/fat.png"
+}

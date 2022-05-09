@@ -1,18 +1,9 @@
 const rounds = 10;
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
 const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
-let dt = new Date();
-let nutrientOfTheDay = nutrients[dt.getDay()];
+
 let foodChoices = 0;
 let roundsWon = [];
-
-
-/**
- * Checks if the window is considered small by bootstrap
- * @returns true if the window is small, otherwise false
- */
-let isWindowSmall = () => window.innerWidth <= 768;
 
 let currentRound = 1;
 let score = 0;
@@ -25,7 +16,6 @@ let previousTimeStamp;
 requestFoodChoices();
 generateNutrientOfTheDay();
 addEventListeners();
-updateCSSVariables();
 
 /**
 * Generates a new batch of icons and changes the nutrient text each day.
@@ -87,17 +77,10 @@ function addEventListeners() {
   // Actions to be taken whenever screen resizes
   window.addEventListener('resize', function (event) {
     updateCircleComparison(event);
-    updateCSSVariables();
   }, false);
 }
 
-/**
-* Adds variables used in CSS, these are recalculated whenever the screen resizes.
-*/
-function updateCSSVariables() {
-  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
-}
+
 
 /**
  * Updates the symbol between food choices based on where cursor is located as well as rotating it when 
