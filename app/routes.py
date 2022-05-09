@@ -4,7 +4,7 @@ from app import app
 
 @app.route("/")
 def index():
-  return render_template('home.html', title='Home') # Replace base.html with the home page
+  return render_template('home.html', title='Home') 
 
 @app.route("/game")
 def game():
