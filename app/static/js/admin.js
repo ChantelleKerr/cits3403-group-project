@@ -1,5 +1,3 @@
-
-
 getDailyFoodChoices();
 function getDailyFoodChoices() {
   const xhttp = new XMLHttpRequest();
@@ -34,4 +32,16 @@ function createFoodList(foodChoices) {
     foodList.appendChild(foodItem)
 
   })
+}
+// Allows the admin to change the daily food choices
+function generateNewDailyFoods() {
+  const xhttp = new XMLHttpRequest();
+  // Sending "0" as the seed is only used for admins
+  xhttp.open("GET", "api/foods/0", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      location.reload();
+    }
+  }
 }
