@@ -109,7 +109,9 @@
 #results-table td, th {
   padding: 20px;
   text-align: center;
-  background-color: #f7e59f;
+}
+#results-table th {
+  background-color: #F9D132;
 }
 
 .share-modal-footer {
