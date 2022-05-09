@@ -10,11 +10,12 @@
     <!-- Javascript -->
     <script src="static/js/auth.js"></script>
     <script src="static/js/base.js"></script>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="static/css/base.css">
   </head>
 
-  <body onload="init()">
+  <body>
   <!-- Navigation Bar -->
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid px-3">
@@ -45,9 +46,11 @@
       </div>
     </div>
   </nav>
-    {% include 'loginModal.html' %}
-    {% include 'registerModal.html' %}
-    {% include 'messageModal.html' %}
-    {% block content %} {% endblock %}
+  {% include 'loginModal.html' %}
+  {% include 'registerModal.html' %}
+  {% include 'messageModal.html' %}
+  {% block content %} {% endblock %}
+  <script src="static/js/base.js"></script>
   </body>
+
 </html>

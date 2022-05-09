@@ -16,14 +16,8 @@ function updateCSSVariables() {
   document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
 }
 
-/**
- * Runs after the body of base.html loads
- */
-function init() {
+updateCSSVariables();
+// Actions to be taken whenever screen resizes
+window.addEventListener('resize', function (event) {
   updateCSSVariables();
-
-  // Actions to be taken whenever screen resizes
-  window.addEventListener('resize', function (event) {
-    updateCSSVariables();
-  }, false);
-}
+}, false);
