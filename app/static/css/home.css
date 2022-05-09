@@ -48,9 +48,24 @@
 
 #play {
   position: absolute;
-  top: calc(var(--navbar-height) + 0.85 * var(--nonavbar-height));
+  top: calc(var(--navbar-height) + 0.8 * var(--nonavbar-height));
   left: 50vw;
   transform: translateX(-50%);
   height: calc(0.1 * var(--nonavbar-height));
   width: calc(0.3 * var(--nonavbar-height));
+  transition: all .5s;
+  outline: 3px solid #5bee9600;
+  border-radius: 10px;
+  outline-offset: 10px;
+  background-color: #5bee96 ;
+  border-color: #5bee96 ;
+  color: #222222;
+  font-weight: bold;
+  font-size: calc(0.05 * var(--nonavbar-height));
+}
+#play:hover {
+  outline: 3px solid #5bee96;
+  outline-offset: 0;
+  background-color: #222222 ;
+  color: #5bee96 ;
 }
