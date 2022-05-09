@@ -109,7 +109,9 @@
 #results-table td, th {
   padding: 20px;
   text-align: center;
+  background-color: #f7e59f;
 }
+
 .share-modal-footer {
   display: flex; 
   justify-content: flex-end;

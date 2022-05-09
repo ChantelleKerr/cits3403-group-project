@@ -15,22 +15,27 @@ window.onload = function () {
         document.body.appendChild(new_text);
         new_text.innerHTML = "You do not have any results yet";
         new_text.className = "center";
-      }
-      for (var i = 0; i < res.length; i++){
-        let score = (res[i].score.match(/1/g) || []).length;
-        let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
-        let date = res[i].date.split(" ")[0];
-        let nutrient = nutrients[parseInt(res[i].date.split(" ")[1])];
-        addTableRow([i+1,date,nutrient,score,rounds,res[i].seed]);
+      }else{
+        addTableRow(["Game number","Date","Nutrient","Score","Rounds","Seed"],"th");
+        for (var i = 0; i < res.length; i++){
+          let score = (res[i].score.match(/1/g) || []).length;
+          let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
+          let date = res[i].date.split(" ")[0];
+          let nutrient = nutrients[parseInt(res[i].date.split(" ")[1])];
+          addTableRow([i+1,date,nutrient,score,rounds,res[i].seed],"td");
+        }
       }
     }
   }
-
-  function addTableRow(list_of_values){
+  /**
+   * @param list_of_values : list of values of row
+   * @param type : either td or th
+   */
+  function addTableRow(list_of_values,type){
     var newRow = document.createElement("tr");
     resultsTable.appendChild(newRow);
     for (var j = 0; j < 6; j++){
-      let newCell = document.createElement("td");
+      let newCell = document.createElement(type);
       newRow.appendChild(newCell);
       newCell.innerHTML = list_of_values[j];
     }
