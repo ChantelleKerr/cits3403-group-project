@@ -1,6 +1,6 @@
 # cits3403-group-project
 
-###**Create An Admin Account**
+### **Create An Admin Account**
 *Having an admin account gives you extra functionality within the website!*
 In your terminal type the following commands!
 ```
