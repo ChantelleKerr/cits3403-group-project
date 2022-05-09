@@ -1,5 +1,11 @@
+// Temp until these variables are global
+const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
+let dt = new Date();
+let nutrientOfTheDay = nutrients[dt.getDay()];
+
 getDailyFoodChoices();
 function getDailyFoodChoices() {
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods", true);
   xhttp.send()
