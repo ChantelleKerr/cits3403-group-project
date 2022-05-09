@@ -2,12 +2,16 @@
 {% block content %}
 <div class="container-fluid g-0">
    <!-- Page Title -->
-   <div id="header" class="jumbotron text-center my-2"> 
-    <h1><strong class="text-primary">Admin Dashboard</strong></h1>
-    <div class="btn-container"> 
-      <button type="button" class="btn btn-secondary">Generate New Foods</button>
+   <div class="jumbotron text-center my-2"> 
+      <h1><strong class="text-primary">Admin Dashboard</strong></h1>
     </div>
+  <div class="btn-container"> 
+      <span class="center"> NUTRIENT OF THE DAY: <strong> Fibre</strong></span>
+      <button type="button" class="btn btn-secondary">Generate New Foods</button>
   </div>
+  <div class='foodlist-container' id="food-list"></div>
 </div>
+<!-- Javascript -->
+<script src="static/js/admin.js"></script>
 
 {% endblock %}
