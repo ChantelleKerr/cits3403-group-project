@@ -1,7 +1,5 @@
 from app.api import bp
-from flask import jsonify, request, make_response, session, redirect
-from app import db
-from flask import url_for
+from flask import jsonify
 
 from datetime import datetime, timezone
 import json, random, time

@@ -38,4 +38,3 @@ class User(UserMixin, db.Model):
     # it can be stored as a hash instead of a string
     if new_user and 'password' in data:
       self.set_password(data['password'])
-
