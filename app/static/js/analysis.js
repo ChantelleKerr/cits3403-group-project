@@ -22,7 +22,8 @@ window.onload = function () {
           let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
           let date = res[i].date.split(" ")[0];
           let nutrient = nutrients[parseInt(res[i].date.split(" ")[1])];
-          addTableRow([i+1,date,nutrient,score,rounds,res[i].seed],"td");
+          let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
+          addTableRow([i+1,date,nutrientHTML,score,rounds,res[i].seed],"td");
         }
       }
     }
