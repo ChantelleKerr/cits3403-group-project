@@ -52,7 +52,7 @@ function createFoodList(foodChoices) {
     foodTitle.className = 'food-item-title center';
 
     var itemDetails = document.createElement('div');
-    itemDetails.className = 'food-item-details text-center'
+    itemDetails.className = 'food-item-details center'
 
     // Add all food nutriential details
     for (var details in food) {

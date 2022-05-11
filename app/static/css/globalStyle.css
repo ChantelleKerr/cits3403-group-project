@@ -9,6 +9,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center !important;
 }
 input[type=text], input[type=password] {
   width: 100%;
