@@ -38,6 +38,11 @@ window.onload = function () {
     for (var j = 0; j < 6; j++){
       let newCell = document.createElement(type);
       newRow.appendChild(newCell);
+      if (j == 4 && type=="th"){//Set minimum width of 5th column to avoid it making the table rows tall
+        newCell.style.minWidth = "260px"
+      }else if (j == 2 && type=="th"){
+        newCell.style.minWidth = "150px"
+      }
       newCell.innerHTML = list_of_values[j];
     }
   }
