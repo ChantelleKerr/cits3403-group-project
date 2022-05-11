@@ -4,6 +4,8 @@ let dt = new Date();
 let nutrientOfTheDay = nutrients[dt.getDay()];
 
 getDailyFoodChoices();
+
+// Call the API to get the current list of food choices
 function getDailyFoodChoices() {
   document.getElementById("current-nutrient").textContent = nutrientOfTheDay
   const xhttp = new XMLHttpRequest();
@@ -13,32 +15,10 @@ function getDailyFoodChoices() {
     if (xhttp.status == 200) {
       foodChoices = JSON.parse(xhttp.response);
       createFoodList(foodChoices);
-
     }
   }
 }
 
-function createFoodList(foodChoices) {
-  let foodList = document.getElementById("food-list");
-  foodChoices.forEach(function (food, index) {
-    var foodItem = document.createElement('div');
-    var img = document.createElement('img');
-    img.src = food.url
-    Object.assign(img.style, {
-      width: "100%",
-      height: "150px",
-      objectFit: "cover",
-
-    });
-    var itemDetails = document.createElement('div');
-    itemDetails.innerHTML = food.name;
-
-    foodItem.appendChild(img)
-    foodItem.appendChild(itemDetails)
-    foodList.appendChild(foodItem)
-
-  })
-}
 // Allows the admin to change the daily food choices
 function generateNewDailyFoods() {
   const xhttp = new XMLHttpRequest();
@@ -50,4 +30,41 @@ function generateNewDailyFoods() {
       location.reload();
     }
   }
+}
+
+function createFoodList(foodChoices) {
+  let foodList = document.getElementById("food-list");
+  // For each food in the food choices
+  foodChoices.forEach(function (food) {
+
+    // Food item container
+    let foodItem = document.createElement('div');
+    foodItem.className = 'food-item-container';
+
+    // Create the image
+    let img = document.createElement('img');
+    img.src = food.url;
+    img.className = 'food-item-img'
+
+    // Create the title
+    let foodTitle = document.createElement("div");
+    foodTitle.innerHTML = food.name;
+    foodTitle.className = 'food-item-title center';
+
+    var itemDetails = document.createElement('div');
+    itemDetails.className = 'food-item-details text-center'
+
+    // Add all food nutriential details
+    for (var details in food) {
+      if (details != 'url' && details != 'name') {
+        var keyValue = document.createElement("span");
+        keyValue.innerHTML = details + ": " + food[details];
+        itemDetails.appendChild(keyValue);
+      }
+    }
+    foodItem.appendChild(img)
+    foodItem.appendChild(foodTitle)
+    foodItem.appendChild(itemDetails)
+    foodList.appendChild(foodItem)
+  })
 }
