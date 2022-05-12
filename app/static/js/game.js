@@ -362,6 +362,9 @@ function resetAfterAnimation() {
   }
 }
 
+/**
+ * Write the score the user just got to the results database
+ */
 function storeScore(){
   let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
 
@@ -371,6 +374,10 @@ function storeScore(){
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
 
   xhttp.onload = () => {
-
+    if (xhttp.status != 201){
+      let messageModal = document.getElementById("messageModal");
+      bootstrap.Modal.getOrCreateInstance(messageModal).show();
+      document.getElementById("message").innerHTML = "Your score could not be saved due to an unexpected error.";
+    }
   }
 }

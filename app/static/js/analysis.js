@@ -11,7 +11,8 @@ window.onload = function () {
   xhttp.onload = () => { 
     if (xhttp.status == 200) {
       var res = JSON.parse(xhttp.response);
-      if (res.length == 0){//The user hasn't got any results yet
+      if (res.length == 0){
+        //The user hasn't got any results yet
         document.body.removeChild(resultsTable);
         let new_text = document.createElement("h3");
         document.body.appendChild(new_text);
@@ -20,6 +21,7 @@ window.onload = function () {
       }else{
         addTableRow(["Game number","Date","Nutrient","Score","Rounds","Seed"],"th");
         for (var i = 0; i < res.length; i++){
+          //Calculate some values to be added to a row of the table
           let score = (res[i].score.match(/1/g) || []).length;
           let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
           let date = res[i].date.split(" ")[0];
@@ -33,6 +35,9 @@ window.onload = function () {
     }
   }
   /**
+   * Make a new table now with the inputted values
+   * Set the minimum width of some of the columns to avoid those columns
+   * changing the height of the rows when the window is resized
    * @param list_of_values : list of values of row
    * @param type : either td or th
    */
@@ -42,7 +47,7 @@ window.onload = function () {
     for (var j = 0; j < 6; j++){
       let newCell = document.createElement(type);
       newRow.appendChild(newCell);
-      if (j == 4 && type=="th"){//Set minimum width of 5th column to avoid it making the table rows tall
+      if (j == 4 && type=="th"){
         newCell.style.minWidth = "260px"
       }else if (j == 2 && type=="th"){
         newCell.style.minWidth = "150px"
@@ -53,7 +58,12 @@ window.onload = function () {
     }
   }
 }
-
+/**
+ * Make an xmlhttp request to get the food data from a given seed
+ * Then construct a bootstrap modal that displays the food data as an unordered list
+ * @param i - the seed number used to generate the puzzle
+ * @param nutrientNum - the index of the nutrient for the puzzle
+ */
 function showPuzzle(i,nutrientNum){
   let puzzleModal = document.getElementById("puzzle-modal");
   let puzzleModalBody = document.getElementById("puzzle-modal-body");
