@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
 
   # Convert JSON object into a user objects
   def from_dict(self, data, new_user=False):
-    for field in ['username', 'email', 'is_admin']:
+    for field in ['username', 'email']:
       if field in data:
         setattr(self, field, data[field])
     # We want to set the password separately so that

@@ -14,8 +14,9 @@ def game():
 @app.route("/admin")
 @login_required
 def admin():
-  if current_user.is_superuser:
+  if current_user.is_superuser():
     return render_template('admin.html', title='Admin Dashboard')
+  return unauthorized_callback()
 
 @app.login_manager.unauthorized_handler
 def unauthorized_callback():
