@@ -19,6 +19,9 @@
   line-height: calc(0.06 * var(--nonavbar-height));
   font-size: calc(0.06 * var(--nonavbar-height));
 }
+.nutrient-name-text {
+  color: #ee5b63;
+}
 #info-div {
   position: absolute;
   padding: 1vh 1vw 1vh 1vw;
