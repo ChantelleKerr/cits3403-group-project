@@ -10,6 +10,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center !important;
 }
 input[type=text], input[type=password] {
   width: 100%;
@@ -63,6 +64,16 @@ a {
 .btn-outline-secondary:hover {
   background-color: #F9D132 !important;
   color: #222222 !important;
+}
+.btn-secondary {
+  background-color: #4dc376 !important;
+  color: #222222 !important;
+  border-color: #4dc376 !important;
+  margin-right: 5px;
+}
+.btn-secondary:hover {
+  background-color: inherit !important;
+  color: #4dc376 !important;
 }
 .text-primary {
   color: #ee5b63 !important;

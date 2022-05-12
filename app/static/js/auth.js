@@ -34,23 +34,23 @@ window.onload = function () {
 
     let isValid = true;
 
-    if (email == "" || checkEmail(email) != ""){
-      if (email == ""){
+    if (email == "" || checkEmail(email) != "") {
+      if (email == "") {
         emailValidationText.innerHTML = "This field is required."
       }
       isValid = false;
     }
-    if (password == "" || checkPassword(password,email,username) != ""){
-      if (password == ""){
+    if (password == "" || checkPassword(password, email, username) != "") {
+      if (password == "") {
         passwordValidationText.innerHTML = "This field is required."
       }
       isValid = false;
     }
-    if (username == ""){
+    if (username == "") {
       usernameValidationText.innerHTML = "This field is required."
       isValid = false;
     }
-    if (!isValid){
+    if (!isValid) {
       return;
     }
 
@@ -65,7 +65,7 @@ window.onload = function () {
         bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
         bootstrap.Modal.getOrCreateInstance(messageModal).show();
         document.getElementById("message").innerHTML = "Account successfully created";
-      }else if (xhttp.status == 500){
+      } else if (xhttp.status == 500) {
         emailValidationText.innerHTML = "This email already has an account associated with it."
       }
     }
@@ -93,14 +93,14 @@ window.onload = function () {
     xhttp.open("POST", "auth/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({ email: email, password: password }))
-    xhttp.onload = () => { 
+    xhttp.onload = () => {
       if (xhttp.status == 200) {
         // Close the modal
         var modal = document.getElementById('loginModal');
         bootstrap.Modal.getInstance(modal).hide()
         // Reload the current page
         location.reload();
-      }else if (xhttp.status == 401){
+      } else if (xhttp.status == 401) {
         loginValidationText.innerHTML = "No account matching the given email and password was found."
       }
     }
@@ -111,11 +111,11 @@ window.onload = function () {
    * @returns - a String which explains any errors with the email. If there are no errors, the string is empty.
    */
   function checkEmail(emailAttempt) {
-    if (emailAttempt == ""){
+    if (emailAttempt == "") {
       return "";
-    }else if (!emailAttempt.includes("@")){
+    } else if (!emailAttempt.includes("@")) {
       return 'An email must include an "@" sign.';
-    }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAttempt)){
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAttempt)) {
       //imperfect but pretty good simple regex for emails. The "fully accurate" regular expressions are all very long
       return "Invalid email.";
     }
@@ -130,15 +130,15 @@ window.onload = function () {
    * @param {*} usernameAttempt - A string representing a username.
    * @returns: a String which explains any issues with the password
    */
-  function checkPassword(passwordAttempt,emailAttempt,usernameAttempt){
+  function checkPassword(passwordAttempt, emailAttempt, usernameAttempt) {
     //inspired by https://blog.codinghorror.com/password-rules-are-bullshit/
-    if (passwordAttempt == ""){
+    if (passwordAttempt == "") {
       return "";
-    }else if (passwordAttempt.length < 8 && passwordAttempt != ""){
+    } else if (passwordAttempt.length < 8 && passwordAttempt != "") {
       return "Please use a password with 8 characters or more."
-    }else if (passwordAttempt.toLowerCase() == emailAttempt.toLowerCase()){
+    } else if (passwordAttempt.toLowerCase() == emailAttempt.toLowerCase()) {
       return "Please use a password which is different to your email."
-    }else if (passwordAttempt.toLowerCase() == usernameAttempt.toLowerCase()){
+    } else if (passwordAttempt.toLowerCase() == usernameAttempt.toLowerCase()) {
       return "Please use a password which is different to your username."
     }
     return "";
@@ -148,7 +148,7 @@ window.onload = function () {
   // When the user clicks on one of the text inputs, the associated error text disappears.
   // When the user clicks off one of the inputs and they have an error in what
   // they've current inputted, the error text appears.
-  usernameInput.addEventListener('focus', () =>{
+  usernameInput.addEventListener('focus', () => {
     usernameValidationText.innerHTML = "";
   })
   emailInput.addEventListener('focus', () => {
@@ -191,11 +191,17 @@ function logout() {
 /**
  * Open the analysis page if the user is logged in. Otherwise, open the login modal
  */
- function openAnalysisPage(){
+function openAnalysisPage(){
   if (document.getElementById("logout-button") != null){
     location.href = "/analysis";
   }else{
     var modal = document.getElementById('loginModal');
     bootstrap.Modal.getOrCreateInstance(modal).show();
   }
+}
+/**
+ * If an admin user is logged in they can access the admin page
+ */
+function openAdminPage() {
+  location.href = "/admin";
 }
