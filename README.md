@@ -9,8 +9,8 @@ In your terminal type the following commands!
 3. from app.models import User
 4. u = User(username="admin", email="admin@admin.com", is_admin=True)
 5. u.set_password("adminpassword")
-6. u.session.add(u)
-7. u.session.commit()
+6. db.session.add(u)
+7. db.session.commit()
 ```
 
 Now you should be able to login using your admin account!
