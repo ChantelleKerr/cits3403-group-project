@@ -13,7 +13,6 @@ window.onload = function () {
       var res = JSON.parse(xhttp.response);
       if (res.length == 0){
         //The user hasn't got any results yet
-        document.body.removeChild(resultsTable);
         let new_text = document.createElement("h3");
         document.body.appendChild(new_text);
         new_text.innerHTML = "You do not have any results yet";
