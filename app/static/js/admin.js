@@ -32,6 +32,7 @@ function generateNewDailyFoods() {
   }
 }
 
+// Creates the HTML for each daily food item 
 function createFoodList(foodChoices) {
   let foodList = document.getElementById("food-list");
   // For each food in the food choices
