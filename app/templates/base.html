@@ -40,7 +40,7 @@
               {% if current_user.is_superuser() %}
                 <button type="button" class="btn btn-outline-secondary mr-2" onclick="openAdminPage()">Admin</button>
               {% endif %}
-              <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+              <button type="button" class="btn btn-primary" onclick="logout()" id="logout-button">Logout</button>
             {% else %}   
               <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>

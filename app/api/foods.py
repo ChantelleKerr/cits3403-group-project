@@ -34,7 +34,7 @@ def get_daily_food():
 @bp.route('/foods/<int:seed>', methods=['GET'])
 def update_daily_food(seed):
   if seed == 0:
-    seed = time.time()
+    seed = int(1000*time.time()) # needs to be an integer
   random.seed(seed)
 
   today, data = read_files()
