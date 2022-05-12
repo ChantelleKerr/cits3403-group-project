@@ -12,6 +12,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="static/css/globalStyle.css">
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/admin.css">
   </head>
 
   <body>
@@ -36,8 +37,11 @@
           <span class="navbar-user"></span>
             {% if current_user.is_authenticated %}
               <span class="navbar-user"> {{current_user.username}} </span>
+              {% if current_user.is_superuser %}
+                <button type="button" class="btn btn-outline-secondary mr-2" onclick="openAdminPage()">Admin</button>
+              {% endif %}
               <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
-            {% else %} 
+            {% else %}   
               <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
             {% endif %}

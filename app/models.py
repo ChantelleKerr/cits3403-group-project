@@ -8,6 +8,7 @@ class User(UserMixin, db.Model):
   username = db.Column(db.String(32), index=True, unique=False)
   email = db.Column(db.String(128), index=True, unique=True)
   password = db.Column(db.String(128))
+  is_admin = db.Column(db.Boolean, default=False)
 
   def __repr__(self):
       return f'<User {self.username}>'
@@ -20,18 +21,22 @@ class User(UserMixin, db.Model):
   def check_password(self, password):
     return check_password_hash(self.password, password)
 
+  def is_superuser(self):
+    return self.is_admin
+
   # Converts a user object into a JSON format
   def to_dict(self):
     data = {
       'id': self.id,
       'username': self.username,
-      'email': self.email
+      'email': self.email,
+      'is_admin': self.is_admin
     }
     return data
 
   # Convert JSON object into a user objects
   def from_dict(self, data, new_user=False):
-    for field in ['username', 'email']:
+    for field in ['username', 'email', 'is_admin']:
       if field in data:
         setattr(self, field, data[field])
     # We want to set the password separately so that
