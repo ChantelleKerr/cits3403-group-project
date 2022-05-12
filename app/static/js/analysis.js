@@ -1,4 +1,6 @@
+const rounds = 10;
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 window.onload = function () {
   const resultsTable = document.getElementById("results-table");
@@ -21,9 +23,11 @@ window.onload = function () {
           let score = (res[i].score.match(/1/g) || []).length;
           let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
           let date = res[i].date.split(" ")[0];
-          let nutrient = nutrients[parseInt(res[i].date.split(" ")[1])];
+          let nutrientNum = parseInt(res[i].date.split(" ")[1])
+          let nutrient = nutrients[nutrientNum];
           let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
-          addTableRow([i+1,date,nutrientHTML,score,rounds,res[i].seed],"td");
+          let seed = '<button class="results-button" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
+          addTableRow([i+1,date,nutrientHTML,score,rounds,seed],"td");
         }
       }
     }
@@ -42,9 +46,35 @@ window.onload = function () {
         newCell.style.minWidth = "260px"
       }else if (j == 2 && type=="th"){
         newCell.style.minWidth = "150px"
+      }else if (j == 5 && type=="th"){
+        newCell.style.minWidth = "160px"
       }
       newCell.innerHTML = list_of_values[j];
     }
   }
 }
 
+function showPuzzle(i,nutrientNum){
+  let puzzleModal = document.getElementById("puzzle-modal");
+  let puzzleModalBody = document.getElementById("puzzle-modal-body");
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods/get/" + i, true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send();
+  xhttp.onload = () => { 
+    if (xhttp.status == 200) {
+      let foods = JSON.parse(xhttp.response);
+      puzzleModalBody.innerHTML = "<p class = 'text-secondary'>Nutrient: " + nutrients[nutrientNum] + "</p>";
+      var list = document.createElement("ul");
+      puzzleModalBody.appendChild(list);
+      for (var i = 0; i < rounds+1; i++){
+        var listItem = document.createElement("li");
+        listItem.innerHTML = foods[i].name + ": " + foods[i][nutrients[nutrientNum]] + " " + units[nutrientNum];
+        list.appendChild(listItem);
+      }
+      bootstrap.Modal.getOrCreateInstance(puzzleModal).show();
+    }else{
+      puzzleModalBody.innerHTML = "<p>An unexpected error occured</p>"
+    }
+  }
+}

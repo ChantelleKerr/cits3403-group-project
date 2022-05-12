@@ -50,6 +50,19 @@ def update_daily_food(seed):
 
   return jsonify(today["foods"])
 
+# Gets the foods for a given seed
+@bp.route('/foods/get/<int:seed>', methods=['GET'])
+def get_foods_from_seed(seed):
+  random.seed(seed)
+  today = {}
+  with open("app/api/data.json") as fdata:
+    data = json.load(fdata)
+  today["foods"] = []
+  for food in random.sample(data.keys(), 11):
+    today["foods"].append(data[food])
+    today["foods"][-1]["name"] = food
+  return jsonify(today["foods"])
+
 # returns the today.json and nutrition data after reading them from file
 def read_files():
   # get the stored foods 
