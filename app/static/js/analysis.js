@@ -27,7 +27,7 @@ window.onload = function () {
           let nutrientNum = parseInt(res[i].date.split(" ")[1])
           let nutrient = nutrients[nutrientNum];
           let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
-          let seed = '<button class="btn-secondary" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
+          let seed = '<button class="btn btn-secondary" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
           addTableRow([i+1,date,nutrientHTML,score,rounds,seed],"td");
         }
       }
