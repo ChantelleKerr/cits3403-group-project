@@ -1,6 +1,13 @@
 # Nutri Hi-Lo
 ###### CITS3403 Group Project
 Developed by Huxley, Djimon Jayasundera & Chantelle Kerr
+
+## Purpose
+todo
+
+## Architecture
+todo
+
 ## Setup Project
 
 Run the following commands
@@ -46,6 +53,10 @@ In the terminal type the following command to start the project. It will return 
 flask run
 ```
 
+## Run Unit Tests
+```
+todo
+```
 
 #### References
 ###### Images
