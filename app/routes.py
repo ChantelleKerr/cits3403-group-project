@@ -11,6 +11,11 @@ def index():
 def game():
   return render_template('game.html', title='Game')
 
+@app.route("/analysis")
+@login_required
+def analysis():
+  return render_template('analysis.html', title='Analysis')
+
 @app.route("/admin")
 @login_required
 def admin():

@@ -43,3 +43,33 @@ class User(UserMixin, db.Model):
     # it can be stored as a hash instead of a string
     if new_user and 'password' in data:
       self.set_password(data['password'])
+
+# TODO: add an attribute for the puzzle itself, to allow the user to view past puzzles?
+class Result(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  date = db.Column(db.String(32), index=True)
+  score = db.Column(db.String(32))
+  seed = db.Column(db.Integer)
+
+  def __repr__(self):
+    return '<Result {}>'.format(self.id)
+
+  # Converts a result object into a JSON format
+  def to_dict(self):
+    data = {
+      'id': self.id,
+      'user_id': self.user_id,
+      'date': self.date,
+      'score': self.score,
+      'seed': self.seed
+    }
+    return data
+
+  # Convert JSON object into a result objects
+  def from_dict(self, data, current_user, seed):
+    setattr(self, 'seed', seed)
+    setattr(self,'user_id', current_user)
+    for field in ['date', 'score']:
+      if field in data:
+        setattr(self, field, data[field])

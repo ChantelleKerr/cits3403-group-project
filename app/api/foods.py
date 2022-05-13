@@ -17,6 +17,7 @@ def get_daily_food():
   if today["updated"] != seed:  # check if it was last updated on a different day
     doUpdate = True
     today["updated"] = seed
+    today["seed"] = seed
     today["foods"] = [] # empty today foods and add a new 11 foods
     for food in random.sample(data.keys(), 11): 
       today["foods"].append(data[food])
@@ -33,12 +34,13 @@ def get_daily_food():
 @bp.route('/foods/<int:seed>', methods=['GET'])
 def update_daily_food(seed):
   if seed == 0:
-    seed = time.time()
+    seed = int(1000*time.time()) # needs to be an integer
   random.seed(seed)
 
   today, data = read_files()
 
   today["updated"] = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
+  today["seed"] = seed
   today["foods"] = []  # empty today foods and add a new 11 foods
   for food in random.sample(data.keys(), 11):
     today["foods"].append(data[food])
@@ -46,6 +48,19 @@ def update_daily_food(seed):
 
   update_file(today)
 
+  return jsonify(today["foods"])
+
+# Gets the foods for a given seed
+@bp.route('/foods/get/<int:seed>', methods=['GET'])
+def get_foods_from_seed(seed):
+  random.seed(seed)
+  today = {}
+  with open("app/api/data.json") as fdata:
+    data = json.load(fdata)
+  today["foods"] = []
+  for food in random.sample(data.keys(), 11):
+    today["foods"].append(data[food])
+    today["foods"][-1]["name"] = food
   return jsonify(today["foods"])
 
 # returns the today.json and nutrition data after reading them from file
