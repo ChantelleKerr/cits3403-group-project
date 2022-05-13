@@ -115,16 +115,6 @@
   color: #212529;
 }
 
-.results-button {
-  outline: 3px solid #4dc37600;
-  border-radius: 10px;
-  outline-offset: 10px;
-  background-color: #4dc376 !important;
-  border-color: #4dc376;
-  color: #222222;
-  font-weight: bold;
-}
-
 .share-modal-footer {
   display: flex; 
   justify-content: flex-end;
