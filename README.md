@@ -1,9 +1,10 @@
-# cits3403-group-project
+# Nutri Hi-Lo
+###### CITS3403 Group Project
 Developed by Huxley, Djimon Jayasundera & Chantelle Kerr
-### Setup Project
+## Setup Project
 
 Run the following commands
-###### Download the Project
+###### Clone the Project
 ```
 git clone https://github.com/ChantelleKerr/cits3403-group-project
 ```
@@ -19,8 +20,12 @@ source venv/bin/activate
 ```
 pip3 install -r requirements.txt
 ```
+## Setup Database
+```
+todo
+```
 
-### Create An Admin Account
+## Create An Admin Account
 *Having an admin account gives you extra functionality within the website!*
 In your terminal type the following commands!
 ```
@@ -34,6 +39,12 @@ In your terminal type the following commands!
 ```
 
 Now you should be able to login using your admin account!
+
+## Run Project
+In the terminal type the following command to start the project. It will return a url that will direct you to the projects home page!
+```
+flask run
+```
 
 
 #### References
