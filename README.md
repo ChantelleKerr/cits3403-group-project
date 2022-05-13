@@ -1,6 +1,26 @@
 # cits3403-group-project
+Developed by Huxley, Djimon Jayasundera & Chantelle Kerr
+### Setup Project
 
-### **Create An Admin Account**
+Run the following commands
+###### Download the Project
+```
+git clone https://github.com/ChantelleKerr/cits3403-group-project
+```
+###### Create Virtual Environment
+```
+python3 -m venv venv
+```
+###### Activate Virtual Environment
+```
+source venv/bin/activate
+```
+###### Install Dependencies
+```
+pip3 install -r requirements.txt
+```
+
+### Create An Admin Account
 *Having an admin account gives you extra functionality within the website!*
 In your terminal type the following commands!
 ```
@@ -14,3 +34,12 @@ In your terminal type the following commands!
 ```
 
 Now you should be able to login using your admin account!
+
+
+#### References
+###### Images
+https://unsplash.com/
+https://www.istockphoto.com/
+###### Icons
+https://www.flaticon.com/
+
