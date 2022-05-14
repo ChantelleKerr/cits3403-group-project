@@ -41,12 +41,13 @@
 #info-div > span > strong {
   color: #F9D132;
 }
-#info-div > span:last-child {
-  color: #F9D132;
-}
 #info-div> * img {
   display: inline-block;
   height: calc(0.03 * var(--nonavbar-height));
+}
+
+#tip {
+  transition: opacity .5s;
 }
 
 #play {
@@ -65,6 +66,7 @@
   color: #222222;
   font-weight: bold;
   font-size: calc(0.05 * var(--nonavbar-height));
+  text-align: center;
 }
 #play:hover {
   outline: 3px solid #4dc376;
