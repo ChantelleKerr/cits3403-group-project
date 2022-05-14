@@ -1,6 +1,6 @@
 # Nutri Hi-Lo
 ###### CITS3403 Group Project
-Developed by Huxley, Djimon Jayasundera & Chantelle Kerr
+Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 
 ## Purpose
 todo
