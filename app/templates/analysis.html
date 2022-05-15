@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Title -->
+    <div id="header" class="jumbotron text-center mt-2"> 
+        <h1 class="text-primary">{{current_user.username}}'s Statistics</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="table-responsive">
+        <table class="table" id="results-table">
+        </table>
+    </div>
+    <div class="modal" tabindex="-1" id="puzzle-modal" width="500px">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+          <div class="modal-content">
+            <div class="modal-header center">
+              <h5 class="modal-title w-100 text-primary">Puzzle</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="puzzle-modal-body">
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="static/js/analysis.js"></script>
+
+{% endblock %}

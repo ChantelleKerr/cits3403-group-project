@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid g-0">
+   <!-- Page Title -->
+   <div class="jumbotron center my-2"> 
+      <h1><strong class="text-primary">Admin Dashboard</strong></h1>
+    </div>
+  <div class="btn-container"> 
+      <span class="center"> NUTRIENT OF THE DAY: <strong id="current-nutrient" class="text-secondary"> Fibre</strong></span>
+      <button type="button" class="btn btn-secondary" onclick="generateNewDailyFoods()">Generate New Foods</button>
+  </div>
+  <div class='foodlist-container' id="food-list"></div>
+</div>
+<!-- Javascript -->
+<script src="static/js/admin.js"></script>
+
+{% endblock %}
