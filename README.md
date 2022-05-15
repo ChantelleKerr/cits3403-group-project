@@ -14,6 +14,7 @@ Run the following commands
 ###### Clone the Project
 ```
 git clone https://github.com/ChantelleKerr/cits3403-group-project
+// Then navigate inside the cits3403-group-project folder
 ```
 ###### Create Virtual Environment
 ```
@@ -22,6 +23,8 @@ python3 -m venv venv
 ###### Activate Virtual Environment
 ```
 source venv/bin/activate
+// Windows (command prompt)
+venv\Scripts\activate
 ```
 ###### Install Dependencies
 ```
@@ -36,7 +39,7 @@ todo
 *Having an admin account gives you extra functionality within the website!*
 In your terminal type the following commands!
 ```
-1. python3
+1. "python3" (you may have to use "python" instead)
 2. from app import db
 3. from app.models import User
 4. u = User(username="admin", email="admin@admin.com", is_admin=True)
