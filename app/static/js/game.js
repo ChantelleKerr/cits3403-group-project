@@ -344,14 +344,12 @@ function resetAfterAnimation() {
 /**
  * Write the score the user just got to the results database
  */
- function storeScore(){
+function storeScore(){
   let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
-
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "api/results/write", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
-
   xhttp.onload = () => {
     if (xhttp.status != 403){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
