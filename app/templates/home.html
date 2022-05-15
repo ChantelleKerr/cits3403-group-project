@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="static/css/home.css">
+<div class="container-fluid g-0">
+  <!-- Nutrient of the Day -->
+  <div id="header" class="jumbotron text-center mt-2">
+    <span> NUTRIENT OF THE DAY </span>
+    <span><strong class="nutrient-name-text" class="text-primary">Fat</strong></span>
+  </div>
+
+  <!-- Game Info -->
+  <div id="info-div">
+    <span>This is an educational game about nutrition, you will learn about common nutrients in everyday foods!</span><br>
+    <span><strong>How to Play</strong></span>
+    
+    <span>Each round, select the food with more <span class="nutrient-name-text">Fat</span></span>
+    <span id="tip"></span>
+  </div>
+  
+  <a id="play" class="center" href="/game">Play</a>
+  
+</div>
+
+<!-- Javascript -->
+<script src="static/js/home.js"></script>
+{% endblock %}

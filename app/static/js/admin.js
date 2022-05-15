@@ -1,8 +1,3 @@
-// Temp until these variables are global
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-let dt = new Date();
-let nutrientOfTheDay = nutrients[dt.getDay()];
-
 getDailyFoodChoices();
 
 // Call the API to get the current list of food choices

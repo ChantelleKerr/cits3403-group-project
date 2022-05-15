@@ -28,6 +28,10 @@ a {
 #navbar {
  z-index: 10;
 }
+.logo {
+  height: 50px;
+  margin-right: 6px;
+}
 /* Navbar style */
 .bg-dark {
   background-color: #222222 !important;
@@ -97,3 +101,4 @@ a {
 .rego-icons {
   filter: brightness(50%);
 }
+
