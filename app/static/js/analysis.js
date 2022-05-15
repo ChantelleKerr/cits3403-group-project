@@ -1,6 +1,3 @@
-const rounds = 10;
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 
 window.onload = function () {
   const resultsTable = document.getElementById("results-table");
