@@ -344,7 +344,7 @@ function resetAfterAnimation() {
 /**
  * Write the score the user just got to the results database
  */
-function storeScore(){
+ function storeScore(){
   let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
 
   const xhttp = new XMLHttpRequest();
@@ -353,10 +353,10 @@ function storeScore(){
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
 
   xhttp.onload = () => {
-    if (xhttp.status != 201){
+    if (xhttp.status != 403){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
-      document.getElementById("message").innerHTML = "Your score could not be saved due to an unexpected error.";
+      document.getElementById("message").innerHTML = xhttp.status == 201 ? "Your score has been saved! See the Analysis page." : "Your score could not be saved due to an unexpected error.";
     }
   }
 }

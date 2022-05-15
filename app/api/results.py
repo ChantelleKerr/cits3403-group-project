@@ -3,7 +3,7 @@ from app.models import Result
 from flask import jsonify, request, make_response
 from app import db
 from flask import url_for
-from flask_login import current_user, login_required
+from flask_login import current_user
 import json
 import webbrowser
 import urllib.parse
@@ -13,7 +13,6 @@ def get_result(id):
   return jsonify(Result.query.get_or_404(id).to_dict())
 
 @bp.route('/results/user', methods=['GET'])
-@login_required
 def get_user_results():
   u_results = Result.query.filter_by(user_id=current_user.id).all()
   result_list = []
@@ -23,18 +22,21 @@ def get_user_results():
 
 
 @bp.route('/results/write', methods=['POST'])
-@login_required
 def write_results():
-  data = request.get_json() or {}
-  result = Result()
-  with open("app/api/today.json") as ftoday:
-    seed = json.load(ftoday)['seed']
-  result.from_dict(data, current_user.id, seed)
-  db.session.add(result)
-  db.session.commit()
-  response = jsonify(result.to_dict())
-  response.status_code = 201
-  response.headers['Location'] = url_for('api.get_result', id=result.id)
+  if current_user.is_authenticated:
+    data = request.get_json() or {}
+    result = Result()
+    with open("app/api/today.json") as ftoday:
+      seed = json.load(ftoday)['seed']
+    result.from_dict(data, current_user.id, seed)
+    db.session.add(result)
+    db.session.commit()
+    response = jsonify(result.to_dict())
+    response.status_code = 201
+    response.headers['Location'] = url_for('api.get_result', id=result.id)
+  else:
+    response = jsonify({})
+    response.status_code = 403
   return response
 
 # Opens twitter and creates a tweet with given text (does not submit tweet automatically)
