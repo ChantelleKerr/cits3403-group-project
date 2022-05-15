@@ -1,3 +1,5 @@
+const rounds = 10;
+const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
 const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
 let dt = new Date();
 let nutrientOfTheDay = nutrients[dt.getDay()];

@@ -1,7 +1,3 @@
-const rounds = 10;
-const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
-
-
 let foodChoices = 0;
 let roundsWon = [];
 
