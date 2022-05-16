@@ -54,7 +54,8 @@ todo
 ```
 
 ## Create An Admin Account
-*Having an admin account gives you extra functionality within the website!*
+*Having an admin account gives you **extra functionality** within the website!*
+
 In your terminal type the following commands!
 ```
 1. "python3" (you may have to use "python" instead)
@@ -94,11 +95,11 @@ python3 -m unittest app/tests/selenium.py
 
 #### References
 ###### Food Database
-https://www.foodstandards.gov.au/science/monitoringnutrients/afcd/Pages/foodsearch.aspx
+[Food Standards Database](https://www.foodstandards.gov.au/science/monitoringnutrients/afcd/Pages/foodsearch.aspx)
 
 ###### Images
-https://unsplash.com/
-https://www.istockphoto.com/
+[Unsplash](https://unsplash.com/)
+[iStockPhoto](https://www.istockphoto.com/)
 ###### Icons
-https://www.flaticon.com/
+[Flaticon](https://www.flaticon.com/)
 
