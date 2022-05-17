@@ -28,7 +28,7 @@ Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication b
 - **Flask-sqlalchemy** provides communication with the SQLite database
 - **Flask-login** manages user login and registration
 - **Flask-migrate** handles database schema changes by performing migrations 
-- **Unittest** used for automated testing of models, API endpoints
+- **Unittest** used for automated testing of models and API endpoints
 - **Selenium** automatically tests the client side workflow
 
 ###### Frontend
