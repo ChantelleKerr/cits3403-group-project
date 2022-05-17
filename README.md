@@ -5,7 +5,6 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 
 ---
 
-## Purpose
 **Nutri Hi-Lo** is an educational game that gives the user knowledge on nutritional information on everyday foods. 
 
 The game creates a random set of 11 different food choices everyday aswell as the *nutrient of the day*. The user is given two foods to choose from and must pick the food that they believe has the highest nutritional value. 
@@ -13,15 +12,13 @@ The game creates a random set of 11 different food choices everyday aswell as th
 
 #### Nutrient of the day
 
-###### Monday: <img src="app/static/images/fat.png" height=20 width=20 style="margin-right:5px">**Fat**
-
-<img src="app/static/images/fibre.png" height=20 width=20 style="margin-right:5px">**Tuesday:** Fibre
-
-###### Wednesday: **Iron**
-###### Thursday: **Protein**
-###### Friday: **Sodium**
-###### Saturday: **Sugar**
-###### Sunday: **Calcium**
+<img src="app/static/images/fat.png" height=20 width=20>&nbsp;**Monday:** Fat
+<img src="app/static/images/fibre.png" height=20 width=20>&nbsp;**Tuesday:** Fibre
+<img src="app/static/images/iron.png" height=20 width=20>&nbsp;**Wednesday:** Iron
+<img src="app/static/images/protein.png" height=20 width=20>&nbsp;**Thursday:** Protein
+<img src="app/static/images/sodium.png" height=20 width=20>&nbsp;**Friday:** Sodium
+<img src="app/static/images/sugar.png" height=20 width=20>&nbsp;**Saturday:** Sugar
+<img src="app/static/images/calcium.png" height=20 width=20>&nbsp;**Sunday:** Calcium
 
 
 ## Architecture
