@@ -22,7 +22,22 @@ The game creates a random set of 11 different food choices everyday aswell as th
 
 
 ## Architecture
-todo
+Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication between the backend and frontend. It uses several extensions that enhance the functionality
+
+######Backend
+- **Flask-sqlalchemy** provides communication with the SQLite database
+- **Flask-login** manages user login and registration
+- **Flask-migrate** handles database schema changes by performing migrations 
+- **Unittest** used for automated testing of models, API endpoints
+- **Selenium** automatically tests the client side workflow
+
+######Frontend
+- **HTML** structures the website
+- **Javascript** handles DOM manipulation
+- **Bootstrap** provides the base styling to the website
+- **CSS** used to create custom styling 
+- **AJAX** used to make requests to the backend
+
 
 ## Setup Project
 
@@ -87,7 +102,7 @@ TODO: description
 TODO
 ```
 ###### Selenium Tests
-The test opens up FireFox and simulates navigation that a user may take while using our website. Please made sure the server is running as we are performing client side testing
+The test opens up FireFox and simulates navigation that a user may take while using our website. Please made sure the server is running as we are performing client side testing  
 ***Note**: This test will run for 30 seconds*
 ```
 python3 -m unittest app/tests/selenium.py
