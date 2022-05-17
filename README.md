@@ -24,14 +24,14 @@ The game creates a random set of 11 different food choices everyday aswell as th
 ## Architecture
 Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication between the backend and frontend. It uses several extensions that enhance the functionality
 
-######Backend
+###### Backend
 - **Flask-sqlalchemy** provides communication with the SQLite database
 - **Flask-login** manages user login and registration
 - **Flask-migrate** handles database schema changes by performing migrations 
 - **Unittest** used for automated testing of models, API endpoints
 - **Selenium** automatically tests the client side workflow
 
-######Frontend
+###### Frontend
 - **HTML** structures the website
 - **Javascript** handles DOM manipulation
 - **Bootstrap** provides the base styling to the website
