@@ -11,14 +11,17 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 The game creates a random set of 11 different food choices everyday aswell as the *nutrient of the day*. The user is given two foods to choose from and must pick the food that they believe has the highest nutritional value. 
 <img align="right" src="app/static/images/logo.png">
 
-####Nutrient of the day
-######Monday: <img src="app/static/images/fat.png" height=20 width=20 style="margin-right:5px">**Fat**
+#### Nutrient of the day
+
+###### Monday: <img src="app/static/images/fat.png" height=20 width=20 style="margin-right:5px">**Fat**
+
 <img src="app/static/images/fibre.png" height=20 width=20 style="margin-right:5px">**Tuesday:** Fibre
-######Wednesday: **Iron**
-######Thursday: **Protein**
-######Friday: **Sodium**
-######Saturday: **Sugar**
-######Sunday: **Calcium**
+
+###### Wednesday: **Iron**
+###### Thursday: **Protein**
+###### Friday: **Sodium**
+###### Saturday: **Sugar**
+###### Sunday: **Calcium**
 
 
 ## Architecture
