@@ -1,6 +1,5 @@
 import unittest, time
 from app import app, db
-from app.models import User
 from config import TestConfig
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
@@ -33,15 +32,16 @@ class SeleniumTest(unittest.TestCase):
   # Creates a new user by opening the registration modal and entering user details in the input.
   def simulate_register_user(self):
     # Click the register button
-    self.driver.find_element_by_xpath("/html/body/nav/div/div/form/button[2]").click()
+    self.driver.find_element(By.ID, "register-button").click()
     # Insert text into the input fields
-    self.driver.find_element_by_id('register-username-input').send_keys('Chantelle')
+    self.driver.find_element(By.ID, 'register-username-input').send_keys('Chantelle')
     time.sleep(1)
     self.driver.find_element(By.ID, 'register-email-input').send_keys('chaniscool@gmail.com')
     time.sleep(1)
     self.driver.find_element(By.ID, 'register-password-input').send_keys('coolpassword')
     time.sleep(1)
-    self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/form/div[4]/button').click()
+    # Register submit button
+    self.driver.find_element(By.ID, 'register-submit').click()
     time.sleep(1)
     # Check if the registration was successful by checking if the message modal is displayed
     message_modal = self.driver.find_element(By.ID, 'messageModal')
@@ -59,7 +59,7 @@ class SeleniumTest(unittest.TestCase):
   # Logs a user in by opening the login modal and entering user details in the input.
   def simulate_log_in_user(self):
     # Click the login modal button (on navbar)
-    login_modal_button = self.driver.find_element(By.XPATH, '/html/body/nav/div/div/form/button[1]')
+    login_modal_button = self.driver.find_element(By.ID, 'login-button')
     login_modal_button.click()
     # Fill out user input fields
     email_input = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/form/div[1]/div[2]/input')
@@ -68,7 +68,7 @@ class SeleniumTest(unittest.TestCase):
     password_input.send_keys('coolpassword')
     time.sleep(1)
     # Click the login button thats on the modal
-    login_button = self.driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/form/div[3]/button')
+    login_button = self.driver.find_element(By.ID, 'login-submit')
     login_button.click()
     time.sleep(1)
     # See if we are logged in by checking for a logout button
@@ -98,10 +98,17 @@ class SeleniumTest(unittest.TestCase):
 
   def simulate_analysis(self):
     # Click the analysis link (navbar)
-    self.driver.find_element(By.XPATH, '/html/body/nav/div/div/ul/li[2]/a').click()
+    self.driver.find_element(By.ID, 'analysis-link').click()
     # Check if there is a table row
     has_result = self.driver.find_element(By.XPATH, '/html/body/div[5]/table/tr[2]').is_displayed()
     self.assertEqual(has_result, True)
+
+  def simulate_logout(self):
+    self.driver.find_element(By.ID, 'logout-button').click()
+    time.sleep(1)
+    is_logged_out = self.driver.find_element(By.ID,'login-button').is_displayed()
+    self.assertEqual(is_logged_out, True)
+
 
  # Simulates the path the user might user to navigate the page
   # The test involves:
@@ -109,8 +116,9 @@ class SeleniumTest(unittest.TestCase):
   #   2. Opening the login modal and logging the user in using the newly created account
   #   3. Navigating to the game page and playing the game
   #   4. Navigating to analysis page
+  #   5. Logout the user
   # The test will pass if all tasks successfully execute. 
-  def test_complete_user_flow(self):
+  def test_complete_user_workflow(self):
     self.simulate_register_user()
     time.sleep(1)
     self.simulate_log_in_user()
@@ -118,6 +126,8 @@ class SeleniumTest(unittest.TestCase):
     self.simulate_game()
     time.sleep(1)
     self.simulate_analysis()
+    time.sleep(1)
+    self.simulate_logout()
     time.sleep(1)
 
 if __name__ == '__main__':
