@@ -9,11 +9,11 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 **Nutri Hi-Lo** is an educational game that gives the user knowledge on nutritional information on everyday foods. 
 
 The game creates a random set of 11 different food choices everyday aswell as the *nutrient of the day*. The user is given two foods to choose from and must pick the food that they believe has the highest nutritional value. 
-<img style="float: right;" src="app/static/images/logo.png">
+<img align="right" src="app/static/images/logo.png">
 
 ####Nutrient of the day
-######Monday: **Fat**
-######Tuesday: **Fibre**
+######Monday: <img src="app/static/images/fat.png" height=20 width=20 style="margin-right:5px">**Fat**
+<img src="app/static/images/fibre.png" height=20 width=20 style="margin-right:5px">**Tuesday:** Fibre
 ######Wednesday: **Iron**
 ######Thursday: **Protein**
 ######Friday: **Sodium**
