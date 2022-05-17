@@ -85,10 +85,11 @@ a {
 .text-secondary {
   color: #F9D132 !important;
 }
-.btn-check:focus+.btn-primary, .btn-primary:focus,
-.btn-check:focus+.btn-outline-secondary, .btn-outline-secondary:focus {
+
+.btn:focus, .btn:active {
   box-shadow: none;
   border-color: none;
+  color: #222222;
 }
 
 /* Modal Styles */
