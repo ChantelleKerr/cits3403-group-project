@@ -147,14 +147,14 @@ function makeSelection(event) {
       score++;
       scoreString += "1";
       circleComparison.innerHTML = "✔";
-      circleComparison.style.backgroundColor = "green";
+      circleComparison.style.backgroundColor = "#417536";
       roundsWon.push(true);
       updateCircleComparison();
     } else {
       scoreString += "0";
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
-      circleComparison.style.backgroundColor = "red";
+      circleComparison.style.backgroundColor = "#962f2f";
       roundsWon.push(false);
       updateCircleComparison();
     }
@@ -344,8 +344,8 @@ function resetAfterAnimation() {
 /**
  * Write the score the user just got to the results database
  */
-function storeScore(){
-  let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
+function storeScore() {
+  let dateString = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + dt.getDay();
 
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "api/results/write", true);
@@ -353,7 +353,7 @@ function storeScore(){
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
 
   xhttp.onload = () => {
-    if (xhttp.status != 201){
+    if (xhttp.status != 201) {
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
       document.getElementById("message").innerHTML = "Your score could not be saved due to an unexpected error.";
