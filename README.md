@@ -12,13 +12,13 @@ The game creates a random set of 11 different food choices everyday aswell as th
 
 #### Nutrient of the day
 
-<img src="app/static/images/fat.png" height=20 width=20>&nbsp;**Monday:** Fat
-<img src="app/static/images/fibre.png" height=20 width=20>&nbsp;**Tuesday:** Fibre
-<img src="app/static/images/iron.png" height=20 width=20>&nbsp;**Wednesday:** Iron
-<img src="app/static/images/protein.png" height=20 width=20>&nbsp;**Thursday:** Protein
-<img src="app/static/images/sodium.png" height=20 width=20>&nbsp;**Friday:** Sodium
-<img src="app/static/images/sugar.png" height=20 width=20>&nbsp;**Saturday:** Sugar
-<img src="app/static/images/calcium.png" height=20 width=20>&nbsp;**Sunday:** Calcium
+<img src="app/static/images/fat.png" height=20 width=20>&nbsp;**Monday:** Fat  
+<img src="app/static/images/fibre.png" height=20 width=20>&nbsp;**Tuesday:** Fibre  
+<img src="app/static/images/iron.png" height=20 width=20>&nbsp;**Wednesday:** Iron  
+<img src="app/static/images/protein.png" height=20 width=20>&nbsp;**Thursday:** Protein  
+<img src="app/static/images/sodium.png" height=20 width=20>&nbsp;**Friday:** Sodium  
+<img src="app/static/images/sugar.png" height=20 width=20>&nbsp;**Saturday:** Sugar  
+<img src="app/static/images/calcium.png" height=20 width=20>&nbsp;**Sunday:** Calcium  
 
 
 ## Architecture
