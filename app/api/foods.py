@@ -6,11 +6,11 @@ import json, random, time
 
 
 # gets the nutrient of the day
-@bp.route('/foods/notd', methods=['GET'])
-def get_daily_nutrient():
-  units = ["mg", "g", "g", "mg", "g", "mg", "g"]
-  nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"]
-  return jsonify({"notd": nutrients[datetime.now(timezone.utc).weekday()], "unit": units[datetime.now(timezone.utc).weekday()]})
+@bp.route('/foods/notd/<int:day>', methods=['GET'])
+def get_daily_nutrient(day):
+  return jsonify(generate_daily_nutrient(day))
+  
+  
 
 # updates the daily foods if the day has changed
 @bp.route('/foods/', methods=['GET'])
@@ -69,6 +69,14 @@ def update_file(today):
   open("app/api/today.json", "w").close()  # erase file
   with open("app/api/today.json", "w") as ftoday:
     ftoday.write(json.dumps(today, indent=2))
+  
+def generate_daily_nutrient(day):
+  units = ["mg", "g", "g", "mg", "g", "mg", "g"]
+  nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"]
+  if day == 0:
+    return {"notd": nutrients[datetime.now(timezone.utc).weekday()], "unit": units[datetime.now(timezone.utc).weekday()]}
+  else:
+    return nutrients
 
 # Generates 11 random foods
 def generate_foods(seed, allNutrients=False):
@@ -76,7 +84,7 @@ def generate_foods(seed, allNutrients=False):
   with open("app/api/data.json") as fdata:
     data = json.load(fdata)  # data is dictionary containing every food
   
-  nutrient = get_daily_nutrient();
+  nutrient = generate_daily_nutrient(0)["notd"]
   foods = []
 
   # Function to add a food to the foods array
@@ -111,7 +119,7 @@ def generate_foods(seed, allNutrients=False):
     diff = abs(data[name][nutrient] - foods[-1][nutrient])/(data[name][nutrient] + foods[-1][nutrient])
 
     # prioritise foods that have nutrient values with at least a certain amount of difference
-    if len(pool) < 11 - len(foods) or cycleStart == name or diff > 0.2: # threshold is 0.2
+    if len(pool) < 11 - len(foods) or cycleStart == name or (diff > 0.2 and data[name][nutrient] > 0): # threshold is 0.2
       cycleStart = 0
       addFood(name)
 

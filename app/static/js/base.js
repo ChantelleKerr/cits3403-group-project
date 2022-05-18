@@ -4,16 +4,19 @@ let nutrientOfTheDay;
 let nutrientOfTheDayUnits;
 
 // Get the NOTD
-const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "api/foods/notd", true);
-xhttp.send()
-xhttp.onload = () => {
-  if (xhttp.status == 200) {
-    response = JSON.parse(xhttp.response);
-    nutrientOfTheDay = response["notd"];
-    nutrientOfTheDayUnits = response["unit"];
+function requestNutrientOfTheDay() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods/notd/0", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      response = JSON.parse(xhttp.response);
+      nutrientOfTheDay = response["notd"];
+      nutrientOfTheDayUnits = response["unit"];
+    }
   }
 }
+requestNutrientOfTheDay();
 
 
 /**

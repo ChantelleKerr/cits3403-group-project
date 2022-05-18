@@ -1,5 +1,18 @@
+let nutrients;
 
 window.onload = function () {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods/notd/1", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      nutrients = JSON.parse(xhttp.response);
+      generateTable();
+    }
+  }
+}
+
+function generateTable() {
   const resultsTable = document.getElementById("results-table");
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/results/user", true);
@@ -14,10 +27,10 @@ window.onload = function () {
         document.body.appendChild(new_text);
         new_text.innerHTML = "You do not have any results yet";
         new_text.className = "center";
-      }else{
+      } else{
         addTableRow(["Game number","Date","Nutrient","Score","Rounds","Seed"],"th");
         for (var i = 0; i < res.length; i++){
-          //Calculate some values to be added to a row of the table
+          // Calculate some values to be added to a row of the table
           let score = (res[i].score.match(/1/g) || []).length;
           let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
           let date = res[i].date.split(" ")[0];

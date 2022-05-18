@@ -1,6 +1,6 @@
-let foodChoices = 0;
+let foodChoices;
 let roundsWon = [];
-
+let dt = new Date();
 let currentRound = 1;
 let score = 0;
 let scoreString = "";
@@ -40,6 +40,7 @@ function requestFoodChoices() {
     if (xhttp.status == 200) {
       foodChoices = JSON.parse(xhttp.response);
       generateFoodChoices();
+      
     }
   }
 }
