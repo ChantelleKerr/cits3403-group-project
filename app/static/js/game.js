@@ -271,7 +271,7 @@ function showAnswer(timestamp) {
 * @param timestamp - the time at which this function's execution begins
 */
 function slide(timestamp) {
-  const slideTime = 500; //number of milliseconds for animation to take
+  const slideTime = 800; //number of milliseconds for animation to take
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
