@@ -1,6 +1,5 @@
-let foodChoices = 0;
 let roundsWon = [];
-
+let dt = new Date();
 let currentRound = 1;
 let score = 0;
 let scoreString = "";
@@ -10,8 +9,17 @@ let previousTimeStamp;
 /**
  * Called when the page loads, sets up the game 
  */
+
+requestNutrientOfTheDay();
+nutrientOfTheDayRequested = function () {
+  generateNutrientOfTheDay();
+}
+
 requestFoodChoices();
-generateNutrientOfTheDay();
+foodChoicesRequested = function() {
+  generateFoodChoices();
+}
+
 addEventListeners();
 
 /**
@@ -28,18 +36,6 @@ function generateNutrientOfTheDay() {
   document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
 }
 
-function requestFoodChoices() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "api/foods", true);
-  xhttp.send()
-  xhttp.onload = () => {
-    if (xhttp.status == 200) {
-      foodChoices = JSON.parse(xhttp.response);
-      generateFoodChoices();
-    }
-  }
-}
-
 /**
  * Generates a new set of food choices
  */
@@ -52,7 +48,7 @@ function generateFoodChoices() {
       document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i]["name"];
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
 }
 
 /**
