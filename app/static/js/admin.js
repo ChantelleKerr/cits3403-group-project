@@ -10,7 +10,12 @@ nutrientOfTheDayRequested = function () {
 }
 
 
-// Allows the admin to change the daily food choices
+/** 
+ * Allows the admin to change the daily food choices
+ * by calling the foods API. Passing 0 in endpoint url means that a random seed will be generated
+ * After it is successfully called the page will refresh and loads the new data
+ */
+
 function generateNewDailyFoods() {
   const xhttp = new XMLHttpRequest();
   // Sending "0" as the seed is only used for admins
@@ -36,7 +41,7 @@ function createFoodList(foodChoices) {
     // Create the image
     let img = document.createElement("img");
     img.src = food.url;
-    img.className = "food-item-img"
+    img.className = "food-item-img";
 
     // Create the title
     let foodTitle = document.createElement("div");
@@ -50,7 +55,7 @@ function createFoodList(foodChoices) {
     for (var details in food) {
       if (details != "url" && details != "name") {
         //var keyValue = document.createElement("span");
-        itemDetails.innerHTML = food[details] + " " + nutrientOfTheDayUnits;
+        itemDetails.innerHTML = details + ": " + food[details];
         //itemDetails.appendChild(keyValue);
       }
     }
