@@ -1,4 +1,3 @@
-const rounds = 10;
 const requestInterval = 250; // interval to use for checking if requests have completed
 let nutrientOfTheDay;
 let nutrientOfTheDayUnits;

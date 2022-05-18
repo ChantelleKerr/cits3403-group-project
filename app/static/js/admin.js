@@ -6,8 +6,9 @@ foodChoicesRequested = function () {
 }
 requestNutrientOfTheDay();
 nutrientOfTheDayRequested = function () {
-  document.getElementById("current-nutrient").textContent = nutrientOfTheDay;
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
 }
+
 
 
 /** 

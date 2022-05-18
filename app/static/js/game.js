@@ -1,3 +1,4 @@
+const rounds = 10;
 let roundsWon = [];
 let dt = new Date();
 let currentRound = 1;
@@ -16,7 +17,7 @@ nutrientOfTheDayRequested = function () {
 }
 
 requestFoodChoices();
-foodChoicesRequested = function() {
+foodChoicesRequested = function () {
   generateFoodChoices();
 }
 
@@ -72,8 +73,6 @@ function addEventListeners() {
     updateCircleComparison(event);
   }, false);
 }
-
-
 
 /**
  * Updates the symbol between food choices based on where cursor is located as well as rotating it when 
@@ -188,15 +187,21 @@ function animateFoods() {
   newFood.className = "game-img";
   // copy the second food item
   newFood.innerHTML = foodDivs[1].innerHTML;
+  console.log(currentRound);
   if (currentRound <= rounds) {
     // but change the text and the image to be of the next food
     newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound]["name"];
     newFood.style.backgroundImage = "url(" + foodChoices[currentRound]["url"] + ")";
     // Show the nutrient of the second food
-    /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
+    let nutr = document.createElement("h4");
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits
     foodDivs[1].firstElementChild.appendChild(nutr);
-    nutr.innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound+1][nutrientOfTheDay] + " " + units[dt.getDay()]*/
+
   } else { //Show the score
+    // Show the nutrient of the second food
+    let nutr = document.createElement("h4");
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits
+    foodDivs[1].firstElementChild.appendChild(nutr);
     makeGameOverScreen(newFood);
   }
   newFood.style.display = "none";
@@ -238,7 +243,7 @@ function openShareModal() {
 
 // TODO: Add javadoc comments for showAnswer
 function showAnswer(timestamp) {
-  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
+  const pauseTime = 800; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
 
   if (start === -1) {
@@ -266,8 +271,7 @@ function showAnswer(timestamp) {
 * @param timestamp - the time at which this function's execution begins
 */
 function slide(timestamp) {
-  const slideTime = 600; //number of milliseconds for animation to take
-  const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
+  const slideTime = 800; //number of milliseconds for animation to take
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
@@ -280,11 +284,12 @@ function slide(timestamp) {
   }
   if (previousTimeStamp !== timestamp) {
     // Math.min() is used here to make sure the div stops at exactly the amount we want
-    let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
+    let x = elapsed / slideTime;
+    let shift = 1 / (1 + Math.pow(Math.E, -15 * (x - 0.5))) * slideSize;
     for (let i = 0; i < foodDivs.length; i++) {
       foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
     }
-    //Need to keep calculating these in case the window size is changed
+    // Need to keep calculating these in case the window size is changed
 
     if (slideDirection == "X") {
       newFood.style.left = 2 * slideSize + "px";
@@ -319,6 +324,7 @@ function resetAfterAnimation() {
   let foodDivs = document.getElementsByClassName("game-img");
   let circleComparison = document.getElementById("circle-comparison")
   generateFoodChoices();
+  foodDivs[1].firstElementChild.removeChild(foodDivs[1].firstElementChild.lastChild);
   for (let i = 0; i < foodDivs.length; i++) {
     foodDivs[i].style.transform = "";
   }
