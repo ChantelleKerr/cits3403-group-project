@@ -1,12 +1,15 @@
 let nutrients;
+let units;
 
 window.onload = function () {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods/notd/1", true);
-  xhttp.send()
+  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
-      nutrients = JSON.parse(xhttp.response);
+      response = JSON.parse(xhttp.response);
+      nutrients = response["nutrients"];
+      units = response["units"];
       generateTable();
     }
   }
@@ -21,7 +24,7 @@ function generateTable() {
   xhttp.onload = () => { 
     if (xhttp.status == 200) {
       var res = JSON.parse(xhttp.response);
-      if (res.length == 0){
+      if (res.length == 0) {
         //The user hasn't got any results yet
         let new_text = document.createElement("h3");
         document.body.appendChild(new_text);
@@ -92,7 +95,7 @@ function showPuzzle(i,nutrientNum){
         list.appendChild(listItem);
       }
       bootstrap.Modal.getOrCreateInstance(puzzleModal).show();
-    }else{
+    } else{
       puzzleModalBody.innerHTML = "<p>An unexpected error occured</p>"
     }
   }

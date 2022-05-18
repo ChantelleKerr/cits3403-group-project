@@ -76,7 +76,7 @@ def generate_daily_nutrient(day):
   if day == 0:
     return {"notd": nutrients[datetime.now(timezone.utc).weekday()], "unit": units[datetime.now(timezone.utc).weekday()]}
   else:
-    return nutrients
+    return {"nutrients": nutrients, "units": units}
 
 # Generates 11 random foods
 def generate_foods(seed, allNutrients=False):
