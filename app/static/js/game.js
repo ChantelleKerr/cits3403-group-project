@@ -238,7 +238,7 @@ function openShareModal() {
 
 // TODO: Add javadoc comments for showAnswer
 function showAnswer(timestamp) {
-  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
+  const pauseTime = 800; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
 
   if (start === -1) {
@@ -266,8 +266,7 @@ function showAnswer(timestamp) {
 * @param timestamp - the time at which this function's execution begins
 */
 function slide(timestamp) {
-  const slideTime = 600; //number of milliseconds for animation to take
-  const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
+  const slideTime = 500; //number of milliseconds for animation to take
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
