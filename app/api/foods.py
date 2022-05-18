@@ -8,8 +8,9 @@ import json, random, time
 # gets the nutrient of the day
 @bp.route('/foods/notd', methods=['GET'])
 def get_daily_nutrient():
+  units = ["mg", "g", "g", "mg", "g", "mg", "g"]
   nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"]
-  return nutrients[datetime.now(timezone.utc).weekday()]
+  return jsonify({"notd": nutrients[datetime.now(timezone.utc).weekday()], "unit": units[datetime.now(timezone.utc).weekday()]})
 
 # updates the daily foods if the day has changed
 @bp.route('/foods/', methods=['GET'])

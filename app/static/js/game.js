@@ -18,14 +18,18 @@ addEventListeners();
 * Generates a new batch of icons and changes the nutrient text each day.
 */
 function generateNutrientOfTheDay() {
-  let roundDiv = document.getElementById('round-icons');
-  for (let i = 0; i < rounds; i++) {
-    let img = document.createElement('img');
-    img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
-    img.setAttribute('alt', 'roundIcon')
-    roundDiv.appendChild(img);
+  if (typeof nutrientOfTheDay !== "undefined" && typeof nutrientOfTheDayUnits !== "undefined") {
+    let roundDiv = document.getElementById('round-icons');
+    for (let i = 0; i < rounds; i++) {
+      let img = document.createElement('img');
+      img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
+      img.setAttribute('alt', 'roundIcon')
+      roundDiv.appendChild(img);
+    }
+    document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
+  } else {
+    setTimeout(generateNutrientOfTheDay, requestInterval);
   }
-  document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
 }
 
 function requestFoodChoices() {
@@ -52,7 +56,7 @@ function generateFoodChoices() {
       document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i]["name"];
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
 }
 
 /**

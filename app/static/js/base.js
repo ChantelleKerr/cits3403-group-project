@@ -1,8 +1,20 @@
 const rounds = 10;
-const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-let dt = new Date();
-let nutrientOfTheDay = nutrients[dt.getDay()];
+const requestInterval = 250; // interval to use for checking if requests have completed
+let nutrientOfTheDay;
+let nutrientOfTheDayUnits;
+
+// Get the NOTD
+const xhttp = new XMLHttpRequest();
+xhttp.open("GET", "api/foods/notd", true);
+xhttp.send()
+xhttp.onload = () => {
+  if (xhttp.status == 200) {
+    response = JSON.parse(xhttp.response);
+    nutrientOfTheDay = response["notd"];
+    nutrientOfTheDayUnits = response["unit"];
+  }
+}
+
 
 /**
  * Checks if the window is considered small by bootstrap
