@@ -1,12 +1,12 @@
 
 // Functions that are called when their respective variables are requested
 requestFoodChoices();
-foodChoicesRequested = function() {
+foodChoicesRequested = function () {
   createFoodList(foodChoices);
 }
 requestNutrientOfTheDay();
-nutrientOfTheDayRequested = function() {
-  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
+nutrientOfTheDayRequested = function () {
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay;
 }
 
 
@@ -30,33 +30,33 @@ function createFoodList(foodChoices) {
   foodChoices.forEach(function (food) {
 
     // Food item container
-    let foodItem = document.createElement('div');
-    foodItem.className = 'food-item-container';
+    let foodItem = document.createElement("div");
+    foodItem.className = "food-item-container";
 
     // Create the image
-    let img = document.createElement('img');
+    let img = document.createElement("img");
     img.src = food.url;
-    img.className = 'food-item-img'
+    img.className = "food-item-img"
 
     // Create the title
     let foodTitle = document.createElement("div");
     foodTitle.innerHTML = food.name;
-    foodTitle.className = 'food-item-title center';
+    foodTitle.className = "food-item-title center";
 
-    var itemDetails = document.createElement('div');
-    itemDetails.className = 'food-item-details center'
+    var itemDetails = document.createElement("div");
+    itemDetails.className = "food-item-details center"
 
-    // Add all food nutriential details
+    // Loop through food object to get the nutriention value
     for (var details in food) {
-      if (details != 'url' && details != 'name') {
-        var keyValue = document.createElement("span");
-        keyValue.innerHTML = details + ": " + food[details];
-        itemDetails.appendChild(keyValue);
+      if (details != "url" && details != "name") {
+        //var keyValue = document.createElement("span");
+        itemDetails.innerHTML = food[details] + " " + nutrientOfTheDayUnits;
+        //itemDetails.appendChild(keyValue);
       }
     }
-    foodItem.appendChild(img)
-    foodItem.appendChild(foodTitle)
-    foodItem.appendChild(itemDetails)
-    foodList.appendChild(foodItem)
+    foodItem.appendChild(img);
+    foodItem.appendChild(foodTitle);
+    foodItem.appendChild(itemDetails);
+    foodList.appendChild(foodItem);
   })
 }
