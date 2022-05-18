@@ -1,4 +1,3 @@
-let foodChoices;
 let roundsWon = [];
 let dt = new Date();
 let currentRound = 1;
@@ -10,39 +9,31 @@ let previousTimeStamp;
 /**
  * Called when the page loads, sets up the game 
  */
+
+requestNutrientOfTheDay();
+nutrientOfTheDayRequested = function () {
+  generateNutrientOfTheDay();
+}
+
 requestFoodChoices();
-generateNutrientOfTheDay();
+foodChoicesRequested = function() {
+  generateFoodChoices();
+}
+
 addEventListeners();
 
 /**
 * Generates a new batch of icons and changes the nutrient text each day.
 */
 function generateNutrientOfTheDay() {
-  if (typeof nutrientOfTheDay !== "undefined" && typeof nutrientOfTheDayUnits !== "undefined") {
-    let roundDiv = document.getElementById('round-icons');
-    for (let i = 0; i < rounds; i++) {
-      let img = document.createElement('img');
-      img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
-      img.setAttribute('alt', 'roundIcon')
-      roundDiv.appendChild(img);
-    }
-    document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
-  } else {
-    setTimeout(generateNutrientOfTheDay, requestInterval);
+  let roundDiv = document.getElementById('round-icons');
+  for (let i = 0; i < rounds; i++) {
+    let img = document.createElement('img');
+    img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
+    img.setAttribute('alt', 'roundIcon')
+    roundDiv.appendChild(img);
   }
-}
-
-function requestFoodChoices() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "api/foods", true);
-  xhttp.send()
-  xhttp.onload = () => {
-    if (xhttp.status == 200) {
-      foodChoices = JSON.parse(xhttp.response);
-      generateFoodChoices();
-      
-    }
-  }
+  document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
 }
 
 /**
