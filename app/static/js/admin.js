@@ -1,18 +1,14 @@
-getDailyFoodChoices();
 
-// Call the API to get the current list of food choices
-function getDailyFoodChoices() {
-  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "api/foods", true);
-  xhttp.send()
-  xhttp.onload = () => {
-    if (xhttp.status == 200) {
-      foodChoices = JSON.parse(xhttp.response);
-      createFoodList(foodChoices);
-    }
-  }
+// Functions that are called when their respective variables are requested
+requestFoodChoices();
+foodChoicesRequested = function() {
+  createFoodList(foodChoices);
 }
+requestNutrientOfTheDay();
+nutrientOfTheDayRequested = function() {
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
+}
+
 
 // Allows the admin to change the daily food choices
 function generateNewDailyFoods() {
