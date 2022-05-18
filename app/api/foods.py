@@ -25,7 +25,7 @@ def get_daily_food():
     doUpdate = True
     today["updated"] = seed
     today["seed"] = seed
-    today["foods"] = generate_foods()
+    today["foods"] = generate_foods(seed)
 
   if doUpdate:
     update_file(today)
