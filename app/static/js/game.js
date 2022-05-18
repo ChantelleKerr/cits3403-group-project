@@ -284,7 +284,8 @@ function slide(timestamp) {
   }
   if (previousTimeStamp !== timestamp) {
     // Math.min() is used here to make sure the div stops at exactly the amount we want
-    let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
+    let x = elapsed/slideTime;
+    let shift = 1/(1+Math.pow(Math.E, -10*(x-0.5));
     for (let i = 0; i < foodDivs.length; i++) {
       foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
     }
