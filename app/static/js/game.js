@@ -41,8 +41,6 @@ function generateNutrientOfTheDay() {
  * Generates a new set of food choices
  */
 function generateFoodChoices() {
-  // TODO: Replace with calling api for food choices or referring to a variable containing the result of the api call
-
   for (let i = 0; i < document.getElementsByClassName("game-img").length; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
       document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i]["url"] + ")";
@@ -187,7 +185,6 @@ function animateFoods() {
   newFood.className = "game-img";
   // copy the second food item
   newFood.innerHTML = foodDivs[1].innerHTML;
-  console.log(currentRound);
   if (currentRound <= rounds) {
     // but change the text and the image to be of the next food
     newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound]["name"];
@@ -338,7 +335,6 @@ function resetAfterAnimation() {
     makeGameOverScreen(foodDivs[1]);
     circleComparison.style.display = "none";
     start = 0;
-    //TODO: this is the end of the game, so do some more stuff here
     storeScore();
   }
 }
