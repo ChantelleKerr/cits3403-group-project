@@ -1,8 +1,8 @@
 const rounds = 10;
-const units = ["mg", "g", "g", "mg", "g", "mg", "g"];
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-let dt = new Date();
-let nutrientOfTheDay = nutrients[dt.getDay()];
+const requestInterval = 250; // interval to use for checking if requests have completed
+let nutrientOfTheDay;
+let nutrientOfTheDayUnits;
+let foodChoices;
 
 const routeNavBarNames = {"/":"Home","/game":"Game","/analysis": "Analysis"};
 
@@ -38,3 +38,37 @@ fixNavBar();
 window.addEventListener('resize', function (event) {
   updateCSSVariables();
 }, false);
+
+// This function is overwritten by whatever should happen after the NOTD has been received
+let nutrientOfTheDayRequested = function() {} 
+// This is called by any page which needs the NOTD
+function requestNutrientOfTheDay() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods/notd/0", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      response = JSON.parse(xhttp.response);
+      nutrientOfTheDay = response["notd"];
+      nutrientOfTheDayUnits = response["unit"];
+      nutrientOfTheDayRequested();
+    }
+  }
+}
+
+// This function is overwritten by whatever should happen after the foodChoices have been received
+let foodChoicesRequested = function () { }
+// This is called by any page which needs the foodChoices
+function requestFoodChoices() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "api/foods", true);
+  xhttp.send()
+  xhttp.onload = () => {
+    if (xhttp.status == 200) {
+      foodChoices = JSON.parse(xhttp.response);
+      foodChoicesRequested();
+    }
+  }
+}
+
+
