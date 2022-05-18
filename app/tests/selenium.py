@@ -2,8 +2,8 @@ import unittest, time
 from app import app, db
 from config import TestConfig
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import random
 
@@ -12,8 +12,7 @@ import random
 class SeleniumTest(unittest.TestCase):
   driver = None
   def setUp(self):
-    service = Service(executable_path=GeckoDriverManager().install())
-    self.driver = webdriver.Firefox(service=service)
+    self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     app.config.from_object(TestConfig)
     self.app = app.test_client()
 
