@@ -1,6 +1,6 @@
 * {
-  font-family: georgia;
   color: #a1a1a1;
+  font-family: georgia;
 }
 
 body {
@@ -9,24 +9,24 @@ body {
 }
 
 .center {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   text-align: center !important;
 }
 
 input[type=text], input[type=password] {
-  width: 100%;
+  background-color: #222222;
+  border-color:  #191919;
+  border-width: 0 0 2px;
   height: 40px;
   outline: 0;
-  border-width: 0 0 2px;
-  border-color:  #191919;
-  background-color: #222222;
+  width: 100%;
 }
 
 a {
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 #navbar {
@@ -105,9 +105,9 @@ a {
 }
 
 .btn:focus, .btn:active {
-  box-shadow: none;
-  border-color: none;
   color: #222222;
+  border-color: none;
+  box-shadow: none;
 }
 
 /* Modal Styles */
