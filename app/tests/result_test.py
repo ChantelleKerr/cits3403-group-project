@@ -9,7 +9,6 @@ class ResultModelTest(unittest.TestCase):
   # Set up the dummy data 
   def setUp(self):
     app.config.from_object(TestConfig)
-    app.config['LOGIN_DISABLED'] = True
     self.app = app.test_client()
     db.create_all()
     result1 = Result(id=100, user_id=1000, date='12/5/2022 4', score='0110101100', seed=20220512)
@@ -37,6 +36,15 @@ class ResultModelTest(unittest.TestCase):
     self.assertEqual(response_success.status_code, 200)
     self.assertEqual(json.loads(response_success.data), {'id' : 200, 'user_id' : 1000, 'date' : '10/5/2022 2', 'score' : '1111111110', 'seed' : 20220510})
     self.assertEqual(response_fail.status_code, 404)
+
+  # Test the get_user_results API endpoint
+  def test_get_user_results(self):
+    response_success = self.app.get('/api/results/user/2000')
+    response_fail = self.app.get('/api/results/user/2001')
+    self.assertEqual(json.loads(response_success.data),[{"date":"12/5/2022 4","id":101,"score":"1000111101","seed":3242342,"user_id":2000}])
+    self.assertEqual(response_success.status_code,200)
+    self.assertEqual(json.loads(response_fail.data),[])
+    self.assertEqual(response_fail.status_code,200)
 
 if __name__ == '__main__':
   unittest.main()

@@ -12,10 +12,11 @@ import urllib.parse
 def get_result(id):
   return jsonify(Result.query.get_or_404(id).to_dict())
 
-@bp.route('/results/user', methods=['GET'])
-@login_required
-def get_user_results():
-  u_results = Result.query.filter_by(user_id=current_user.id).all()
+@bp.route('/results/user/<int:id>', methods=['GET'])
+def get_user_results(id):
+  if id == 0:
+    id = current_user.id
+  u_results = Result.query.filter_by(user_id=id).all()
   result_list = []
   for result in u_results:
     result_list.append(result.to_dict())
