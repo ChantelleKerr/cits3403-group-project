@@ -44,7 +44,7 @@ class User(UserMixin, db.Model):
     if new_user and 'password' in data:
       self.set_password(data['password'])
 
-# TODO: add an attribute for the puzzle itself, to allow the user to view past puzzles?
+
 class Result(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
