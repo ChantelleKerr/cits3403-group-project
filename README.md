@@ -5,9 +5,9 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 
 ---
 
-**Nutri Hi-Lo** is an educational game that gives the user knowledge on nutritional information on everyday foods. 
+**Nutri Hi-Lo** is an educational game that promotes a greater understanding on nutritional information on everyday foods and challenges the users on their knowledge! 
 
-The game creates a random set of 11 different food choices everyday aswell as the *nutrient of the day*. The user is given two foods to choose from and must pick the food that they believe has the highest nutritional value. 
+The game creates a random set of 11 different food choices everyday with a new nutrient for each day of the week. The user is given two foods to choose from and selecting the food with more nutritional value will score a correct answer.
 <img align="right" src="app/static/images/logo.png">
 
 #### Nutrient of the day
@@ -30,6 +30,7 @@ Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication b
 - **Flask-migrate** handles database schema changes by performing migrations 
 - **Unittest** used for automated testing of models and API endpoints
 - **Selenium** automatically tests the client side workflow
+- **webdriver-manager** automatically installs the driver that selenium will use
 
 ###### Frontend
 - **HTML** structures the website
@@ -79,13 +80,22 @@ flask db upgrade
 
 In your terminal type the following commands!
 ```
-1. "python3" (you may have to use "python" instead)
-2. from app import db
-3. from app.models import User
-4. u = User(username="admin", email="admin@admin.com", is_admin=True)
-5. u.set_password("adminpassword")
-6. db.session.add(u)
-7. db.session.commit()
+python3 (you may have to use "python" instead)
+```
+import the database and user model
+```
+from app import db
+from app.models import User
+```
+Create an admin user
+```
+u = User(username="admin", email="admin@admin.com", is_admin=True)
+u.set_password("adminpassword")
+```
+Add the user to the database
+```
+db.session.add(u)
+db.session.commit()
 ```
 
 Now you should be able to login using your admin account!
@@ -108,8 +118,11 @@ TODO: description
 TODO
 ```
 ###### Selenium Tests
-The test opens up FireFox and simulates navigation that a user may take while using our website. Please made sure the server is running as we are performing client side testing  
-***Note**: This test will run for 30 seconds*
+The test opens up FireFox and simulates navigation that a user may take while using our website.  
+
+**Please made sure the server is running** as we are performing client side testing.  
+
+***Note**: This test will run for ~40 seconds*
 ```
 python3 -m unittest app/tests/selenium.py
 ```
