@@ -6,12 +6,14 @@
   position: absolute;
   overflow: hidden;
 }
+
 .game-img {
   display: flex;
   position: relative;
   background-size: cover;
   background-position: 50%;
 }
+
 .game-img::after{
   content: '';
   top: 0;
@@ -22,10 +24,12 @@
   opacity: 0.4;
   z-index: 1;
 }
+
 .game-img:hover::after {
   cursor: pointer;
   opacity: 0.2;
 }
+
 .img-info {
   position: absolute;
   flex-direction: column;
@@ -34,6 +38,7 @@
   width: 80%;
   height: 100%;
 }
+
 .img-info > h3 {
   text-align: center;
   font-size: 8vmin;
@@ -41,6 +46,7 @@
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
+
 .img-info > h4 {
   font-size: 4vmin;
   text-align: center;
@@ -48,6 +54,7 @@
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
+
 .circle {
   position: absolute;
   top: 50%;
@@ -73,18 +80,21 @@
   transform: translateX(-50%);
   white-space: nowrap;
 }
+
 #header > span:nth-child(1) {
   position: relative;
   display: block;
   line-height: calc( 0.025 * var(--nonavbar-height));
   font-size: calc(0.025 * var(--nonavbar-height));
 }
+
 #header > span:nth-child(2) {
   position: relative;
   display: block;
   line-height: calc(0.045 * var(--nonavbar-height));
   font-size: calc(0.055 * var(--nonavbar-height));
 }
+
 #round-icons {
   align-content: center;
   overflow: hidden;
@@ -93,22 +103,14 @@
   height: calc(0.05 * var(--nonavbar-height));
   width: 100vw;
   bottom: 0;
-
 }
+
 #round-icons > img {
   position: relative;
   object-fit: cover;
   max-height: 100%;
   padding: 0.5vh 0.25vw 0.5vh 0.25vw;
   max-width: 10%;
-}
-#results-table td, th {
-  padding: 20px;
-  text-align: center;
-}
-#results-table th {
-  background-color: #F9D132;
-  color: #212529;
 }
 
 .share-modal-footer {
