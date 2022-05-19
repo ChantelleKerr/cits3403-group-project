@@ -30,7 +30,6 @@ Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication b
 - **Flask-migrate** handles database schema changes by performing migrations 
 - **Unittest** used for automated testing of models and API endpoints
 - **Selenium** automatically tests the client side workflow
-- **webdriver-manager** automatically installs the driver that selenium will use
 
 ###### Frontend
 - **HTML** structures the website
@@ -120,7 +119,7 @@ TODO
 ###### Selenium Tests
 The test opens up FireFox and simulates navigation that a user may take while using our website.  
 
-**Please made sure the server is running** as we are performing client side testing.  
+**Please made sure the server is running** because we are performing client side testing.  
 
 ***Note**: This test will run for ~40 seconds*
 ```
