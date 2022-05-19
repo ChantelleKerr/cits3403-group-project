@@ -64,8 +64,14 @@ venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 ## Setup Database
+Create the database and migrate
+
 ```
-todo
+flask db migrate
+```
+Apply migrations to the database
+```
+flask db upgrade
 ```
 
 ## Create An Admin Account
