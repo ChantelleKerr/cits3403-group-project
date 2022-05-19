@@ -9,6 +9,7 @@ class ResultModelTest(unittest.TestCase):
   # Set up the dummy data 
   def setUp(self):
     app.config.from_object(TestConfig)
+    app.config['LOGIN_DISABLED'] = True
     self.app = app.test_client()
     db.create_all()
     result1 = Result(id=100, user_id=1000, date='12/5/2022 4', score='0110101100', seed=20220512)
