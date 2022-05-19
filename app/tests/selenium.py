@@ -1,4 +1,4 @@
-import unittest, time
+import unittest, time, os
 from app import app, db
 from config import TestConfig
 from selenium import webdriver
@@ -7,14 +7,15 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 import random
 
-
+basedir = os.path.abspath(os.path.dirname(__file__))
 # Run the tests using the command "python3 -m unittest app/tests/selenium.py"
 class SeleniumTest(unittest.TestCase):
   driver = None
   def setUp(self):
     # Downloads GeckoDriver from the web
-    service = Service(executable_path=GeckoDriverManager().install())
-    self.driver = webdriver.Firefox(service=service)
+    #service = Service(executable_path=GeckoDriverManager().install())
+    #self.driver = webdriver.Firefox(service=service)
+    self.driver = webdriver.Firefox(executable_path=os.path.join(basedir,'geckodriver'))
     app.config.from_object(TestConfig)
     self.app = app.test_client()
 
