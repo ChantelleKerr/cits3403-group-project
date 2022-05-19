@@ -3,19 +3,15 @@ from app import app, db
 from config import TestConfig
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
-from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 import random
 
-basedir = os.path.abspath(os.path.dirname(__file__))
 # Run the tests using the command "python3 -m unittest app/tests/selenium.py"
 class SeleniumTest(unittest.TestCase):
   driver = None
   def setUp(self):
-    # Downloads GeckoDriver from the web
-    #service = Service(executable_path=GeckoDriverManager().install())
-    #self.driver = webdriver.Firefox(service=service)
-    self.driver = webdriver.Firefox(executable_path=os.path.join(basedir,'geckodriver'))
+    service = Service('geckodriver')
+    self.driver = webdriver.Firefox(service=service)
     app.config.from_object(TestConfig)
     self.app = app.test_client()
 
@@ -27,8 +23,6 @@ class SeleniumTest(unittest.TestCase):
 
   # Remove test database data
   def tearDown(self):
-    db.session.remove()
-    db.drop_all()
     self.driver.close()
   
   # Creates a new user by opening the registration modal and entering user details in the input.
