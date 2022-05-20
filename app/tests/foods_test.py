@@ -61,6 +61,7 @@ class UserModelTest(unittest.TestCase):
 
 
   def test_update_daily_foods(self):
+    # TODO: I'm not sure how to test this one, since it will change the today.json as it's an admin only route
     pass
 
   def test_get_foods_from_seed(self):
