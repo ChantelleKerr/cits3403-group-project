@@ -1,10 +1,10 @@
 #results-table td,
 th {
-  padding: 20px;
   text-align: center;
+  padding: 20px;
 }
 
 #results-table th {
-  background-color: #F9D132;
+  background-color: #f9d132;
   color: #212529;
 }

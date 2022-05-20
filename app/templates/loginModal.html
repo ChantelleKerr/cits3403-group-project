@@ -1,4 +1,4 @@
-<!-- Pop-up Login Modal -->
+<!-- Pop-up Login Modal that opens when the login button is clicked -->
 <div class="modal fade" id="loginModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -7,28 +7,32 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mx-3">
+        <!-- Login Form -->
         <form id="loginForm">
-        <div class="row justify-content-center my-3">
-          <div class="col-1 center">
-            <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
+          <!-- Email Input -->
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="email" type="text" placeholder="Email">
+            </div>
           </div>
-          <div class="col-11">
-            <input name="email" type="text" placeholder="Email">
+          <!-- Password Input -->
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="password" type="password" placeholder="Password">
+            </div>
           </div>
-        </div>
-        <div class="row justify-content-center my-3">
-          <div class="col-1 center">
-            <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
+          <p class="text-primary" id="login-validation-text"></p>
+          <!-- Login Button -->
+          <div class="row my-4">
+            <button type="submit" class="btn btn-primary">Login</button>
           </div>
-          <div class="col-11">
-            <input name="password" type="password" placeholder="Password">
-          </div>
-        </div>
-        <p class="text-primary" id="login-validation-text"></p>
-        <div class="row my-4"> 
-          <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-      </form>
+        </form>
         <div class="row center"> 
           <span>Don't have an account?
           <a class="text-secondary" data-bs-target="#registerModal" data-bs-toggle="modal" data-bs-dismiss="modal">Register here</a></span>
