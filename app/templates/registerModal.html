@@ -1,4 +1,4 @@
-<!-- Pop-up Registration Modal -->
+<!-- Pop-up Registration Modal that opens when the registration button is clicked -->
 <div class="modal fade" id="registerModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -7,38 +7,43 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mx-3">
+        <!-- Registration Form -->
         <form id="registrationForm">
-        <div class="row justify-content-center my-3">
-          <div class="col-1 center">
-            <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
+          <!-- Username Input -->
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/user.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="username" type="text" placeholder="Username" id="register-username-input">
+            </div>
           </div>
-          <div class="col-11">
-            <input name="username" type="text" placeholder="Username" id="register-username-input">
+          <p class="text-primary" id="username-validation-text"></p>
+          <!-- Email Input -->
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="email" type="text" placeholder="Email" id="register-email-input">
+            </div>
           </div>
-        </div>
-        <p class="text-primary" id="username-validation-text"></p>
-        <div class="row justify-content-center my-3">
-          <div class="col-1 center">
-            <img class="rego-icons" src="static/images/email.png" height="25" width="25"/>
+          <p class="text-primary" id="email-validation-text"></p>
+          <!-- Password Input -->
+          <div class="row justify-content-center my-3">
+            <div class="col-1 center">
+              <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
+            </div>
+            <div class="col-11">
+              <input name="password" type="password" placeholder="Password" id="register-password-input">
+            </div>
           </div>
-          <div class="col-11">
-            <input name="email" type="text" placeholder="Email" id="register-email-input">
+          <p class="text-primary" id="password-validation-text"></p>
+          <!-- Create Account Button -->
+          <div class="row my-4"> 
+            <button type="submit" class="btn btn-primary">Create Account</button>
           </div>
-        </div>
-        <p class="text-primary" id="email-validation-text"></p>
-        <div class="row justify-content-center my-3">
-          <div class="col-1 center">
-            <img class="rego-icons" src="static/images/lock.png" height="25" width="25"/>
-          </div>
-          <div class="col-11">
-            <input name="password" type="password" placeholder="Password" id="register-password-input">
-          </div>
-        </div>
-        <p class="text-primary" id="password-validation-text"></p>
-        <div class="row my-4"> 
-          <button type="submit" class="btn btn-primary" id="register-submit">Create Account</button>
-        </div>
-      </form>
+        </form>
         <div class="row center"> 
           <span>Already have an account?
           <a class="text-secondary" data-bs-target="#loginModal" data-bs-toggle="modal" data-bs-dismiss="modal">Login here</a></span>
