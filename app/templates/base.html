@@ -37,7 +37,7 @@
         <form class="form-inline">
           <span class="navbar-user"></span>
             {% if current_user.is_authenticated %}
-              <span class="navbar-user"> {{current_user.username}} </span>
+              <span class="navbar-user">{{current_user.username}}</span>
               {% if current_user.is_superuser() %}
                 <button type="button" class="btn btn-outline-secondary mr-2" onclick="openAdminPage()">Admin</button>
               {% endif %}

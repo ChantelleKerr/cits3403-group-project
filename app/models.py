@@ -2,7 +2,7 @@ from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-
+# A model that represents the user database table
 class User(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(32), index=True, unique=False)
@@ -44,7 +44,8 @@ class User(UserMixin, db.Model):
     if new_user and 'password' in data:
       self.set_password(data['password'])
 
-
+# A model that represents the results database table.
+# References the user by foreign key and store game result data.
 class Result(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
