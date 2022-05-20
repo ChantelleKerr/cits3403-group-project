@@ -240,7 +240,7 @@ function openShareModal() {
 
 // TODO: Add javadoc comments for showAnswer
 function showAnswer(timestamp) {
-  const pauseTime = 800; //number of milliseconds to pause after showing the answer
+  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
 
   if (start === -1) {
