@@ -12,7 +12,7 @@ class UserModelTest(unittest.TestCase):
     app.config.from_object(TestConfig)
     self.app = app.test_client()
     db.create_all()
-    user1 = User(id="1000", username="Linx", email="linx@msn.com")
+    user1 = User(id="1000", username="Linx", email="linx@msn.com", is_admin=False)
     user1.set_password("secret")
     db.session.add(user1)
     db.session.commit()
@@ -33,7 +33,7 @@ class UserModelTest(unittest.TestCase):
   # Test user information
   def test_user(self):
     user = User.query.get("1000")
-    self.assertTrue(user.to_dict() == {"id": 1000, "username": "Linx", "email": "linx@msn.com"})
+    self.assertTrue(user.to_dict() == {"id": 1000, "username": "Linx", "email": "linx@msn.com", "is_admin": False})
 
   # Test create_user API endpoint 
   # Test will pass if the response status code is 201
