@@ -1,116 +1,122 @@
+/* Nutrient of the day header */
+#header {
+  height: calc(0.1 * var(--nonavbar-height));
+  left: 50vw;
+  position: absolute;
+  top: var(--navbar-height);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  width: 100vw;
+}
 
+#header > span:nth-child(1) {
+  display: block;
+  font-size: calc(0.025 * var(--nonavbar-height));
+  line-height: calc( 0.025 * var(--nonavbar-height));
+  position: relative;
+  
+}
+
+#header > span:nth-child(2) {
+  display: block;
+  font-size: calc(0.055 * var(--nonavbar-height));
+  line-height: calc(0.045 * var(--nonavbar-height));
+  position: relative;
+}
+
+/* Game area */
 #food-row {
   height: calc(0.85 * var(--nonavbar-height));
-  width: 100vw;
-  top: calc(var(--navbar-height) + 0.1 * var(--nonavbar-height));
-  position: absolute;
   overflow: hidden;
+  position: absolute;
+  top: calc(var(--navbar-height) + 0.1 * var(--nonavbar-height));
+  width: 100vw;
 }
+
 .game-img {
-  display: flex;
-  position: relative;
   background-size: cover;
   background-position: 50%;
+  display: flex;
+  position: relative;
 }
-.game-img::after{
-  content: '';
-  top: 0;
-  left:0;
-  width:100%;
-  height:100%;
+
+.game-img::after {
   background-color: black;
+  content: '';
+  height:100%;
+  left:0;
   opacity: 0.4;
+  top: 0;
+  width:100%;
   z-index: 1;
 }
+
 .game-img:hover::after {
   cursor: pointer;
   opacity: 0.2;
 }
+
 .img-info {
-  position: absolute;
-  flex-direction: column;
   align-items: center;
-  margin: 0% 10% 0% 10%;
-  width: 80%;
+  flex-direction: column;
   height: 100%;
+  margin: 0% 10% 0% 10%;
+  position: absolute;
+  width: 80%;
 }
+
 .img-info > h3 {
-  text-align: center;
-  font-size: 8vmin;
   color: white;
+  font-size: 8vmin;
+  text-align: center;
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
+
 .img-info > h4 {
+  color: white;
   font-size: 4vmin;
   text-align: center;
-  color: white;
   text-shadow: 0.5vmin 0.5vmin 0.5vmin black;
   z-index: 3;
 }
+
 .circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 8vmax;
-  width: 8vmax;
   background-color: #222222;
   border-radius: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  font-size: 4vmax;
-  display: grid;
-  place-items: center;
   box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
+  display: grid;
+  font-size: 4vmax;
+  height: 8vmax;
+  left: 50%;
+  place-items: center;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  width: 8vmax;
   z-index: 3;
 }
 
-#header {
-  position: absolute;
-  height: calc(0.1 * var(--nonavbar-height));
-  width: 100vw;
-  left: 50vw;
-  top: var(--navbar-height);
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-#header > span:nth-child(1) {
-  position: relative;
-  display: block;
-  line-height: calc( 0.025 * var(--nonavbar-height));
-  font-size: calc(0.025 * var(--nonavbar-height));
-}
-#header > span:nth-child(2) {
-  position: relative;
-  display: block;
-  line-height: calc(0.045 * var(--nonavbar-height));
-  font-size: calc(0.055 * var(--nonavbar-height));
-}
+/* Footer */
 #round-icons {
   align-content: center;
-  overflow: hidden;
-  white-space: nowrap;
-  position: absolute;
-  height: calc(0.05 * var(--nonavbar-height));
-  width: 100vw;
   bottom: 0;
-
+  height: calc(0.05 * var(--nonavbar-height));
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 100vw;
 }
+
 #round-icons > img {
-  position: relative;
-  object-fit: cover;
   max-height: 100%;
-  padding: 0.5vh 0.25vw 0.5vh 0.25vw;
   max-width: 10%;
-}
-#results-table td, th {
-  padding: 20px;
-  text-align: center;
-}
-#results-table th {
-  background-color: #F9D132;
-  color: #212529;
+  object-fit: cover;
+  padding: 0.5vh 0.25vw 0.5vh 0.25vw;
+  position: relative;
 }
 
+/* Game Over Screen */
 .share-modal-footer {
   display: flex; 
   justify-content: flex-end;

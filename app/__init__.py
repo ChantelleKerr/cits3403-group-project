@@ -8,7 +8,7 @@ from flask_login import LoginManager
 app = Flask(__name__)
 CORS(app)
 
-app.secret_key = 'test123'
+app.secret_key = "test123"
 
 app.config.from_object(Config)
 db = SQLAlchemy(app)
@@ -16,15 +16,15 @@ migrate = Migrate(app, db)
 
 login = LoginManager()
 login.init_app(app)
-login.login_view = 'auth.login'
+login.login_view = "auth.login"
 
 from app import routes, models
 from app.api import bp as api_bp
-app.register_blueprint(api_bp, url_prefix='/api')
+app.register_blueprint(api_bp, url_prefix="/api")
 
 
 from app.auth import auth as auth_bp
-app.register_blueprint(auth_bp, url_prefix='/auth')
+app.register_blueprint(auth_bp, url_prefix="/auth")
 
 from .models import User
 

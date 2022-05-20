@@ -24,13 +24,15 @@ function changeTip() {
   setTimeout(function () {
     tip.style.opacity = 1;
   }, 500);
-  
 }
 
-// generate nutrient of the day text
-let nutrientOfTheDayTextElements = document.getElementsByClassName("nutrient-name-text");
-for (let i = 0; i < nutrientOfTheDayTextElements.length; i++) {
-  nutrientOfTheDayTextElements.item(i).textContent = nutrientOfTheDay;
+requestNutrientOfTheDay();
+nutrientOfTheDayRequested = function() {
+  // generate nutrient of the day text
+  let nutrientOfTheDayTextElements = document.getElementsByClassName("nutrient-name-text");
+  for (let i = 0; i < nutrientOfTheDayTextElements.length; i++) {
+    nutrientOfTheDayTextElements.item(i).textContent = nutrientOfTheDay;
+  }
+  changeTip();
+  setInterval(changeTip, 10000);
 }
-changeTip();
-setInterval(changeTip, 10000);
