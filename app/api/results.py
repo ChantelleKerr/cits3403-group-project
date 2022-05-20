@@ -8,11 +8,13 @@ import json
 import webbrowser
 import urllib.parse
 
+# Returns the result by id
 @bp.route("/results/<int:id>", methods=["GET"])
 def get_result(id):
   return jsonify(Result.query.get_or_404(id).to_dict())
 
-@bp.route("/results/user/<int:id>", methods=["GET"])
+# Returns a list of user results
+@bp.route("/results/user", methods=["GET"])
 @login_required
 def get_user_results(id):
   if id == 0:
@@ -23,7 +25,7 @@ def get_user_results(id):
     result_list.append(result.to_dict())
   return jsonify(result_list)
 
-
+# Creates a new entry in the results database table
 @bp.route("/results/write/<int:id>", methods=["POST"])
 def write_results(id):
   data = request.get_json() or {}

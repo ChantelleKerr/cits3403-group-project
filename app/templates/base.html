@@ -31,20 +31,20 @@
             <a class="nav-link" href="/game">Game</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onclick="openAnalysisPage()">Analysis</a>
+            <a class="nav-link" id='analysis-link' onclick="openAnalysisPage()">Analysis</a>
           </li>
         </ul>
         <form class="form-inline">
           <span class="navbar-user"></span>
             {% if current_user.is_authenticated %}
-              <span class="navbar-user"> {{current_user.username}} </span>
+              <span class="navbar-user">{{current_user.username}}</span>
               {% if current_user.is_superuser() %}
                 <button type="button" class="btn btn-outline-secondary mr-2" onclick="openAdminPage()">Admin</button>
               {% endif %}
               <button type="button" class="btn btn-primary" onclick="logout()" id="logout-button">Logout</button>
             {% else %}   
-              <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+              <button type="button" class="btn btn-outline-secondary mr-2" data-bs-toggle="modal" data-bs-target="#loginModal" id="login-button">Login</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal" id="register-button">Register</button>
             {% endif %}
         </form>
       </div>

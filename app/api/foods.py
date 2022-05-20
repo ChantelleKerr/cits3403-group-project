@@ -1,20 +1,17 @@
 from app.api import bp
 from flask import jsonify, redirect
 from flask_login import current_user
-
 from datetime import datetime, timezone
 import json, random, time
 
 
 # gets the nutrient of the day
-@bp.route('/foods/notd/<int:day>', methods=['GET'])
+@bp.route("/foods/notd/<int:day>", methods=["GET"])
 def get_daily_nutrient(day):
   return jsonify(generate_daily_nutrient(day))
-  
-  
 
 # updates the daily foods if the day has changed
-@bp.route('/foods/', methods=['GET'])
+@bp.route("/foods/", methods=["GET"])
 def get_daily_food():
   seed = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
   random.seed(seed)
@@ -32,9 +29,10 @@ def get_daily_food():
     update_file(today)
 
   return jsonify(today["foods"])
+
 # You can pass an integer to use as a seed for food generation
 # If 0 is the seed, then it will instead use the system time (different each time)
-@bp.route('/foods/<int:seed>', methods=['GET'])
+@bp.route("/foods/<int:seed>", methods=["GET"])
 def update_daily_food(seed):
   if not (current_user.is_authenticated and current_user.is_superuser()):
     return redirect("/")
