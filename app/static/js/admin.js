@@ -21,12 +21,13 @@ function generateNewDailyFoods() {
   const xhttp = new XMLHttpRequest();
   // Sending "0" as the seed is only used for admins
   xhttp.open("GET", "api/foods/0", true);
-  xhttp.send()
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       location.reload();
     }
   }
+  xhttp.send()
+  
 }
 
 // Creates the HTML for each daily food item 

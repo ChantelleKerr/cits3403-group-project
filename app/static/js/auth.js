@@ -179,13 +179,13 @@ window.onload = function () {
 function logout() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "auth/logout", true);
-  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       // reload the current page
       location.reload();
     }
-  };
+  }
+  xhttp.send();
 }
 
 /**

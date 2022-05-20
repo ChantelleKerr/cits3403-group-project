@@ -5,7 +5,6 @@ const rounds = 10;
 window.onload = function () {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods/notd/1", true);
-  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       response = JSON.parse(xhttp.response);
@@ -14,6 +13,7 @@ window.onload = function () {
       generateTable();
     }
   }
+  xhttp.send();
 }
 
 function generateTable() {
@@ -21,7 +21,6 @@ function generateTable() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/results/user/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send();
   xhttp.onload = () => { 
     if (xhttp.status == 200) {
       var res = JSON.parse(xhttp.response);
@@ -47,6 +46,7 @@ function generateTable() {
       }
     }
   }
+  xhttp.send();
   /**
    * Make a new table now with the inputted values
    * Set the minimum width of some of the columns to avoid those columns
@@ -83,7 +83,6 @@ function showPuzzle(i,nutrientNum){
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods/get/" + i, true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send();
   xhttp.onload = () => { 
     if (xhttp.status == 200) {
       let foods = JSON.parse(xhttp.response);
@@ -100,4 +99,5 @@ function showPuzzle(i,nutrientNum){
       puzzleModalBody.innerHTML = "<p>An unexpected error occured</p>"
     }
   }
+  xhttp.send();
 }
