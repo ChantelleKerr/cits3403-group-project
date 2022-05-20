@@ -5,7 +5,7 @@ from config import TestConfig
 
 
 # Run the tests using the command "python3 -m unittest app/tests/foods_test.py"
-class UserModelTest(unittest.TestCase):
+class FoodsTest(unittest.TestCase):
 
   def setUp(self):
     app.config.from_object(TestConfig)
@@ -60,12 +60,30 @@ class UserModelTest(unittest.TestCase):
           self.assertTrue(type(food[key]) == int or type(food[key]) == float)
 
 
-  def test_update_daily_foods(self):
-    # TODO: I'm not sure how to test this one, since it will change the today.json as it's an admin only route
-    pass
-
   def test_get_foods_from_seed(self):
-    pass
+    response = self.app.get("/api/foods/get/0")
+    data = json.loads(response.data)
+
+    self.assertEqual(200, response.status_code)
+
+    self.assertEqual(list, type(data))
+    self.assertEqual(11, len(data))
+
+    # Validate each food item in the returned data
+    for food in data:
+      for key in food.keys():
+        if key == "url":
+          self.assertTrue(food[key].startswith("https://"))
+        if key == "name" or key == "url":
+          self.assertTrue(type(food[key]) == str)
+        else:
+          self.assertTrue(type(food[key]) == int or type(food[key]) == float)
+    
+    # Check different seeds
+    different_data = json.loads(self.app.get("/api/foods/get/1").data)
+    self.assertTrue(data != different_data)
+    same_data = json.loads(self.app.get("/api/foods/get/0").data)
+    self.assertTrue(data == same_data)
 
 
     

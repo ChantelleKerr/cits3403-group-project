@@ -238,7 +238,11 @@ function openShareModal() {
   createCopyTextArea();
 }
 
-// TODO: Add javadoc comments for showAnswer
+/**
+ * Begins the animation for showing whether the selection was correct or not as well as moving 
+ * to the next round using an image slide.
+ * @param timestamp - the current time during the animation
+ */
 function showAnswer(timestamp) {
   const pauseTime = 800; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
