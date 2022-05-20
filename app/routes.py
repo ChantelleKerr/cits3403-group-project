@@ -6,25 +6,26 @@ from flask_login import current_user, login_required
 
 @app.route("/")
 def index():
-  return render_template('home.html', title='Home') 
+  return render_template("home.html", title="Home") 
 
 @app.route("/game")
 def game():
-  return render_template('game.html', title='Game')
+  return render_template("game.html", title="Game")
 
 @app.route("/analysis")
 @login_required
 def analysis():
-  return render_template('analysis.html', title='Analysis')
+  return render_template("analysis.html", title="Analysis")
 
+# A route that only the admin can access
 @app.route("/admin")
 @login_required
 def admin():
   if current_user.is_superuser():
-    return render_template('admin.html', title='Admin Dashboard')
+    return render_template("admin.html", title="Admin Dashboard")
   return unauthorized_callback()
 
 # Called when a user trys to access a page that they don't have access to.
 @app.login_manager.unauthorized_handler
 def unauthorized_callback():
-    return redirect('/')
+    return redirect("/")
