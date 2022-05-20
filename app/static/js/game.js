@@ -239,12 +239,16 @@ function openShareModal() {
 }
 
 /**
- * Begins the animation for showing whether the selection was correct or not as well as moving 
- * to the next round using an image slide.
- * @param timestamp - the current time during the animation
+ * Cause the comparison circle to fade by calculating an opacity
+ * based on the time elapsed since the user clicked a food and then 
+ * calling requestAnimationFrame on this function. After 1000 
+ * milliseconds have elapsed, the fading animation is finished.
+ * Subsequently, the function requests an animation frame on slide() 
+ * to get the sliding animation started
+ * @param timestamp - represents the time at which this function is called
  */
 function showAnswer(timestamp) {
-  const pauseTime = 800; //number of milliseconds to pause after showing the answer
+  const pauseTime = 1000; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
 
   if (start === -1) {
@@ -346,19 +350,17 @@ function resetAfterAnimation() {
 /**
  * Write the score the user just got to the results database
  */
-function storeScore() {
-  let dateString = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + dt.getDay();
-
+ function storeScore(){
+  let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "api/results/write", true);
+  xhttp.open("POST", "api/results/write/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
-
   xhttp.onload = () => {
-    if (xhttp.status != 201) {
+    if (xhttp.status != 200){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
-      document.getElementById("message").innerHTML = "Your score could not be saved due to an unexpected error.";
+      document.getElementById("message").innerHTML = xhttp.status == 201 ? "Your score has been saved! See the Analysis page." : "Your score could not be saved due to an unexpected error.";
     }
   }
 }

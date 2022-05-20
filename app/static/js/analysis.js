@@ -1,5 +1,6 @@
 let nutrients;
 let units;
+const rounds = 10;
 
 window.onload = function () {
   const xhttp = new XMLHttpRequest();
@@ -18,7 +19,7 @@ window.onload = function () {
 function generateTable() {
   const resultsTable = document.getElementById("results-table");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "api/results/user", true);
+  xhttp.open("GET", "api/results/user/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
   xhttp.onload = () => { 
