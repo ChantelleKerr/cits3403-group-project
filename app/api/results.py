@@ -14,7 +14,7 @@ def get_result(id):
   return jsonify(Result.query.get_or_404(id).to_dict())
 
 # Returns a list of user results
-@bp.route("/results/user", methods=["GET"])
+@bp.route("/results/user/<int:id>", methods=["GET"])
 @login_required
 def get_user_results(id):
   if id == 0:
