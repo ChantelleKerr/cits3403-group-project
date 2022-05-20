@@ -24,19 +24,24 @@ def get_user_results(id):
   return jsonify(result_list)
 
 
-@bp.route('/results/write', methods=['POST'])
-@login_required
-def write_results():
-  data = request.get_json() or {}
-  result = Result()
-  with open("app/api/today.json") as ftoday:
-    seed = json.load(ftoday)['seed']
-  result.from_dict(data, current_user.id, seed)
-  db.session.add(result)
-  db.session.commit()
-  response = jsonify(result.to_dict())
-  response.status_code = 201
-  response.headers['Location'] = url_for('api.get_result', id=result.id)
+@bp.route('/results/write/<int:id>', methods=['POST'])
+def write_results(id):
+  if current_user.is_authenticated or id != 0:
+    if id == 0:
+      id = current_user.id
+    data = request.get_json() or {}
+    result = Result()
+    with open("app/api/today.json") as ftoday:
+      seed = json.load(ftoday)['seed']
+    result.from_dict(data, id, seed)
+    db.session.add(result)
+    db.session.commit()
+    response = jsonify(result.to_dict())
+    response.status_code = 201
+    response.headers['Location'] = url_for('api.get_result', id=result.id)
+  else:
+    response = jsonify({})
+    response.status_code = 200
   return response
 
 # Opens twitter and creates a tweet with given text (does not submit tweet automatically)

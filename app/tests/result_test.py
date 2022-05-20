@@ -47,5 +47,26 @@ class ResultModelTest(unittest.TestCase):
     self.assertEqual(json.loads(response_fail.data),[])
     self.assertEqual(response_fail.status_code,200)
 
+  def test_write_results(self):
+    user_id = 2000
+    with open("app/api/today.json") as ftoday:
+      seed = json.load(ftoday)["seed"]
+    payload = json.dumps({
+      "date": "13/5/2022 5",
+      "score": "0000001000"
+    })
+    response = self.app.post('/api/results/write/' + str(user_id), headers={"Content-Type": "application/json"}, data=payload)
+    self.assertEqual(response.status_code,201)
+    self.assertEqual(json.loads(response.data),{"date":"13/5/2022 5","id":201,"score":"0000001000","seed":seed,"user_id":user_id})
+    response_not_authenticated = self.app.post('/api/results/write/0', headers={"Content-Type": "application/json"}, data=payload)
+    self.assertEqual(response_not_authenticated.status_code,200)
+
+  # Test the share_achievement API endpoint
+  def test_share_achievement(self):
+    payload = '"My Nutri Hi-Lo Daily Score: 5/10🟥🟩🟥🟩🟥🟩🟥🟩🟥🟩"'
+    response = self.app.post('/api/results/share',headers={"Content-Type": "application/json"}, data=payload)
+    self.assertEqual(json.loads(response.data),{"Success":"Share achievement Successful"})
+    self.assertEqual(response.status_code,200)
+
 if __name__ == '__main__':
   unittest.main()
