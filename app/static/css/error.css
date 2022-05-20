@@ -1,0 +1,18 @@
+.error-details {
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top:50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  color: white;
+  font-size: 100px;
+}
+
+a {
+  color: white;
+  height: inherit;
+  width: inherit;
+}

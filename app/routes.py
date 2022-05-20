@@ -29,3 +29,7 @@ def admin():
 @app.login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect("/")
+
+@app.errorhandler(404)
+def page_not_found(error):
+  return render_template("404.html", title="Page Not Found")

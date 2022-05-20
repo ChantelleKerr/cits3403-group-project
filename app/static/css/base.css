@@ -80,7 +80,7 @@ a {
 }
 
 .btn-outline-secondary:hover {
-  background-color: #F9D132 !important;
+  background-color: #f9d132 !important;
   color: #222222 !important;
 }
 
@@ -101,7 +101,7 @@ a {
 }
 
 .text-secondary {
-  color: #F9D132 !important;
+  color: #f9d132 !important;
 }
 
 .btn:focus, .btn:active {
