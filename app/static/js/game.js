@@ -238,7 +238,15 @@ function openShareModal() {
   createCopyTextArea();
 }
 
-// TODO: Add javadoc comments for showAnswer
+/**
+ * Cause the comparison circle to fade by calculating an opacity
+ * based on the time elapsed since the user clicked a food and then 
+ * calling requestAnimationFrame on this function. After 1000 
+ * milliseconds have elapsed, the fading animation is finished.
+ * Subsequently, the function requests an animation frame on slide() 
+ * to get the sliding animation started
+ * @param timestamp - represents the time at which this function is called
+ */
 function showAnswer(timestamp) {
   const pauseTime = 1000; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
