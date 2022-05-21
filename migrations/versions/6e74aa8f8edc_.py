@@ -1,8 +1,8 @@
-"""results table
+"""empty message
 
-Revision ID: 6b2c41759ba2
+Revision ID: 6e74aa8f8edc
 Revises: 
-Create Date: 2022-05-07 21:08:18.526097
+Create Date: 2022-05-21 22:56:28.906037
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6b2c41759ba2'
+revision = '6e74aa8f8edc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,15 +23,17 @@ def upgrade():
     sa.Column('username', sa.String(length=32), nullable=True),
     sa.Column('email', sa.String(length=128), nullable=True),
     sa.Column('password', sa.String(length=128), nullable=True),
+    sa.Column('is_admin', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=False)
     op.create_table('result',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.String(length=32), nullable=True),
-    sa.Column('date', sa.String(length=128), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('date', sa.String(length=32), nullable=True),
     sa.Column('score', sa.String(length=32), nullable=True),
+    sa.Column('seed', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
