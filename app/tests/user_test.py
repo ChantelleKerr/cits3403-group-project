@@ -32,13 +32,8 @@ class UserModelTest(unittest.TestCase):
 
   # Test user information
   def test_user(self):
-<<<<<<< HEAD
-    user = User.query.get('1000')
-    self.assertTrue(user.to_dict() == {'id': 1000, 'username': 'Linx', 'email': 'linx@msn.com', 'is_admin': False})
-=======
     user = User.query.get("1000")
     self.assertTrue(user.to_dict() == {"id": 1000, "username": "Linx", "email": "linx@msn.com", "is_admin": False})
->>>>>>> main
 
   # Test create_user API endpoint 
   # Test will pass if the response status code is 201
