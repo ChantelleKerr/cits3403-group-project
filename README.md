@@ -7,7 +7,7 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 
 **Nutri Hi-Lo** is an educational game that promotes a greater understanding on nutritional information on everyday foods and challenges the users on their knowledge! 
 
-The game creates a random set of 11 different food choices everyday with a new nutrient for each day of the week. The user is given two foods to choose from and selecting the food with more nutritional value will score a correct answer.
+The game creates a random set of 11 different food choices everyday with a new nutrient for each day of the week. There are 10 rounds everyday and in each round the user is given two foods to choose from and selecting the food with more nutritional value will score a correct answer.
 <img align="right" src="app/static/images/logo.png">
 
 #### Nutrient of the day
