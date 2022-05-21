@@ -1,23 +1,18 @@
 import unittest
 import json
 from app import app
-from config import TestConfig
 
 
 # Run the tests using the command "python3 -m unittest app/tests/foods_test.py"
 class FoodsTest(unittest.TestCase):
 
   def setUp(self):
-    app.config.from_object(TestConfig)
     self.app = app.test_client()
-
-  def tearDown(self):
-    pass
 
   # Tests the get_daily_nutrient function for the /api/foods/notd/<int:day> route
   def test_get_daily_nutrient(self):
     # Test the route with a zero parameter
-    response = self.app.get('/api/foods/notd/0')
+    response = self.app.get("/api/foods/notd/0")
     data = json.loads(response.data)
     self.assertEqual(200, response.status_code)
 
@@ -28,7 +23,7 @@ class FoodsTest(unittest.TestCase):
     self.assertEqual(2, len(data.keys()))
 
     # Test the route with a non-zero parameter
-    response = self.app.get('/api/foods/notd/1')
+    response = self.app.get("/api/foods/notd/1")
     data = json.loads(response.data)
     self.assertEqual(200, response.status_code)
 
@@ -87,5 +82,5 @@ class FoodsTest(unittest.TestCase):
 
 
     
-if __name__ == '__main__':
+if __name__ == "__main__":
   unittest.main()
