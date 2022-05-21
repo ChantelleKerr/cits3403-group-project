@@ -3,11 +3,11 @@
 requestFoodChoices();
 foodChoicesRequested = function () {
   createFoodList(foodChoices);
-}
+};
 requestNutrientOfTheDay();
 nutrientOfTheDayRequested = function () {
-  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
-}
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay;
+};
 
 
 
@@ -21,12 +21,12 @@ function generateNewDailyFoods() {
   const xhttp = new XMLHttpRequest();
   // Sending "0" as the seed is only used for admins
   xhttp.open("GET", "api/foods/0", true);
-  xhttp.send()
+  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       location.reload();
     }
-  }
+  };
 }
 
 // Creates the HTML for each daily food item 
@@ -50,7 +50,7 @@ function createFoodList(foodChoices) {
     foodTitle.className = "food-item-title center";
 
     var itemDetails = document.createElement("div");
-    itemDetails.className = "food-item-details center"
+    itemDetails.className = "food-item-details center";
 
     // Loop through food object to get the nutriention value
     for (var details in food) {
@@ -64,5 +64,5 @@ function createFoodList(foodChoices) {
     foodItem.appendChild(foodTitle);
     foodItem.appendChild(itemDetails);
     foodList.appendChild(foodItem);
-  })
+  });
 }
