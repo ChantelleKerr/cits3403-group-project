@@ -5,9 +5,9 @@ Developed by Huxley Berry, Djimon Jayasundera & Chantelle Kerr
 
 ---
 
-**Nutri Hi-Lo** is an educational game that promotes a greater understanding on nutritional information on everyday foods and challenges the users on their knowledge! 
+**Nutri Hi-Lo** is an educational game that promotes a greater understanding on nutritional information on everyday foods and challenges the users on their knowledge! Our website takes inspiration from Google's [Higher Lower Game](http://www.higherlowergame.com/).
 
-The game creates a random set of 11 different food choices everyday with a new nutrient for each day of the week. There are 10 rounds everyday and in each round the user is given two foods to choose from and selecting the food with more nutritional value will score a correct answer.
+The game creates a random set of 11 different food choices everyday with a new nutrient for each day of the week. There are 10 rounds everyday and in each round the user is given two foods to choose from and selecting the food with more nutritional value will score a correct answer. Every food nutrient is based on the quantity of 100g.
 <img align="right" src="app/static/images/logo.png">
 
 #### Nutrient of the day
@@ -22,6 +22,7 @@ The game creates a random set of 11 different food choices everyday with a new n
 
 
 ## Architecture
+
 Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication between the backend and frontend. It uses several extensions that enhance the functionality
 
 ###### Backend
@@ -107,7 +108,7 @@ flask run
 
 ## Run Unit Tests
 ###### User Tests
-Tests multiple user functionality including authorisation and password hashes.
+Tests multiple user functionality including authorisation and password hashing.
 ```
 python3 -m unittest app/tests/user_test.py
 ```
@@ -140,4 +141,3 @@ python3 -m unittest app/tests/selenium.py
 [iStockPhoto](https://www.istockphoto.com/)
 ###### Icons
 [Flaticon](https://www.flaticon.com/)
-
