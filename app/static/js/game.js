@@ -1,19 +1,6 @@
 const rounds = 10;
-const nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"];
-const units = ["mg", "g", "g", "mg", "g", "mg", "g"]
-
-let dt = new Date();
-let nutrientOfTheDay = nutrients[dt.getDay()];
-let foodChoices = 0;
 let roundsWon = [];
-
-
-/**
- * Checks if the window is considered small by bootstrap
- * @returns true if the window is small, otherwise false
- */
-let isWindowSmall = () => window.innerWidth <= 768;
-
+let dt = new Date();
 let currentRound = 1;
 let score = 0;
 let scoreString = "";
@@ -23,10 +10,18 @@ let previousTimeStamp;
 /**
  * Called when the page loads, sets up the game 
  */
+
+requestNutrientOfTheDay();
+nutrientOfTheDayRequested = function () {
+  generateNutrientOfTheDay();
+};
+
 requestFoodChoices();
-generateNutrientOfTheDay();
+foodChoicesRequested = function () {
+  generateFoodChoices();
+};
+
 addEventListeners();
-updateCSSVariables();
 
 /**
 * Generates a new batch of icons and changes the nutrient text each day.
@@ -36,37 +31,23 @@ function generateNutrientOfTheDay() {
   for (let i = 0; i < rounds; i++) {
     let img = document.createElement('img');
     img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
-    img.setAttribute('alt', 'roundIcon')
+    img.setAttribute('alt', 'roundIcon');
     roundDiv.appendChild(img);
   }
   document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
-}
-
-function requestFoodChoices() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "api/foods", true);
-  xhttp.send()
-  xhttp.onload = () => {
-    if (xhttp.status == 200) {
-      foodChoices = JSON.parse(xhttp.response);
-      generateFoodChoices();
-    }
-  }
 }
 
 /**
  * Generates a new set of food choices
  */
 function generateFoodChoices() {
-  // TODO: Replace with calling api for food choices or referring to a variable containing the result of the api call
-
   for (let i = 0; i < document.getElementsByClassName("game-img").length; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
-      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i]["url"] + ")";
-      document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i]["name"];
+      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i].url + ")";
+      document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i].name;
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + units[dt.getDay()];
+  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
 }
 
 /**
@@ -88,16 +69,7 @@ function addEventListeners() {
   // Actions to be taken whenever screen resizes
   window.addEventListener('resize', function (event) {
     updateCircleComparison(event);
-    updateCSSVariables();
   }, false);
-}
-
-/**
-* Adds variables used in CSS, these are recalculated whenever the screen resizes.
-*/
-function updateCSSVariables() {
-  document.querySelector(':root').style.setProperty('--navbar-height', document.getElementById("navbar").clientHeight + 'px');
-  document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
 }
 
 /**
@@ -168,14 +140,14 @@ function makeSelection(event) {
       score++;
       scoreString += "1";
       circleComparison.innerHTML = "✔";
-      circleComparison.style.backgroundColor = "green";
+      circleComparison.style.backgroundColor = "#417536";
       roundsWon.push(true);
       updateCircleComparison();
     } else {
       scoreString += "0";
       roundDiv.children[currentRound - 1].style.opacity = 0.5;
       circleComparison.innerHTML = "✖";
-      circleComparison.style.backgroundColor = "red";
+      circleComparison.style.backgroundColor = "#962f2f";
       roundsWon.push(false);
       updateCircleComparison();
     }
@@ -215,13 +187,18 @@ function animateFoods() {
   newFood.innerHTML = foodDivs[1].innerHTML;
   if (currentRound <= rounds) {
     // but change the text and the image to be of the next food
-    newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound]["name"];
-    newFood.style.backgroundImage = "url(" + foodChoices[currentRound]["url"] + ")";
+    newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound].name;
+    newFood.style.backgroundImage = "url(" + foodChoices[currentRound].url + ")";
     // Show the nutrient of the second food
-    /*let nutr = document.createElement("h4"); // TODO: Uncomment these lines and fix the bug where food image has multiple values shown
+    let nutr = document.createElement("h4");
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
     foodDivs[1].firstElementChild.appendChild(nutr);
-    nutr.innerHTML = nutrientOfTheDay + ": " + Object.values(data)[currentRound+1][nutrientOfTheDay] + " " + units[dt.getDay()]*/
+
   } else { //Show the score
+    // Show the nutrient of the second food
+    let nutr = document.createElement("h4");
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
+    foodDivs[1].firstElementChild.appendChild(nutr);
     makeGameOverScreen(newFood);
   }
   newFood.style.display = "none";
@@ -247,7 +224,7 @@ function makeGameOverScreen(d) {
   Object.assign(shareBtn, {
     className: "btn btn-outline-secondary",
     onclick: openShareModal
-  })
+  });
   shareBtn.innerHTML = "Share Score";
   div.appendChild(t1);
   div.appendChild(t2);
@@ -261,7 +238,15 @@ function openShareModal() {
   createCopyTextArea();
 }
 
-// TODO: Add javadoc comments for showAnswer
+/**
+ * Cause the comparison circle to fade by calculating an opacity
+ * based on the time elapsed since the user clicked a food and then 
+ * calling requestAnimationFrame on this function. After 1000 
+ * milliseconds have elapsed, the fading animation is finished.
+ * Subsequently, the function requests an animation frame on slide() 
+ * to get the sliding animation started
+ * @param timestamp - represents the time at which this function is called
+ */
 function showAnswer(timestamp) {
   const pauseTime = 1000; //number of milliseconds to pause after showing the answer
   const fadeProportion = 2; // 1/fadeProportion is the proportion of pauseTime that the circle fades for
@@ -291,8 +276,7 @@ function showAnswer(timestamp) {
 * @param timestamp - the time at which this function's execution begins
 */
 function slide(timestamp) {
-  const slideTime = 600; //number of milliseconds for animation to take
-  const slidePower = 0.4; //The sliding follows the function t^slidePower. Set this to 1 for linear sliding
+  const slideTime = 800; //number of milliseconds for animation to take
   let elapsed = timestamp - start;
   let foodDivs = document.getElementsByClassName("game-img");
   let newFood = document.getElementById("nf");
@@ -305,11 +289,12 @@ function slide(timestamp) {
   }
   if (previousTimeStamp !== timestamp) {
     // Math.min() is used here to make sure the div stops at exactly the amount we want
-    let shift = Math.min(slideSize * Math.pow(elapsed, slidePower) / Math.pow(slideTime, slidePower), slideSize);
+    let x = elapsed / slideTime;
+    let shift = 1 / (1 + Math.pow(Math.E, -15 * (x - 0.5))) * slideSize;
     for (let i = 0; i < foodDivs.length; i++) {
       foodDivs[i].style.transform = "translate" + slideDirection + "(" + -shift + "px)";
     }
-    //Need to keep calculating these in case the window size is changed
+    // Need to keep calculating these in case the window size is changed
 
     if (slideDirection == "X") {
       newFood.style.left = 2 * slideSize + "px";
@@ -325,7 +310,7 @@ function slide(timestamp) {
   }
 
   if (elapsed < slideTime) {
-    previousTimeStamp = timestamp
+    previousTimeStamp = timestamp;
     window.requestAnimationFrame(slide);
   } else {
     resetAfterAnimation();
@@ -342,8 +327,9 @@ function slide(timestamp) {
 function resetAfterAnimation() {
   document.getElementById("food-row").removeChild(document.getElementById("nf"));
   let foodDivs = document.getElementsByClassName("game-img");
-  let circleComparison = document.getElementById("circle-comparison")
+  let circleComparison = document.getElementById("circle-comparison");
   generateFoodChoices();
+  foodDivs[1].firstElementChild.removeChild(foodDivs[1].firstElementChild.lastChild);
   for (let i = 0; i < foodDivs.length; i++) {
     foodDivs[i].style.transform = "";
   }
@@ -357,7 +343,6 @@ function resetAfterAnimation() {
     makeGameOverScreen(foodDivs[1]);
     circleComparison.style.display = "none";
     start = 0;
-    //TODO: this is the end of the game, so do some more stuff here
     storeScore();
   }
 }
@@ -365,19 +350,17 @@ function resetAfterAnimation() {
 /**
  * Write the score the user just got to the results database
  */
-function storeScore(){
+ function storeScore(){
   let dateString = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + dt.getDay();
-
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "api/results/write", true);
+  xhttp.open("POST", "api/results/write/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
-
+  xhttp.send(JSON.stringify({ date: dateString, score: scoreString }));
   xhttp.onload = () => {
-    if (xhttp.status != 201){
+    if (xhttp.status != 200){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
-      document.getElementById("message").innerHTML = "Your score could not be saved due to an unexpected error.";
+      document.getElementById("message").innerHTML = xhttp.status == 201 ? "Your score has been saved! See the Analysis page." : "Your score could not be saved due to an unexpected error.";
     }
-  }
+  };
 }

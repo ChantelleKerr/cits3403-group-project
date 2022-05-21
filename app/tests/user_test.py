@@ -12,8 +12,8 @@ class UserModelTest(unittest.TestCase):
     app.config.from_object(TestConfig)
     self.app = app.test_client()
     db.create_all()
-    user1 = User(id='1000', username='Linx', email='linx@msn.com')
-    user1.set_password('secret')
+    user1 = User(id="1000", username="Linx", email="linx@msn.com", is_admin=False)
+    user1.set_password("secret")
     db.session.add(user1)
     db.session.commit()
 
@@ -24,16 +24,21 @@ class UserModelTest(unittest.TestCase):
 
   # Test password hashes
   def test_password(self):
-    user = User.query.get('1000')
+    user = User.query.get("1000")
     password_hash = user.password
-    self.assertTrue(user.check_password('secret'))
-    self.assertFalse(user.check_password('notsecret'))
-    self.assertFalse('secret' == password_hash)
+    self.assertTrue(user.check_password("secret"))
+    self.assertFalse(user.check_password("notsecret"))
+    self.assertFalse("secret" == password_hash)
 
   # Test user information
   def test_user(self):
+<<<<<<< HEAD
     user = User.query.get('1000')
     self.assertTrue(user.to_dict() == {'id': 1000, 'username': 'Linx', 'email': 'linx@msn.com', 'is_admin': False})
+=======
+    user = User.query.get("1000")
+    self.assertTrue(user.to_dict() == {"id": 1000, "username": "Linx", "email": "linx@msn.com", "is_admin": False})
+>>>>>>> main
 
   # Test create_user API endpoint 
   # Test will pass if the response status code is 201
@@ -53,8 +58,8 @@ class UserModelTest(unittest.TestCase):
   # It also tests if the response from a user that doesn't exist
   # which will pass if the status code is 404.
   def test_get_user(self):
-    response = self.app.get('/api/users/1000')
-    response_fail = self.app.get('/api/users/5000')
+    response = self.app.get("/api/users/1000")
+    response_fail = self.app.get("/api/users/5000")
 
     self.assertEqual(200, response.status_code)
     self.assertEqual(404, response_fail.status_code)
@@ -65,7 +70,7 @@ class UserModelTest(unittest.TestCase):
       "email": "linx@msn.com",
       "password": "secret"
     })
-    response = self.app.post('/auth/login', headers={"Content-Type": "application/json"}, data=payload)
+    response = self.app.post("/auth/login", headers={"Content-Type": "application/json"}, data=payload)
     self.assertEqual(200, response.status_code)
 
   # Test the user auth login endpoint
@@ -76,13 +81,13 @@ class UserModelTest(unittest.TestCase):
       "email": "idontexist@hotmail.com",
       "password": "idontexist"
     })
-    response = self.app.post('/auth/login', headers={"Content-Type": "application/json"}, data=payload)
+    response = self.app.post("/auth/login", headers={"Content-Type": "application/json"}, data=payload)
     self.assertEqual(401, response.status_code)
   
   # Test the auth logout endpoint
   def test_logout(self):
-    response = self.app.get('/auth/logout')
+    response = self.app.get("/auth/logout")
     self.assertEqual(200, response.status_code)
     
-if __name__ == '__main__':
+if __name__ == "__main__":
   unittest.main()

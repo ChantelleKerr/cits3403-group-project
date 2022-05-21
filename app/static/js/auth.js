@@ -36,18 +36,18 @@ window.onload = function () {
 
     if (email == "" || checkEmail(email) != "") {
       if (email == "") {
-        emailValidationText.innerHTML = "This field is required."
+        emailValidationText.innerHTML = "This field is required.";
       }
       isValid = false;
     }
     if (password == "" || checkPassword(password, email, username) != "") {
       if (password == "") {
-        passwordValidationText.innerHTML = "This field is required."
+        passwordValidationText.innerHTML = "This field is required.";
       }
       isValid = false;
     }
     if (username == "") {
-      usernameValidationText.innerHTML = "This field is required."
+      usernameValidationText.innerHTML = "This field is required.";
       isValid = false;
     }
     if (!isValid) {
@@ -57,7 +57,7 @@ window.onload = function () {
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "api/users/create", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ username: username, email: email, password: password }))
+    xhttp.send(JSON.stringify({ username: username, email: email, password: password }));
 
     xhttp.onload = () => {
       if (xhttp.status == 201) {
@@ -66,10 +66,10 @@ window.onload = function () {
         bootstrap.Modal.getOrCreateInstance(messageModal).show();
         document.getElementById("message").innerHTML = "Account successfully created";
       } else if (xhttp.status == 500) {
-        emailValidationText.innerHTML = "This email already has an account associated with it."
+        emailValidationText.innerHTML = "This email already has an account associated with it.";
       }
-    }
-  })
+    };
+  });
 
   /** 
    * An event listener that waits for the login form to be submitted
@@ -92,19 +92,19 @@ window.onload = function () {
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "auth/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({ email: email, password: password }))
+    xhttp.send(JSON.stringify({ email: email, password: password }));
     xhttp.onload = () => {
       if (xhttp.status == 200) {
         // Close the modal
         var modal = document.getElementById('loginModal');
-        bootstrap.Modal.getInstance(modal).hide()
+        bootstrap.Modal.getInstance(modal).hide();
         // Reload the current page
         location.reload();
       } else if (xhttp.status == 401) {
-        loginValidationText.innerHTML = "No account matching the given email and password was found."
+        loginValidationText.innerHTML = "No account matching the given email and password was found.";
       }
-    }
-  })
+    };
+  });
   /**
    * Tests if a String is a valid email
    * @param emailAttempt - a String to be tested
@@ -135,11 +135,11 @@ window.onload = function () {
     if (passwordAttempt == "") {
       return "";
     } else if (passwordAttempt.length < 8 && passwordAttempt != "") {
-      return "Please use a password with 8 characters or more."
+      return "Please use a password with 8 characters or more.";
     } else if (passwordAttempt.toLowerCase() == emailAttempt.toLowerCase()) {
-      return "Please use a password which is different to your email."
+      return "Please use a password which is different to your email.";
     } else if (passwordAttempt.toLowerCase() == usernameAttempt.toLowerCase()) {
-      return "Please use a password which is different to your username."
+      return "Please use a password which is different to your username.";
     }
     return "";
   }
@@ -150,26 +150,26 @@ window.onload = function () {
   // they've current inputted, the error text appears.
   usernameInput.addEventListener('focus', () => {
     usernameValidationText.innerHTML = "";
-  })
+  });
   emailInput.addEventListener('focus', () => {
     emailValidationText.innerHTML = "";
-  })
+  });
   emailInput.addEventListener('blur', () => {
     emailValidationText.innerHTML = checkEmail(emailInput.value);
-  })
+  });
   passwordInput.addEventListener('focus', () => {
     passwordValidationText.innerHTML = "";
-  })
+  });
   passwordInput.addEventListener('blur', () => {
     passwordValidationText.innerHTML = checkPassword(passwordInput.value, emailInput.value, usernameInput.value);
-  })
+  });
   document.querySelectorAll("#loginForm input").forEach((inp) => {
     inp.addEventListener('focus', () => {
       loginValidationText.innerHTML = "";
-    })
-  })
+    });
+  });
 
-}
+};
 
 /** 
  * Makes a request to the auth endpoint which handles logging out the user.
@@ -179,13 +179,13 @@ window.onload = function () {
 function logout() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "auth/logout", true);
-  xhttp.send()
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       // reload the current page
       location.reload();
     }
   }
+  xhttp.send();
 }
 
 /**

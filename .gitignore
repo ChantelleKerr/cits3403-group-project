@@ -26,4 +26,7 @@ htmlcov/
 .coverage.*
 *,cover
 
+# Selenium
+geckodriver.log
+
 app/api/today.json

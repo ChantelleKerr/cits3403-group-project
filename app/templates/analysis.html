@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Page Title -->
+<link rel="stylesheet" href="static/css/analysis.css">
     <div id="header" class="jumbotron text-center mt-2"> 
         <h1 class="text-primary">{{current_user.username}}'s Statistics</h1>
     </div>
@@ -8,11 +9,13 @@
     <br>
     <br>
     <br>
+    <!-- Result Data Table -->
     <div class="table-responsive">
         <table class="table" id="results-table">
         </table>
     </div>
-    <div class="modal" tabindex="-1" id="puzzle-modal" width="500px">
+    <!-- Pop-up Modal -->
+    <div class="modal" tabindex="-1" id="puzzle-modal">
         <div class="modal-dialog modal-dialog-centered modal-sm">
           <div class="modal-content">
             <div class="modal-header center">
@@ -24,6 +27,7 @@
           </div>
         </div>
       </div>
+      <!-- Javascript -->
     <script src="static/js/analysis.js"></script>
 
 {% endblock %}

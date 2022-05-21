@@ -4,13 +4,12 @@ from flask import jsonify, request
 from app import db
 from flask import url_for
 
-
-
+# Returns the user by ID
 @bp.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
   return jsonify(User.query.get_or_404(id).to_dict())
 
-
+# Creates a new database entry in the user table
 @bp.route('/users/create', methods=['POST'])
 def create_user():
   data = request.get_json() or {}
