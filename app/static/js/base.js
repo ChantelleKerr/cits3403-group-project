@@ -44,7 +44,6 @@ let nutrientOfTheDayRequested = function () { };
 function requestNutrientOfTheDay() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods/notd/0", true);
-  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       response = JSON.parse(xhttp.response);
@@ -52,7 +51,8 @@ function requestNutrientOfTheDay() {
       nutrientOfTheDayUnits = response.unit;
       nutrientOfTheDayRequested();
     }
-  };
+  }
+  xhttp.send()
 }
 
 // This function is overwritten by whatever should happen after the foodChoices have been received
@@ -61,13 +61,13 @@ let foodChoicesRequested = function () { };
 function requestFoodChoices() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "api/foods", true);
-  xhttp.send();
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       foodChoices = JSON.parse(xhttp.response);
       foodChoicesRequested();
     }
-  };
+  }
+  xhttp.send()
 }
 
 

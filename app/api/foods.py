@@ -5,14 +5,15 @@ from datetime import datetime, timezone
 import json, random, time
 
 
-# gets the nutrient of the day
+# The function will return the nutrient of the day for the current day, if 0 is passed as the parameter
+# If any other number is passed, it will instead return JSON containing all the nutrients and units
 @bp.route("/foods/notd/<int:day>", methods=["GET"])
 def get_daily_nutrient(day):
   return jsonify(generate_daily_nutrient(day))
 
 # updates the daily foods if the day has changed
 @bp.route("/foods/", methods=["GET"])
-def get_daily_food():
+def get_daily_foods():
   seed = int(datetime.now(timezone.utc).strftime("%Y%m%d"))
   random.seed(seed)
 
@@ -33,7 +34,7 @@ def get_daily_food():
 # You can pass an integer to use as a seed for food generation
 # If 0 is the seed, then it will instead use the system time (different each time)
 @bp.route("/foods/<int:seed>", methods=["GET"])
-def update_daily_food(seed):
+def update_daily_foods(seed):
   if not (current_user.is_authenticated and current_user.is_superuser()):
     return redirect("/")
   if seed == 0:
