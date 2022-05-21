@@ -53,7 +53,7 @@ python3 -m venv venv
 ```
 ###### Activate Virtual Environment
 ```
-# Mac / WSL
+# Mac / Linux / WSL
 source venv/bin/activate
 
 # Windows (command prompt)
@@ -112,9 +112,14 @@ Tests multiple user functionality including authorisation and password hashes.
 python3 -m unittest app/tests/user_test.py
 ```
 ###### Analysis Tests
-TODO: description
+Tests functionality relating to the storing and retrieving of user results
 ```
-TODO
+python3 -m unittest app/tests/result_test.py
+```
+###### Foods Tests
+Tests functionality relating to the generation of foods for the day
+```
+python3 -m unittest app/tests/foods_test.py
 ```
 ###### Selenium Tests
 The test opens up FireFox and simulates navigation that a user may take while using our website.  
