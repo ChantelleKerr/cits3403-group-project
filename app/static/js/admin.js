@@ -3,11 +3,11 @@
 requestFoodChoices();
 foodChoicesRequested = function () {
   createFoodList(foodChoices);
-}
+};
 requestNutrientOfTheDay();
 nutrientOfTheDayRequested = function () {
-  document.getElementById("current-nutrient").textContent = nutrientOfTheDay
-}
+  document.getElementById("current-nutrient").textContent = nutrientOfTheDay;
+};
 
 
 
@@ -51,7 +51,7 @@ function createFoodList(foodChoices) {
     foodTitle.className = "food-item-title center";
 
     var itemDetails = document.createElement("div");
-    itemDetails.className = "food-item-details center"
+    itemDetails.className = "food-item-details center";
 
     // Loop through food object to get the nutriention value
     for (var details in food) {
@@ -65,5 +65,5 @@ function createFoodList(foodChoices) {
     foodItem.appendChild(foodTitle);
     foodItem.appendChild(itemDetails);
     foodList.appendChild(foodItem);
-  })
+  });
 }

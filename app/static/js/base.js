@@ -34,12 +34,12 @@ function fixNavBar() {
 updateCSSVariables();
 fixNavBar();
 // Actions to be taken whenever screen resizes
-window.addEventListener('resize', function (event) {
+window.addEventListener('resize', function () {
   updateCSSVariables();
 }, false);
 
 // This function is overwritten by whatever should happen after the NOTD has been received
-let nutrientOfTheDayRequested = function () { }
+let nutrientOfTheDayRequested = function () { };
 // This is called by any page which needs the NOTD
 function requestNutrientOfTheDay() {
   const xhttp = new XMLHttpRequest();
@@ -47,8 +47,8 @@ function requestNutrientOfTheDay() {
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       response = JSON.parse(xhttp.response);
-      nutrientOfTheDay = response["notd"];
-      nutrientOfTheDayUnits = response["unit"];
+      nutrientOfTheDay = response.notd;
+      nutrientOfTheDayUnits = response.unit;
       nutrientOfTheDayRequested();
     }
   }
@@ -56,7 +56,7 @@ function requestNutrientOfTheDay() {
 }
 
 // This function is overwritten by whatever should happen after the foodChoices have been received
-let foodChoicesRequested = function () { }
+let foodChoicesRequested = function () { };
 // This is called by any page which needs the foodChoices
 function requestFoodChoices() {
   const xhttp = new XMLHttpRequest();

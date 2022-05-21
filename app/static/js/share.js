@@ -12,9 +12,9 @@ function createCopyTextArea() {
   copyEmoji.innerHTML = "";
   for (let i = 0; i < rounds; i++) {
     if (roundsWon[i]) {
-      copyEmoji.innerHTML += "🟩"
+      copyEmoji.innerHTML += "🟩";
     } else {
-      copyEmoji.innerHTML += "🟥"
+      copyEmoji.innerHTML += "🟥";
     }
   }
 }

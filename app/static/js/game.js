@@ -14,12 +14,12 @@ let previousTimeStamp;
 requestNutrientOfTheDay();
 nutrientOfTheDayRequested = function () {
   generateNutrientOfTheDay();
-}
+};
 
 requestFoodChoices();
 foodChoicesRequested = function () {
   generateFoodChoices();
-}
+};
 
 addEventListeners();
 
@@ -31,7 +31,7 @@ function generateNutrientOfTheDay() {
   for (let i = 0; i < rounds; i++) {
     let img = document.createElement('img');
     img.src = "static/images/" + nutrientOfTheDay.toLowerCase() + "-lose.png";
-    img.setAttribute('alt', 'roundIcon')
+    img.setAttribute('alt', 'roundIcon');
     roundDiv.appendChild(img);
   }
   document.getElementById("nutrient-name-text").textContent = nutrientOfTheDay;
@@ -43,8 +43,8 @@ function generateNutrientOfTheDay() {
 function generateFoodChoices() {
   for (let i = 0; i < document.getElementsByClassName("game-img").length; i++) { // loop through the 2 food choices
     if (currentRound + i - 1 <= rounds) {
-      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i]["url"] + ")";
-      document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i]["name"];
+      document.getElementById("food-row").children[i].style.backgroundImage = "url(" + foodChoices[currentRound - 1 + i].url + ")";
+      document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i].name;
     }
   }
   document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
@@ -187,17 +187,17 @@ function animateFoods() {
   newFood.innerHTML = foodDivs[1].innerHTML;
   if (currentRound <= rounds) {
     // but change the text and the image to be of the next food
-    newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound]["name"];
-    newFood.style.backgroundImage = "url(" + foodChoices[currentRound]["url"] + ")";
+    newFood.firstElementChild.firstElementChild.innerHTML = foodChoices[currentRound].name;
+    newFood.style.backgroundImage = "url(" + foodChoices[currentRound].url + ")";
     // Show the nutrient of the second food
     let nutr = document.createElement("h4");
-    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
     foodDivs[1].firstElementChild.appendChild(nutr);
 
   } else { //Show the score
     // Show the nutrient of the second food
     let nutr = document.createElement("h4");
-    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits
+    nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
     foodDivs[1].firstElementChild.appendChild(nutr);
     makeGameOverScreen(newFood);
   }
@@ -224,7 +224,7 @@ function makeGameOverScreen(d) {
   Object.assign(shareBtn, {
     className: "btn btn-outline-secondary",
     onclick: openShareModal
-  })
+  });
   shareBtn.innerHTML = "Share Score";
   div.appendChild(t1);
   div.appendChild(t2);
@@ -310,7 +310,7 @@ function slide(timestamp) {
   }
 
   if (elapsed < slideTime) {
-    previousTimeStamp = timestamp
+    previousTimeStamp = timestamp;
     window.requestAnimationFrame(slide);
   } else {
     resetAfterAnimation();
@@ -327,7 +327,7 @@ function slide(timestamp) {
 function resetAfterAnimation() {
   document.getElementById("food-row").removeChild(document.getElementById("nf"));
   let foodDivs = document.getElementsByClassName("game-img");
-  let circleComparison = document.getElementById("circle-comparison")
+  let circleComparison = document.getElementById("circle-comparison");
   generateFoodChoices();
   foodDivs[1].firstElementChild.removeChild(foodDivs[1].firstElementChild.lastChild);
   for (let i = 0; i < foodDivs.length; i++) {
@@ -355,12 +355,12 @@ function resetAfterAnimation() {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "api/results/write/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify({ date: dateString, score: scoreString }))
+  xhttp.send(JSON.stringify({ date: dateString, score: scoreString }));
   xhttp.onload = () => {
     if (xhttp.status != 200){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
       document.getElementById("message").innerHTML = xhttp.status == 201 ? "Your score has been saved! See the Analysis page." : "Your score could not be saved due to an unexpected error.";
     }
-  }
+  };
 }

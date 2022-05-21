@@ -1,12 +1,12 @@
 
 
 function changeTip() {
-  let prefix = "<span style=\"color: #F9D132\">Tip: </span>"
+  let prefix = "<span style=\"color: #F9D132\">Tip: </span>";
   let tips = [
     prefix + "Look for <img src=\"" + "static/images/" + nutrientOfTheDay.toLowerCase() + ".png" + "\"> at the bottom of the screen to see your score",
     prefix + "There are 10 new rounds released every day",
     prefix + "If you register you can see statistics about your performance and improvement"
-  ]
+  ];
   let tip = document.getElementById("tip");
 
   // make sure tip is different each time
@@ -35,4 +35,4 @@ nutrientOfTheDayRequested = function() {
   }
   changeTip();
   setInterval(changeTip, 10000);
-}
+};

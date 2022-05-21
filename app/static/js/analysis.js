@@ -8,8 +8,8 @@ window.onload = function () {
   xhttp.onload = () => {
     if (xhttp.status == 200) {
       response = JSON.parse(xhttp.response);
-      nutrients = response["nutrients"];
-      units = response["units"];
+      nutrients = response.nutrients;
+      units = response.units;
       generateTable();
     }
   }
@@ -37,7 +37,7 @@ function generateTable() {
           let score = (res[i].score.match(/1/g) || []).length;
           let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
           let date = res[i].date.split(" ")[0];
-          let nutrientNum = parseInt(res[i].date.split(" ")[1])
+          let nutrientNum = parseInt(res[i].date.split(" ")[1]);
           let nutrient = nutrients[nutrientNum];
           let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
           let seed = '<button class="btn btn-secondary" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
@@ -61,11 +61,11 @@ function generateTable() {
       let newCell = document.createElement(type);
       newRow.appendChild(newCell);
       if (j == 4 && type=="th"){
-        newCell.style.minWidth = "260px"
+        newCell.style.minWidth = "260px";
       }else if (j == 2 && type=="th"){
-        newCell.style.minWidth = "150px"
+        newCell.style.minWidth = "150px";
       }else if (j == 5 && type=="th"){
-        newCell.style.minWidth = "160px"
+        newCell.style.minWidth = "160px";
       }
       newCell.innerHTML = list_of_values[j];
     }
@@ -96,7 +96,7 @@ function showPuzzle(i,nutrientNum){
       }
       bootstrap.Modal.getOrCreateInstance(puzzleModal).show();
     } else{
-      puzzleModalBody.innerHTML = "<p>An unexpected error occured</p>"
+      puzzleModalBody.innerHTML = "<p>An unexpected error occured</p>";
     }
   }
   xhttp.send();
