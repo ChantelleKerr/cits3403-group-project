@@ -106,7 +106,6 @@ a {
 
 .btn:focus, .btn:active {
   color: #222222;
-  border-color: none;
   box-shadow: none;
 }
 
