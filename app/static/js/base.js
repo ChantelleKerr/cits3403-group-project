@@ -3,7 +3,7 @@ let nutrientOfTheDay;
 let nutrientOfTheDayUnits;
 let foodChoices;
 
-const routeNavBarNames = {"/":"Home","/game":"Game","/analysis": "Analysis"};
+const routeNavBarNames = { "/": "Home", "/game": "Game", "/analysis": "Analysis" };
 
 /**
  * Checks if the window is considered small by bootstrap
@@ -19,12 +19,12 @@ function updateCSSVariables() {
   document.querySelector(':root').style.setProperty('--nonavbar-height', window.innerHeight - document.getElementById("navbar").clientHeight + 'px');
 }
 
-function fixNavBar(){
+function fixNavBar() {
   document.querySelectorAll(".nav-link").forEach((link) => {
-    if (link.innerHTML == routeNavBarNames[window.location.pathname]){
+    if (link.innerHTML == routeNavBarNames[window.location.pathname]) {
       link.className = "nav-link active";
       link.ariaCurrent = "page";
-    }else{
+    } else {
       link.className = "nav-link";
       link.removeAttribute("aria-current");
     }
@@ -39,7 +39,7 @@ window.addEventListener('resize', function (event) {
 }, false);
 
 // This function is overwritten by whatever should happen after the NOTD has been received
-let nutrientOfTheDayRequested = function() {} 
+let nutrientOfTheDayRequested = function () { }
 // This is called by any page which needs the NOTD
 function requestNutrientOfTheDay() {
   const xhttp = new XMLHttpRequest();
