@@ -22,27 +22,24 @@ function generateTable() {
   xhttp.open("GET", "api/results/user/0", true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.onload = () => { 
-    if (xhttp.status == 200) {
-      var res = JSON.parse(xhttp.response);
-      if (res.length == 0) {
-        //The user hasn't got any results yet
-        let new_text = document.createElement("h3");
-        document.body.appendChild(new_text);
-        new_text.innerHTML = "You do not have any results yet";
-        new_text.className = "center";
-      } else{
-        addTableRow(["Game number","Date","Nutrient","Score","Rounds","Seed"],"th");
-        for (var i = 0; i < res.length; i++){
-          // Calculate some values to be added to a row of the table
-          let score = (res[i].score.match(/1/g) || []).length;
-          let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
-          let date = res[i].date.split(" ")[0];
-          let nutrientNum = parseInt(res[i].date.split(" ")[1]);
-          let nutrient = nutrients[nutrientNum];
-          let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
-          let seed = '<button class="btn btn-secondary" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
-          addTableRow([i+1,date,nutrientHTML,score,rounds,seed],"td");
-        }
+    var res = JSON.parse(xhttp.response);
+    if (xhttp.status == 404) {
+      let new_text = document.createElement("h3");
+      document.body.appendChild(new_text);
+      new_text.innerHTML = "You do not have any results yet";
+      new_text.className = "center";
+    } else if (xhttp.status == 200) {
+      addTableRow(["Game number","Date","Nutrient","Score","Rounds","Seed"],"th");
+      for (var i = 0; i < res.length; i++){
+        // Calculate some values to be added to a row of the table
+        let score = (res[i].score.match(/1/g) || []).length;
+        let rounds = res[i].score.replace(/1/g,"🟩").replace(/0/g,"🟥");
+        let date = res[i].date.split(" ")[0];
+        let nutrientNum = parseInt(res[i].date.split(" ")[1]);
+        let nutrient = nutrients[nutrientNum];
+        let nutrientHTML = nutrient + ' <img style="width:40px;" alt = "' + nutrient + '"src = "static/images/' + nutrient.toLowerCase() + '.png">';
+        let seed = '<button class="btn btn-secondary" onclick="showPuzzle(' + res[i].seed + ',' + nutrientNum + ')">View Puzzle</button>';
+        addTableRow([i+1,date,nutrientHTML,score,rounds,seed],"td");
       }
     }
   }

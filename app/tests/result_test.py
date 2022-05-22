@@ -54,7 +54,7 @@ class ResultModelTest(unittest.TestCase):
     self.assertEqual(json.loads(response_success.data),[{"date":"12/5/2022 4","id":101,"score":"1000111101","seed":3242342,"user_id":2000}])
     self.assertEqual(response_success.status_code,200)
     self.assertEqual(json.loads(response_fail.data),[])
-    self.assertEqual(response_fail.status_code,200)
+    self.assertEqual(response_fail.status_code,404)
 
   # Test the write_results API endpoint
   # The test attempts to write two results to the database
@@ -74,7 +74,7 @@ class ResultModelTest(unittest.TestCase):
     self.assertEqual(response.status_code,201)
     self.assertEqual(json.loads(response.data),{"date":"13/5/2022 5","id":201,"score":"0000001000","seed":seed,"user_id":user_id})
     response_not_authenticated = self.app.post("/api/results/write/0", headers={"Content-Type": "application/json"}, data=payload)
-    self.assertEqual(response_not_authenticated.status_code,200)
+    self.assertEqual(response_not_authenticated.status_code,403)
 
   # Test the share_achievement API endpoint
   # The test passes if the post request returns a status code of 200
