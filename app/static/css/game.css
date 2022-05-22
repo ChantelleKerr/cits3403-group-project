@@ -56,6 +56,10 @@
   opacity: 0.2;
 }
 
+.food-name-text {
+  cursor: pointer;
+}
+
 .img-info {
   align-items: center;
   flex-direction: column;
