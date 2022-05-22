@@ -3,6 +3,7 @@ from app import app, db
 from config import TestConfig
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 import random
 
@@ -10,7 +11,7 @@ import random
 class SeleniumTest(unittest.TestCase):
   driver = None
   def setUp(self):
-    service = Service('geckodriver')
+    service = Service(executable_path=GeckoDriverManager().install())
     self.driver = webdriver.Firefox(service=service)
     app.config.from_object(TestConfig)
     self.app = app.test_client()
@@ -87,10 +88,13 @@ class SeleniumTest(unittest.TestCase):
         # Click the second food choice
         self.driver.find_element(By.XPATH,'/html/body/div[4]/section/div[2]').click()
       time.sleep(2)
-    # Check that we are finished the game by looking for the game over screen!
-    game_over_score = self.driver.find_element(By.XPATH, '/html/body/div[4]/section/div[2]/div/h2[2]')
-    game_over = game_over_score.is_displayed()
+    time.sleep(1)
+    # Check that we are finished the game by looking for score saved message!
+    game_over = self.driver.find_element(By.ID, 'message').is_displayed()
     self.assertEqual(game_over, True)
+    # Close the message modal
+    self.driver.find_element(By.XPATH, '/html/body/div[3]/div/div/div/button').click()
+
 
   def simulate_analysis(self):
     # Click the analysis link (navbar)
