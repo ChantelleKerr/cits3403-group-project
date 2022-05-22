@@ -357,7 +357,8 @@ function resetAfterAnimation() {
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }));
   xhttp.onload = () => {
-    if (xhttp.status != 200){ // Check if the user is logged in
+    console.log(xhttp.status)
+    if (xhttp.status != 403){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
       document.getElementById("message").innerHTML = xhttp.status == 201 ? "Your score has been saved! See the Analysis page." : "Your score could not be saved due to an unexpected error.";

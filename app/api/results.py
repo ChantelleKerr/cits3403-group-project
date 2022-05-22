@@ -43,7 +43,7 @@ def write_results(id):
     response.headers["Location"] = url_for("api.get_result", id=result.id)
   else:
     response = jsonify({})
-    response.status_code = 200
+    response.status_code = 403
   return response
 
 # Opens twitter and creates a tweet with given text (does not submit tweet automatically)
