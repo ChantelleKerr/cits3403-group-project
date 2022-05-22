@@ -39,6 +39,13 @@ Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication b
 - **CSS** used to create custom styling 
 - **AJAX** used to make requests to the backend
 
+## Design and Development
+###### Planning
+In our initial meeting we discussed ideas on what we wanted to work on, we all decided that we wanted to develop a game that promoted a positive message and we looked for inspiration, where we found Google's Higher Lower Game and agree'd that this would be perfect. We looked into what we wanted to promote including water usage, energy usage, tree consumption, wasted time on activities but concluded that nutritional information would have the most available data. 
+
+As part of the agile development method, we broke down out project into iterations, and used GitHub to make the development process more manageable. 
+
+
 
 ## Setup Project
 
