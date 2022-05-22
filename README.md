@@ -48,6 +48,7 @@ As part of the agile development process, we broke down out project into iterati
 
 
 ## Setup Project
+***Note**: For all commands you may need to use python instead of python3*
 
 Run the following commands
 ###### Clone the Project
@@ -72,6 +73,7 @@ venv\Scripts\activate
 pip3 install -r requirements.txt
 ```
 ## Setup Database
+
 Create the database and migrate
 
 ```
@@ -87,7 +89,7 @@ flask db upgrade
 
 In your terminal type the following commands!
 ```
-python3 (you may have to use "python" instead)
+python3
 ```
 import the database and user model
 ```
