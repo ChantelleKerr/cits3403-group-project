@@ -43,7 +43,7 @@ Nutri Hi-Lo is a Flask-based website utilising a RESTful API for communication b
 ###### Planning
 In our initial meeting we discussed ideas on what we wanted to work on, we all decided that we wanted to develop a game that promoted a positive message and we looked for inspiration, where we found Google's Higher Lower Game and agree'd that this would be perfect. We looked into what we wanted to promote including water usage, energy usage, tree consumption, wasted time on activities but concluded that nutritional information would have the most available data. 
 
-As part of the agile development process, we broke down out project into iterations, and used GitHub to make the development process more manageable. During development we made sure that we followed the "Don't Repeat Yourself" (DRY) principle which helped keep our code clean and easy to read. Throughout the development of our website we made sure that we set tasks to be completed by a certain date so that we would have time to go over last minute fixes and we could deliver the project on time. 
+As part of the agile development process, we broke down out project into iterations, and used GitHub to make the development process more manageable. During development we made sure that we followed the "Don't Repeat Yourself" (DRY) principle which helped keep our code clean and easy to read. We were in constant communication through Discord and also had fortnightly face-to-face meetings. Throughout the development of our website we made sure that we set tasks to be completed by a certain date so that we would have time to go over last minute fixes and we could deliver the project on time. 
 
 
 
