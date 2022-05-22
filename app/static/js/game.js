@@ -357,7 +357,6 @@ function resetAfterAnimation() {
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify({ date: dateString, score: scoreString }));
   xhttp.onload = () => {
-    console.log(xhttp.status)
     if (xhttp.status != 403){ // Check if the user is logged in
       let messageModal = document.getElementById("messageModal");
       bootstrap.Modal.getOrCreateInstance(messageModal).show();
