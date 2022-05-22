@@ -74,7 +74,8 @@ def generate_daily_nutrient(day):
   units = ["mg", "g", "g", "mg", "g", "mg", "g"]
   nutrients = ["Calcium", "Fat", "Fibre", "Iron", "Protein", "Sodium", "Sugar"]
   if day == 0:
-    return {"notd": nutrients[datetime.now(timezone.utc).weekday()], "unit": units[datetime.now(timezone.utc).weekday()]}
+    day_num = (datetime.now(timezone.utc).weekday()+1)%7 # need to add 1 for consistency with JavaScript
+    return {"notd": nutrients[day_num], "unit": units[day_num]}
   else:
     return {"nutrients": nutrients, "units": units}
 

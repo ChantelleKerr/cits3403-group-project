@@ -56,8 +56,9 @@
   opacity: 0.2;
 }
 
-.food-name-text {
+.food-name-text, .nutrient-data-text {
   cursor: pointer;
+  user-select: none;
 }
 
 .img-info {
