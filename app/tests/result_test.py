@@ -63,6 +63,7 @@ class ResultModelTest(unittest.TestCase):
   # Also, the response data from the first write must match with
   # the dictionary below
   def test_write_results(self):
+    self.app.get("/api/foods/")
     user_id = 2000
     with open("app/api/today.json") as ftoday:
       seed = json.load(ftoday)["seed"]
