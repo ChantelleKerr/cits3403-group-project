@@ -74,6 +74,12 @@ pip3 install -r requirements.txt
 ```
 ## Setup Database
 
+Set the revision in the database to the head, without performing any migrations
+
+```
+flask db stamp
+```
+
 Create the database and migrate
 
 ```
