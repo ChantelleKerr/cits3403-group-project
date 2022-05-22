@@ -144,7 +144,8 @@ The test opens up FireFox and simulates navigation that a user may take while us
 
 **Please made sure the server is running** because we are performing client side testing.  
 
-***Note**: This test will run for ~40 seconds*
+***Note**: This test will run for ~40 seconds*  
+
 ***Warning**: This test may not run using WSL*
 ```
 python3 -m unittest app/tests/selenium.py
