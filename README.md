@@ -120,7 +120,9 @@ Tests multiple user functionality including authorisation and password hashing.
 python3 -m unittest app/tests/user_test.py
 ```
 ###### Analysis Tests
-Tests functionality relating to the storing and retrieving of user results
+Tests functionality relating to the storing and retrieving of user results  
+
+***Note:** This will open up twitter in the browser*
 ```
 python3 -m unittest app/tests/result_test.py
 ```
