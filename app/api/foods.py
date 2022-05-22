@@ -1,4 +1,3 @@
-from calendar import weekday
 from app.api import bp
 from flask import jsonify, redirect
 from flask_login import current_user

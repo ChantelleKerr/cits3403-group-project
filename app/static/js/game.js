@@ -47,7 +47,7 @@ function generateFoodChoices() {
       document.getElementsByClassName("food-name-text")[i].innerHTML = foodChoices[currentRound - 1 + i].name;
     }
   }
-  document.getElementById("nutrient-data-text").innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
+  document.getElementsByClassName("nutrient-data-text")[0].innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
 }
 
 /**
@@ -191,6 +191,7 @@ function animateFoods() {
     newFood.style.backgroundImage = "url(" + foodChoices[currentRound].url + ")";
     // Show the nutrient of the second food
     let nutr = document.createElement("h4");
+    nutr.className = "nutrient-data-text";
     nutr.innerHTML = nutrientOfTheDay + ": " + foodChoices[currentRound - 1][nutrientOfTheDay] + " " + nutrientOfTheDayUnits;
     foodDivs[1].firstElementChild.appendChild(nutr);
 
