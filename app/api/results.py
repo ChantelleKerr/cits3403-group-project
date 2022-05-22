@@ -1,3 +1,4 @@
+from urllib import response
 from app.api import bp
 from app.models import Result
 from flask import jsonify, request, make_response
@@ -23,7 +24,12 @@ def get_user_results(id):
   result_list = []
   for result in u_results:
     result_list.append(result.to_dict())
-  return jsonify(result_list)
+  response = jsonify(result_list)
+  if len(result_list) == 0:
+    response.status_code = 404
+  else:
+    response.status_code = 200
+  return response
 
 # Creates a new entry in the results database table
 @bp.route("/results/write/<int:id>", methods=["POST"])

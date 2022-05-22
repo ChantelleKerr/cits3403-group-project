@@ -54,7 +54,7 @@ class ResultModelTest(unittest.TestCase):
     self.assertEqual(json.loads(response_success.data),[{"date":"12/5/2022 4","id":101,"score":"1000111101","seed":3242342,"user_id":2000}])
     self.assertEqual(response_success.status_code,200)
     self.assertEqual(json.loads(response_fail.data),[])
-    self.assertEqual(response_fail.status_code,200)
+    self.assertEqual(response_fail.status_code,404)
 
   # Test the write_results API endpoint
   # The test attempts to write two results to the database
